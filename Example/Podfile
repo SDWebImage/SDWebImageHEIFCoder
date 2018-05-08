@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'SDWebImageHEIFCoder_Example' do
+  pod 'SDWebImageHEIFCoder', :path => '../'
+
+  target 'SDWebImageHEIFCoder_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
