@@ -35,6 +35,7 @@
     [imageView1 sd_setImageWithURL:singleHEICURL completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if (image) {
             NSLog(@"Single HEIC load success");
+            [[SDWebImageHEIFCoder sharedCoder] encodedDataWithImage:image format:SDImageFormatHEIC options:0];
         }
     }];
     [imageView2 sd_setImageWithURL:stillHEICURL completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
