@@ -28,12 +28,15 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/DreamPiggy/SDWebImageHEIFCoder.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
+  s.osx.deployment_target = '10.10'
   s.ios.deployment_target = '8.0'
   s.tvos.deployment_target = '9.0'
 
-  s.source_files = 'SDWebImageHEIFCoder/Classes/**/*', 'Vendors/libheif/*.{h}', 'Vendors/libde265/*.{h}'
-  s.vendored_libraries = 'Vendors/libheif/libheif.a', 'Vendors/libde265/libde265.a'
+  s.source_files = 'SDWebImageHEIFCoder/Classes/**/*', 'Vendors/libheif/include/*.{h}', 'Vendors/libde265/include/*.{h}'
+  s.osx.vendored_libraries = 'Vendors/libheif/macOS/libheif.a', 'Vendors/libde265/macOS/libde265.a'
+  s.ios.vendored_libraries = 'Vendors/libheif/iOS/libheif.a', 'Vendors/libde265/iOS/libde265.a'
+  s.tvos.vendored_libraries = 'Vendors/libheif/iOS/libheif.a', 'Vendors/libde265/iOS/libde265.a'
   s.libraries = 'c++'
   
-  s.dependency 'SDWebImage/Core'
+  s.dependency 'SDWebImage/Core', '~> 4.2'
 end

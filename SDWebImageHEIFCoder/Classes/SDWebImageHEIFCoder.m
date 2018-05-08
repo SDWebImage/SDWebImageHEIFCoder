@@ -53,7 +53,11 @@ static void FreeImageData(void *info, const void *data, size_t size) {
         return nil;
     }
     
+#if SD_UIKIT
     image = [[UIImage alloc] initWithCGImage:imageRef scale:scale orientation:UIImageOrientationUp];
+#else
+    image = [[UIImage alloc] initWithCGImage:imageRef scale:scale orientation:kCGImagePropertyOrientationUp];
+#endif
     
     return image;
 }

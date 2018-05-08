@@ -17,6 +17,7 @@ This HEIF coder plugin currently support HEIF single/still image decoding. And i
 
 + iOS 8
 + tvOS 9.0
++ macOS 10.10
 
 ## Installation
 
