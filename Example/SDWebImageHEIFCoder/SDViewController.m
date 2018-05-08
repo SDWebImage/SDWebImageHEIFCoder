@@ -7,6 +7,7 @@
 //
 
 #import "SDViewController.h"
+#import <SDWebImageHEIFCoder/SDWebImageHEIFCoder.h>
 
 @interface SDViewController ()
 
@@ -17,6 +18,30 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    SDWebImageHEIFCoder *HEIFCoder = [SDWebImageHEIFCoder sharedCoder];
+    [[SDImageCodersManager sharedManager] addCoder:HEIFCoder];
+    NSURL *singleHEICURL = [NSURL URLWithString:@"http://nokiatech.github.io/heif/content/images/ski_jump_1440x960.heic"];
+    NSURL *stillHEICURL = [NSURL URLWithString:@"http://nokiatech.github.io/heif/content/images/autumn_1440x960.heic"];
+    
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    
+    UIImageView *imageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height / 2)];
+    UIImageView *imageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, screenSize.height / 2, screenSize.width, screenSize.height / 2)];
+    
+    [self.view addSubview:imageView1];
+    [self.view addSubview:imageView2];
+    
+    [imageView1 sd_setImageWithURL:singleHEICURL completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        if (image) {
+            NSLog(@"Single HEIC load success");
+        }
+    }];
+    [imageView2 sd_setImageWithURL:stillHEICURL completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        if (image.images) {
+            NSLog(@"Still HEIF load success");
+        }
+    }];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
