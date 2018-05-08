@@ -11,7 +11,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 This is a [SDWebImage](https://github.com/rs/SDWebImage) coder plugin to add [High Efficiency Image File Format (HEIF)](http://nokiatech.github.io/heif/index.html) support. Which is built based on the open-sourced [libheif](https://github.com/strukturag/libheif) codec.
 
-This HEIF coder plugin currrently support HEIF single imaged decoding. And it support iOS 8+ device without the dependency of Apple's Image/IO framework. However, for better performance and hardware accelerate for iOS 11+ device, it's really recommended to use Image/IO instead.
+This HEIF coder plugin currently support HEIF single/still image decoding. And it support iOS 8+ device without the dependency of Apple's Image/IO framework. However, for better performance and hardware accelerate for iOS 11+ device, it's really recommended to use Image/IO instead.
 
 ## Requirements
 
@@ -39,7 +39,7 @@ NSURL *HEIFURL;
 
 ## 4.x compatibility
 
-SDWebImage 5.x change the custom coder API. This `master` branch synchonized with `5.x` branch of SDWebImage. For 4.x compatibility HEIF coder support, checkout `4.x` branch.
+SDWebImage 5.x change the custom image coder API. This `master` branch follow the `5.x` branch of SDWebImage. For 4.x compatibility HEIF coder support, checkout `4.x` branch.
 
 ## Screenshot
 
@@ -57,5 +57,6 @@ SDWebImageHEIFCoder is available under the MIT license. See the LICENSE file for
 
 ## Thanks
 
-[libheif](https://github.com/strukturag/libheif)
++ [libheif](https://github.com/strukturag/libheif)
++ [libde265](https://github.com/strukturag/libde265)
 
