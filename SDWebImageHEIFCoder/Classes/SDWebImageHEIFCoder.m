@@ -6,7 +6,8 @@
 //
 
 #import "SDWebImageHEIFCoder.h"
-#import "heif.h"
+#import <libheif/heif.h>
+#import <Accelerate/Accelerate.h>
 
 typedef struct heif_context heif_context;
 typedef struct heif_image_handle heif_image_handle;
@@ -15,6 +16,8 @@ typedef struct heif_encoder heif_encoder;
 typedef struct heif_writer heif_writer;
 typedef struct heif_error heif_error;
 typedef enum heif_chroma heif_chroma;
+typedef enum heif_channel heif_channel;
+typedef enum heif_colorspace heif_colorspace;
 
 static void FreeImageData(void *info, const void *data, size_t size) {
     free((void *)data);
@@ -188,6 +191,18 @@ static struct heif_error WriteImageData(struct heif_context* ctx,
     BOOL hasAlpha = !(alphaInfo == kCGImageAlphaNone ||
                       alphaInfo == kCGImageAlphaNoneSkipFirst ||
                       alphaInfo == kCGImageAlphaNoneSkipLast);
+    BOOL byteOrderNormal = NO;
+    switch (byteOrderInfo) {
+        case kCGBitmapByteOrderDefault: {
+            byteOrderNormal = YES;
+        } break;
+        case kCGBitmapByteOrder32Little: {
+        } break;
+        case kCGBitmapByteOrder32Big: {
+            byteOrderNormal = YES;
+        } break;
+        default: break;
+    }
     
     heif_context* ctx = heif_context_alloc();
     if (!ctx) {
@@ -206,44 +221,95 @@ static struct heif_error WriteImageData(struct heif_context* ctx,
     // set the encoder parameters
     heif_encoder_set_lossy_quality(encoder, quality * 100);
     
+    // libheif supports RGB888/RGBA8888 color mode, convert all to this
+    vImageConverterRef convertor = NULL;
+    vImage_Error v_error = kvImageNoError;
+    
+    vImage_CGImageFormat srcFormat = {
+        .bitsPerComponent = (uint32_t)CGImageGetBitsPerComponent(imageRef),
+        .bitsPerPixel = (uint32_t)CGImageGetBitsPerPixel(imageRef),
+        .colorSpace = CGImageGetColorSpace(imageRef),
+        .bitmapInfo = bitmapInfo
+    };
+    vImage_CGImageFormat destFormat = {
+        .bitsPerComponent = 8,
+        .bitsPerPixel = hasAlpha ? 32 : 24,
+        .colorSpace = [SDImageCoderHelper colorSpaceGetDeviceRGB],
+        .bitmapInfo = hasAlpha ? kCGImageAlphaLast | kCGBitmapByteOrderDefault : kCGImageAlphaNone | kCGBitmapByteOrderDefault // RGB888/RGBA8888 (Non-premultiplied to works for libwebp)
+    };
+    
+    convertor = vImageConverter_CreateWithCGImageFormat(&srcFormat, &destFormat, NULL, kvImageNoFlags, &error);
+    if (v_error != kvImageNoError) {
+        heif_context_free(ctx);
+        return nil;
+    }
+    
+    vImage_Buffer src;
+    v_error = vImageBuffer_InitWithCGImage(&src, &srcFormat, NULL, imageRef, kvImageNoFlags);
+    if (v_error != kvImageNoError) {
+        heif_context_free(ctx);
+        return nil;
+    }
+    vImage_Buffer dest = {
+        .width = width,
+        .height = height,
+        .rowBytes = bytesPerRow,
+        .data = malloc(height * bytesPerRow) // It seems that libheif does not keep 32/64 byte alignment, however, vImage's `vImageBuffer_Init` does. So manually alloc buffer
+    };
+    if (!dest.data) {
+        free(src.data);
+        heif_context_free(ctx);
+        return nil;
+    }
+    
+    // Convert input color mode to RGB888/RGBA8888
+    v_error = vImageConvert_AnyToAny(convertor, &src, &dest, NULL, kvImageNoFlags);
+    if (v_error != kvImageNoError) {
+        free(src.data);
+        free(dest.data);
+        heif_context_free(ctx);
+        return nil;
+    }
+    
+    void * rgba = dest.data; // Converted buffer
+    
     // code to fill in the image
     heif_chroma chroma = hasAlpha ? heif_chroma_interleaved_RGBA : heif_chroma_interleaved_RGB;
+    heif_colorspace colorspace = heif_colorspace_RGB;
     heif_image* img;
-    error = heif_image_create(width, height, heif_colorspace_RGB, chroma, &img);
+    error = heif_image_create(width, height, colorspace, chroma, &img);
     if (error.code != heif_error_Ok) {
-        heif_context_free(ctx);
+        free(rgba);
         heif_encoder_release(encoder);
+        heif_context_free(ctx);
         return nil;
     }
     
-    // Fix-me: support RGB/ARGB only, using vImage's `vImageConvert_AnyToAny` later
-    error = heif_image_add_plane(img, heif_channel_interleaved, width, height, bitsPerPixel);
+    // add the plane
+    heif_channel channel = heif_channel_interleaved;
+    error = heif_image_add_plane(img, channel, width, height, bitsPerPixel);
     if (error.code != heif_error_Ok) {
-        heif_context_free(ctx);
+        free(rgba);
         heif_encoder_release(encoder);
+        heif_context_free(ctx);
         return nil;
     }
     
-    // if we can not get bitmap buffer, early return
-    CGDataProviderRef dataProvider = CGImageGetDataProvider(imageRef);
-    if (!dataProvider) {
-        return nil;
+    // fill the plane
+    int stride;
+    uint8_t *planar = heif_image_get_plane(img, channel, &stride);
+    int bytes_per_pixel = (bitsPerPixel + 7) / 8;
+    for (int y = 0 ; y < height ; y++) {
+        memcpy(planar + y * stride, rgba + y * stride, width * bytes_per_pixel);
     }
-    CFDataRef dataRef = CGDataProviderCopyData(dataProvider);
-    if (!dataRef) {
-        return nil;
-    }
-    size_t stride;
-    uint8_t *rgba = (uint8_t *)CFDataGetBytePtr(dataRef);
-    uint8_t *output_rgba = heif_image_get_plane(img, heif_channel_interleaved, &stride);
-    NSAssert(bytesPerRow == stride, @"stride equal");
-    // Fix-me: assume input stride == output stride, override with input
-    memcpy(output_rgba, rgba, stride * height);
+    
+    // free the rgba buffer
+    free(rgba);
     
     // encode the image
     error = heif_context_encode_image(ctx, img, encoder, NULL, NULL);
     if (error.code != heif_error_Ok) {
-        CFRelease(dataRef);
+        heif_image_release(img);
         heif_encoder_release(encoder);
         heif_context_free(ctx);
         return nil;
@@ -257,7 +323,6 @@ static struct heif_error WriteImageData(struct heif_context* ctx,
     error = heif_context_write(ctx, &writer, (__bridge void *)(mutableData));
     
     // clean up
-    CFRelease(dataRef);
     heif_image_release(img);
     heif_encoder_release(encoder);
     heif_context_free(ctx);
