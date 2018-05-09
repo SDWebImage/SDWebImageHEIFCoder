@@ -32,11 +32,36 @@ TODO: Add long description of the pod here.
   s.ios.deployment_target = '8.0'
   s.tvos.deployment_target = '9.0'
 
-  s.source_files = 'SDWebImageHEIFCoder/Classes/**/*', 'Vendors/libheif/include/*.{h}', 'Vendors/libde265/include/*.{h}', 'Vendors/libx265/include/*.{h}'
-  s.osx.vendored_libraries = 'Vendors/libheif/macOS/libheif.a', 'Vendors/libde265/macOS/libde265.a', 'Vendors/libx265/macOS/libx265.a'
-  s.ios.vendored_libraries = 'Vendors/libheif/iOS/libheif.a', 'Vendors/libde265/iOS/libde265.a', 'Vendors/libx265/iOS/libx265.a'
-  s.tvos.vendored_libraries = 'Vendors/libheif/iOS/libheif.a', 'Vendors/libde265/iOS/libde265.a', 'Vendors/libx265/iOS/libx265.a'
+  s.source_files = 'SDWebImageHEIFCoder/Classes/**/*', 'Vendors/libheif/src/*.{h,cc}'
+  s.exclude_files = 'Vendors/libheif/src/*-fuzzer.{h,cc}', 'Vendors/libheif/src/heif.h'
+  s.public_header_files = 'SDWebImageHEIFCoder/Classes/**/*.h'
+  s.xcconfig = {
+    'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) HAVE_UNISTD_H=1',
+    'HEADER_SEARCH_PATHS' => '$(inherited) "${PODS_ROOT}/../../Vendors/include" "${PODS_ROOT}/../../Vendors/include/libheif"'
+  }
   s.libraries = 'c++'
+
+  # HEIF Decoding need libde265
+  s.subspec 'libde265' do |ss|
+    ss.source_files = 'Vendors/include/libde265/*.{h}'
+    ss.osx.vendored_libraries = 'Vendors/libde265/macOS/libde265.a'
+    ss.ios.vendored_libraries = 'Vendors/libde265/iOS/libde265.a'
+    ss.tvos.vendored_libraries = 'Vendors/libde265/iOS/libde265.a'
+    ss.xcconfig = {
+        'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) HAVE_LIBDE265=1',
+    }
+  end
+
+  # HEIF Encoding need libx265
+  s.subspec 'libx265' do |ss|
+    ss.source_files = 'Vendors/include/libx265/*.{h}'
+    ss.osx.vendored_libraries = 'Vendors/libx265/macOS/libx265.a'
+    ss.ios.vendored_libraries = 'Vendors/libx265/iOS/libx265.a'
+    ss.tvos.vendored_libraries = 'Vendors/libx265/iOS/libx265.a'
+    ss.xcconfig = {
+        'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) HAVE_X265=1',
+    }
+  end
   
   s.dependency 'SDWebImage/Core', '~> 4.2'
 end

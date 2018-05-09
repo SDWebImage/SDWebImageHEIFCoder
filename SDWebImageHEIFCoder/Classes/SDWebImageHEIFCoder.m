@@ -24,16 +24,15 @@ static struct heif_error WriteImageData(struct heif_context* ctx,
                                                 const void* data, size_t size, void* userdata) {
     NSMutableData *imageData = (__bridge NSMutableData *)userdata;
     NSCParameterAssert(imageData);
+    NSCParameterAssert(data);
     
-    heif_error error;
-    if (!data) {
-        error.code = heif_error_Encoder_plugin_error;
-        return error;
-    }
     [imageData appendBytes:data length:size];
     
-    // this API seems wrong. Public APIs does not have information to provide error
+    // OK
+    heif_error error;
     error.code = heif_error_Ok;
+    error.subcode = heif_suberror_Unspecified;
+    error.message = "Success";
     return error;
 }
 
@@ -218,7 +217,7 @@ static struct heif_error WriteImageData(struct heif_context* ctx,
     }
     
     // Fix-me: support RGB/ARGB only, using vImage's `vImageConvert_AnyToAny` later
-    error = heif_image_add_plane(img, heif_channel_interleaved, width, height, 24);
+    error = heif_image_add_plane(img, heif_channel_interleaved, width, height, bitsPerPixel);
     if (error.code != heif_error_Ok) {
         heif_context_free(ctx);
         heif_encoder_release(encoder);

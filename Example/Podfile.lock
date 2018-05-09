@@ -2,6 +2,12 @@ PODS:
   - SDWebImage/Core (4.3.3)
   - SDWebImageHEIFCoder (0.1.0):
     - SDWebImage/Core (~> 4.2)
+    - SDWebImageHEIFCoder/libde265 (= 0.1.0)
+    - SDWebImageHEIFCoder/libx265 (= 0.1.0)
+  - SDWebImageHEIFCoder/libde265 (0.1.0):
+    - SDWebImage/Core (~> 4.2)
+  - SDWebImageHEIFCoder/libx265 (0.1.0):
+    - SDWebImage/Core (~> 4.2)
 
 DEPENDENCIES:
   - SDWebImage/Core (from `https://github.com/rs/SDWebImage.git`, branch `5.x`)
@@ -21,7 +27,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   SDWebImage: c16d644f1f195cec9e630cbc25acaaabab25d1b0
-  SDWebImageHEIFCoder: 15b2f90a29596c8629c86f4a403471f1ad716f30
+  SDWebImageHEIFCoder: 9b4335ffb900d273807265a274714d711ee623d1
 
 PODFILE CHECKSUM: 33e1237c09901f98ca948598bf24d33f1369224a
 
