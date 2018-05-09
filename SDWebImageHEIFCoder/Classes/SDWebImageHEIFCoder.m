@@ -23,8 +23,7 @@ static void FreeImageData(void *info, const void *data, size_t size) {
     free((void *)data);
 }
 
-static struct heif_error WriteImageData(struct heif_context* ctx,
-                                                const void* data, size_t size, void* userdata) {
+static heif_error WriteImageData(heif_context * ctx, const void * data, size_t size, void * userdata) {
     NSMutableData *imageData = (__bridge NSMutableData *)userdata;
     NSCParameterAssert(imageData);
     NSCParameterAssert(data);

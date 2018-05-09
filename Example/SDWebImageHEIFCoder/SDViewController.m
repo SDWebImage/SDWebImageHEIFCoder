@@ -35,8 +35,11 @@
     [imageView1 sd_setImageWithURL:singleHEICURL placeholderImage:nil options:SDWebImageAvoidDecodeImage completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if (image) {
             NSLog(@"Single HEIC load success");
-            NSData *data = [[SDWebImageHEIFCoder sharedCoder] encodedDataWithImage:image format:SDImageFormatHEIC options:0];
-            [data writeToFile:@"/tmp/a.heic" atomically:YES];
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                NSData *data = [[SDWebImageHEIFCoder sharedCoder] encodedDataWithImage:image format:SDImageFormatHEIC options:0];
+                NSAssert(data, @"HEIC encoding failed");
+                NSLog(@"HEIC encoding success");
+            });
         }
     }];
     [imageView2 sd_setImageWithURL:stillHEICURL completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
