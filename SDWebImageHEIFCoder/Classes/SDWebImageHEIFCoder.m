@@ -22,7 +22,7 @@ static void FreeImageData(void *info, const void *data, size_t size) {
 
 static struct heif_error WriteImageData(struct heif_context* ctx,
                                                 const void* data, size_t size, void* userdata) {
-    __autoreleasing NSData **imageData = (__autoreleasing NSData **)userdata;
+    NSMutableData *imageData = (__bridge NSMutableData *)userdata;
     NSCParameterAssert(imageData);
     
     heif_error error;
@@ -30,7 +30,7 @@ static struct heif_error WriteImageData(struct heif_context* ctx,
         error.code = heif_error_Encoder_plugin_error;
         return error;
     }
-    *imageData = [NSData dataWithBytes:data length:size];
+    [imageData appendBytes:data length:size];
     
     // this API seems wrong. Public APIs does not have information to provide error
     error.code = heif_error_Ok;
@@ -150,7 +150,10 @@ static struct heif_error WriteImageData(struct heif_context* ctx,
 
 // libheif contains initilial encoding support using libx265, but currently is not fully support
 - (BOOL)canEncodeToFormat:(SDImageFormat)format {
-    return format == SDImageFormatHEIC;
+    if (format == SDImageFormatHEIC) {
+        return [[self class] canEncodeToHEICFormat];
+    }
+    return NO;
 }
 
 - (NSData *)encodedDataWithImage:(UIImage *)image format:(SDImageFormat)format options:(SDImageCoderOptions *)options {
@@ -215,7 +218,7 @@ static struct heif_error WriteImageData(struct heif_context* ctx,
     }
     
     // Fix-me: support RGB/ARGB only, using vImage's `vImageConvert_AnyToAny` later
-    error = heif_image_add_plane(img, heif_channel_interleaved, width, height, bitsPerPixel);
+    error = heif_image_add_plane(img, heif_channel_interleaved, width, height, 24);
     if (error.code != heif_error_Ok) {
         heif_context_free(ctx);
         heif_encoder_release(encoder);
@@ -234,32 +237,33 @@ static struct heif_error WriteImageData(struct heif_context* ctx,
     size_t stride;
     uint8_t *rgba = (uint8_t *)CFDataGetBytePtr(dataRef);
     uint8_t *output_rgba = heif_image_get_plane(img, heif_channel_interleaved, &stride);
+    NSAssert(bytesPerRow == stride, @"stride equal");
     // Fix-me: assume input stride == output stride, override with input
-    memmove(output_rgba, rgba, stride * height);
+    memcpy(output_rgba, rgba, stride * height);
     
     // encode the image
     error = heif_context_encode_image(ctx, img, encoder, NULL, NULL);
     if (error.code != heif_error_Ok) {
-        heif_context_free(ctx);
+        CFRelease(dataRef);
         heif_encoder_release(encoder);
+        heif_context_free(ctx);
         return nil;
     }
     
-    heif_encoder_release(encoder);
+    NSMutableData *mutableData = [NSMutableData data];
+    heif_writer writer;
+    writer.writer_api_version = 1;
+    writer.write = WriteImageData; // This is a function pointer
     
-    NSData *data;
-    heif_writer *writer;
-    writer->writer_api_version = 1;
-    writer->write = WriteImageData; // This is a function pointer
-    
-    error = heif_context_write(ctx, writer, &data);
+    error = heif_context_write(ctx, &writer, (__bridge void *)(mutableData));
     
     // clean up
     CFRelease(dataRef);
     heif_image_release(img);
+    heif_encoder_release(encoder);
     heif_context_free(ctx);
     
-    return data;
+    return [mutableData copy];
 }
 
 #pragma mark - Helper
@@ -277,10 +281,39 @@ static struct heif_error WriteImageData(struct heif_context* ctx,
             || [testString isEqualToString:@"ftypheix"]
             || [testString isEqualToString:@"ftyphevc"]
             || [testString isEqualToString:@"ftyphevx"]) {
-            return SDImageFormatHEIC;
+            return YES;
         }
     }
-    return YES;
+    
+    return NO;
+}
+
++ (BOOL)canEncodeToHEICFormat
+{
+    static BOOL canEncode = NO;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        // Check whether libheif has HEVC plugin support
+        heif_context* ctx = heif_context_alloc();
+        if (!ctx) {
+            return;
+        }
+        heif_error error;
+        
+        // get the default encoder
+        heif_encoder* encoder;
+        error = heif_context_get_encoder_for_format(ctx, heif_compression_HEVC, &encoder);
+        if (error.code != heif_error_Ok) {
+            heif_context_free(ctx);
+            return;
+        }
+        // Can encode to HEIC
+        canEncode = YES;
+        heif_context_free(ctx);
+        heif_encoder_release(encoder);
+    });
+    
+    return canEncode;
 }
 
 @end

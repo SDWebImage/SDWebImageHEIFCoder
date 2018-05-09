@@ -32,10 +32,11 @@
     [self.view addSubview:imageView1];
     [self.view addSubview:imageView2];
     
-    [imageView1 sd_setImageWithURL:singleHEICURL completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+    [imageView1 sd_setImageWithURL:singleHEICURL placeholderImage:nil options:SDWebImageAvoidDecodeImage completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if (image) {
             NSLog(@"Single HEIC load success");
-            [[SDWebImageHEIFCoder sharedCoder] encodedDataWithImage:image format:SDImageFormatHEIC options:0];
+            NSData *data = [[SDWebImageHEIFCoder sharedCoder] encodedDataWithImage:image format:SDImageFormatHEIC options:0];
+            [data writeToFile:@"/tmp/a.heic" atomically:YES];
         }
     }];
     [imageView2 sd_setImageWithURL:stillHEICURL completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
