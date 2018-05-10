@@ -7,6 +7,7 @@
 
 #import "SDWebImageHEIFCoder.h"
 #import "heif.h"
+#import <SDWebImage/NSImage+WebCache.h>
 #import <Accelerate/Accelerate.h>
 
 typedef struct heif_context heif_context;
@@ -63,8 +64,6 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
         return nil;
     }
     
-    CGFloat scale = 1;
-    
     // Currently only support primary image :)
     CGImageRef imageRef = [self sd_createHEIFImageWithData:data];
     if (!imageRef) {
@@ -72,9 +71,9 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
     }
     
 #if SD_UIKIT
-    image = [[UIImage alloc] initWithCGImage:imageRef scale:scale orientation:UIImageOrientationUp];
+    image = [[UIImage alloc] initWithCGImage:imageRef];
 #else
-    image = [[UIImage alloc] initWithCGImage:imageRef scale:scale orientation:kCGImagePropertyOrientationUp];
+    image = [[UIImage alloc] initWithCGImage:imageRef size:NSZeroSize];
 #endif
     
     return image;
