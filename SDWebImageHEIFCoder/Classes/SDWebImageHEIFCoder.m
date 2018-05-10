@@ -50,7 +50,11 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
 }
 
 - (BOOL)canDecodeFromData:(NSData *)data {
+#if HAVE_LIBDE265
     return [[self class] isHEIFFormatForData:data];
+#else
+    return NO;
+#endif
 }
 
 - (UIImage *)decodedImageWithData:(NSData *)data options:(SDImageCoderOptions *)options {
@@ -152,7 +156,11 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
 // libheif contains initilial encoding support using libx265, but currently is not fully support
 - (BOOL)canEncodeToFormat:(SDImageFormat)format {
     if (format == SDImageFormatHEIC) {
-        return [[self class] canEncodeToHEICFormat];
+#if HAVE_X265
+        return YES;
+#else
+        return NO;
+#endif
     }
     return NO;
 }
@@ -349,34 +357,6 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
     }
     
     return NO;
-}
-
-+ (BOOL)canEncodeToHEICFormat
-{
-    static BOOL canEncode = NO;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        // Check whether libheif has HEVC plugin support
-        heif_context* ctx = heif_context_alloc();
-        if (!ctx) {
-            return;
-        }
-        heif_error error;
-        
-        // get the default encoder
-        heif_encoder* encoder;
-        error = heif_context_get_encoder_for_format(ctx, heif_compression_HEVC, &encoder);
-        if (error.code != heif_error_Ok) {
-            heif_context_free(ctx);
-            return;
-        }
-        // Can encode to HEIC
-        canEncode = YES;
-        heif_context_free(ctx);
-        heif_encoder_release(encoder);
-    });
-    
-    return canEncode;
 }
 
 @end
