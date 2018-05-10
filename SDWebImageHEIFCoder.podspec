@@ -16,10 +16,10 @@ This is a SDWebImage coder plugin to add High Efficiency Image File Format (HEIF
 Which is built based on the open-sourced libheif codec.
                        DESC
 
-  s.homepage         = 'https://github.com/DreamPiggy/SDWebImageHEIFCoder'
+  s.homepage         = 'https://github.com/SDWebImage/SDWebImageHEIFCoder'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'DreamPiggy' => 'lizhuoli1126@126.com' }
-  s.source           = { :git => 'https://github.com/DreamPiggy/SDWebImageHEIFCoder.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/SDWebImage/SDWebImageHEIFCoder.git', :tag => s.version.to_s, :submodules => true }
 
   s.osx.deployment_target = '10.10'
   s.ios.deployment_target = '8.0'
