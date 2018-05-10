@@ -52,7 +52,7 @@ By default will contains all subspec.
 
 ```objective-c
 SDWebImageAPNGCoder *HEIFCoder = [SDWebImageHEIFCoder sharedCoder];
-[[SDImageCodersManager sharedManager] addCoder:HEIFCoder];
+[[SDImageCodersManager sharedInstance] addCoder:HEIFCoder];
 UIImageView *imageView;
 NSURL *HEIFURL;
 [imageView sd_setImageWithURL:HEIFURL];

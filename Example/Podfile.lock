@@ -10,25 +10,16 @@ PODS:
     - SDWebImage/Core (~> 4.2)
 
 DEPENDENCIES:
-  - SDWebImage/Core (from `https://github.com/rs/SDWebImage.git`, branch `5.x`)
   - SDWebImageHEIFCoder (from `../`)
 
 EXTERNAL SOURCES:
-  SDWebImage:
-    :branch: 5.x
-    :git: https://github.com/rs/SDWebImage.git
   SDWebImageHEIFCoder:
     :path: ../
 
-CHECKOUT OPTIONS:
-  SDWebImage:
-    :commit: ebfe2cedc21adad88e41e7c2d2b8b10a5cf0ff2e
-    :git: https://github.com/rs/SDWebImage.git
-
 SPEC CHECKSUMS:
-  SDWebImage: c16d644f1f195cec9e630cbc25acaaabab25d1b0
+  SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   SDWebImageHEIFCoder: 9b4335ffb900d273807265a274714d711ee623d1
 
-PODFILE CHECKSUM: 33e1237c09901f98ca948598bf24d33f1369224a
+PODFILE CHECKSUM: bb6ad5f70ea0fd6081ea5abea9206418282b73ed
 
 COCOAPODS: 1.4.0
