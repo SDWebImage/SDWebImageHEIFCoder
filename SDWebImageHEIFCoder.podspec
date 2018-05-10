@@ -28,10 +28,8 @@ Which is built based on the open-sourced libheif codec.
   s.source_files = 'SDWebImageHEIFCoder/Classes/**/*', 'Vendors/libheif/src/*.{h,cc}', 'Vendors/include/libheif/*.h'
   s.exclude_files = 'Vendors/libheif/src/*-fuzzer.{h,cc}', 'Vendors/libheif/src/heif.h'
   s.public_header_files = 'SDWebImageHEIFCoder/Classes/**/*.h'
-  s.header_mappings_dir = 'Vendors/include'
   s.xcconfig = {
-    'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) HAVE_UNISTD_H=1',
-    'HEADER_SEARCH_PATHS' => '$(inherited) "${SRCROOT}/../../Vendors/include" "${SRCROOT}/../../Vendors/include/libheif"'
+    'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) HAVE_UNISTD_H=1'
   }
   s.libraries = 'c++'
 
@@ -41,6 +39,7 @@ Which is built based on the open-sourced libheif codec.
     ss.osx.vendored_libraries = 'Vendors/libde265/macOS/libde265.a'
     ss.ios.vendored_libraries = 'Vendors/libde265/iOS/libde265.a'
     ss.tvos.vendored_libraries = 'Vendors/libde265/tvOS/libde265.a'
+    ss.header_mappings_dir = 'Vendors/include'
     ss.xcconfig = {
         'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) HAVE_LIBDE265=1',
     }
@@ -52,6 +51,7 @@ Which is built based on the open-sourced libheif codec.
     ss.osx.vendored_libraries = 'Vendors/libx265/macOS/libx265.a'
     ss.ios.vendored_libraries = 'Vendors/libx265/iOS/libx265.a'
     ss.tvos.vendored_libraries = 'Vendors/libx265/tvOS/libx265.a'
+    ss.header_mappings_dir = 'Vendors/include'
     ss.xcconfig = {
         'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) HAVE_X265=1',
     }

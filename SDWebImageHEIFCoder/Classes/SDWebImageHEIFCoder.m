@@ -6,7 +6,7 @@
 //
 
 #import "SDWebImageHEIFCoder.h"
-#import <libheif/heif.h>
+#import "heif.h"
 #import <Accelerate/Accelerate.h>
 
 typedef struct heif_context heif_context;
@@ -240,7 +240,7 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
         .bitmapInfo = hasAlpha ? kCGImageAlphaLast | kCGBitmapByteOrderDefault : kCGImageAlphaNone | kCGBitmapByteOrderDefault // RGB888/RGBA8888 (Non-premultiplied to works for libwebp)
     };
     
-    convertor = vImageConverter_CreateWithCGImageFormat(&srcFormat, &destFormat, NULL, kvImageNoFlags, &error);
+    convertor = vImageConverter_CreateWithCGImageFormat(&srcFormat, &destFormat, NULL, kvImageNoFlags, &v_error);
     if (v_error != kvImageNoError) {
         heif_context_free(ctx);
         return nil;
@@ -279,7 +279,7 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
     heif_chroma chroma = hasAlpha ? heif_chroma_interleaved_RGBA : heif_chroma_interleaved_RGB;
     heif_colorspace colorspace = heif_colorspace_RGB;
     heif_image* img;
-    error = heif_image_create(width, height, colorspace, chroma, &img);
+    error = heif_image_create((int)width, (int)height, colorspace, chroma, &img);
     if (error.code != heif_error_Ok) {
         free(rgba);
         heif_encoder_release(encoder);
@@ -289,7 +289,7 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
     
     // add the plane
     heif_channel channel = heif_channel_interleaved;
-    error = heif_image_add_plane(img, channel, width, height, bitsPerPixel);
+    error = heif_image_add_plane(img, channel, (int)width, (int)height, (int)bitsPerPixel);
     if (error.code != heif_error_Ok) {
         free(rgba);
         heif_encoder_release(encoder);
@@ -300,7 +300,7 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
     // fill the plane
     int stride;
     uint8_t *planar = heif_image_get_plane(img, channel, &stride);
-    int bytes_per_pixel = (bitsPerPixel + 7) / 8;
+    size_t bytes_per_pixel = (bitsPerPixel + 7) / 8;
     for (int y = 0 ; y < height ; y++) {
         memcpy(planar + y * stride, rgba + y * stride, width * bytes_per_pixel);
     }
