@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SDWebImageHEIFCoder'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'A SDWebImage coder plugin to support HEIF image'
 
   s.description      = <<-DESC
@@ -25,35 +25,48 @@ Which is built based on the open-sourced libheif codec.
   s.ios.deployment_target = '8.0'
   s.tvos.deployment_target = '9.0'
 
-  s.source_files = 'SDWebImageHEIFCoder/Classes/**/*', 'Vendors/libheif/libheif/*.{h,c,cc}', 'Vendors/include/libheif/*.h'
-  s.exclude_files = 'Vendors/libheif/libheif/*fuzzer.{h,c,cc}', 'Vendors/libheif/libheif/heif.h'
+  s.source_files = 'SDWebImageHEIFCoder/Classes/**/*'
   s.public_header_files = 'SDWebImageHEIFCoder/Classes/**/*.h'
-  s.xcconfig = {
-    'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) HAVE_UNISTD_H=1'
-  }
-  s.libraries = 'c++'
+  s.default_subspecs = 'libheif', 'libde265', 'libx265'
+
+  # HEIF core dependency
+  s.subspec 'libheif' do |ss|
+    ss.source_files = 'Vendors/libheif/libheif/*.{h,c,cc}', 'Vendors/include/libheif/*.h'
+    ss.exclude_files = 'Vendors/libheif/libheif/*fuzzer.{h,c,cc}', 'Vendors/libheif/libheif/heif.h'
+    ss.public_header_files = 'Vendors/include/libheif/*.h'
+    ss.preserve_path = 'Vendors/include'
+    ss.xcconfig = {
+      'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) HAVE_UNISTD_H=1',
+      'HEADER_SEARCH_PATHS' => '$(inherited) ${PODS_ROOT}/SDWebImageHEIFCoder/Vendors/include ${PODS_ROOT}/SDWebImageHEIFCoder/Vendors/include/libx265'
+    }
+    ss.libraries = 'c++'
+  end
 
   # HEIF Decoding need libde265
   s.subspec 'libde265' do |ss|
+    ss.dependency 'SDWebImageHEIFCoder/libheif'
     ss.source_files = 'Vendors/include/libde265/*.{h}'
     ss.osx.vendored_libraries = 'Vendors/libde265/macOS/libde265.a'
     ss.ios.vendored_libraries = 'Vendors/libde265/iOS/libde265.a'
     ss.tvos.vendored_libraries = 'Vendors/libde265/tvOS/libde265.a'
-    ss.header_mappings_dir = 'Vendors/include'
+    ss.preserve_path = 'Vendors/include'
     ss.xcconfig = {
-        'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) HAVE_LIBDE265=1',
+      'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) HAVE_LIBDE265=1',
+      'HEADER_SEARCH_PATHS' => '$(inherited) ${PODS_ROOT}/SDWebImageHEIFCoder/Vendors/include'
     }
   end
 
   # HEIF Encoding need libx265
   s.subspec 'libx265' do |ss|
+    ss.dependency 'SDWebImageHEIFCoder/libheif'
     ss.source_files = 'Vendors/include/libx265/*.{h}'
     ss.osx.vendored_libraries = 'Vendors/libx265/macOS/libx265.a'
     ss.ios.vendored_libraries = 'Vendors/libx265/iOS/libx265.a'
     ss.tvos.vendored_libraries = 'Vendors/libx265/tvOS/libx265.a'
-    ss.header_mappings_dir = 'Vendors/include'
+    ss.preserve_path = 'Vendors/include'
     ss.xcconfig = {
-        'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) HAVE_X265=1',
+      'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) HAVE_X265=1',
+      'HEADER_SEARCH_PATHS' => '$(inherited) ${PODS_ROOT}/SDWebImageHEIFCoder/Vendors/include'
     }
   end
   

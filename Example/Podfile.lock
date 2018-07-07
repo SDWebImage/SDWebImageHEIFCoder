@@ -1,13 +1,18 @@
 PODS:
   - SDWebImage/Core (4.3.3)
-  - SDWebImageHEIFCoder (0.1.0):
+  - SDWebImageHEIFCoder (0.1.1):
     - SDWebImage/Core (~> 4.2)
-    - SDWebImageHEIFCoder/libde265 (= 0.1.0)
-    - SDWebImageHEIFCoder/libx265 (= 0.1.0)
-  - SDWebImageHEIFCoder/libde265 (0.1.0):
+    - SDWebImageHEIFCoder/libde265 (= 0.1.1)
+    - SDWebImageHEIFCoder/libheif (= 0.1.1)
+    - SDWebImageHEIFCoder/libx265 (= 0.1.1)
+  - SDWebImageHEIFCoder/libde265 (0.1.1):
     - SDWebImage/Core (~> 4.2)
-  - SDWebImageHEIFCoder/libx265 (0.1.0):
+    - SDWebImageHEIFCoder/libheif
+  - SDWebImageHEIFCoder/libheif (0.1.1):
     - SDWebImage/Core (~> 4.2)
+  - SDWebImageHEIFCoder/libx265 (0.1.1):
+    - SDWebImage/Core (~> 4.2)
+    - SDWebImageHEIFCoder/libheif
 
 DEPENDENCIES:
   - SDWebImageHEIFCoder (from `../`)
@@ -18,7 +23,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
-  SDWebImageHEIFCoder: 2f58fe75d98cbc66e8b3506d656cfc42fe682df4
+  SDWebImageHEIFCoder: b0ac0adfcb3e5e2baed8ee119023b7459a050e23
 
 PODFILE CHECKSUM: e55953b77c58aa714bbbe274a51f0dae78ac0d19
 
