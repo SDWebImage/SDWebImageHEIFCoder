@@ -25,8 +25,8 @@ Which is built based on the open-sourced libheif codec.
   s.ios.deployment_target = '8.0'
   s.tvos.deployment_target = '9.0'
 
-  s.source_files = 'SDWebImageHEIFCoder/Classes/**/*', 'Vendors/libheif/src/*.{h,cc}', 'Vendors/include/libheif/*.h'
-  s.exclude_files = 'Vendors/libheif/src/*-fuzzer.{h,cc}', 'Vendors/libheif/src/heif.h'
+  s.source_files = 'SDWebImageHEIFCoder/Classes/**/*', 'Vendors/libheif/libheif/*.{h,c,cc}', 'Vendors/include/libheif/*.h'
+  s.exclude_files = 'Vendors/libheif/libheif/*fuzzer.{h,c,cc}', 'Vendors/libheif/libheif/heif.h'
   s.public_header_files = 'SDWebImageHEIFCoder/Classes/**/*.h'
   s.xcconfig = {
     'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) HAVE_UNISTD_H=1'
