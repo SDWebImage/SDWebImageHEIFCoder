@@ -5,9 +5,9 @@
 //  Created by lizhuoli on 2018/5/8.
 //
 
-#import <SDWebImage/SDWebImageCoder.h>
+#import <SDWebImage/SDWebImage.h>
 
-@interface SDWebImageHEIFCoder : NSObject <SDWebImageCoder>
+@interface SDWebImageHEIFCoder : NSObject <SDImageCoder>
 
 @property (nonatomic, class, readonly, nonnull) SDWebImageHEIFCoder *sharedCoder;
 

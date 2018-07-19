@@ -7,7 +7,6 @@
 
 #import "SDWebImageHEIFCoder.h"
 #import "heif.h"
-#import <SDWebImage/NSImage+WebCache.h>
 #import <Accelerate/Accelerate.h>
 
 typedef struct heif_context heif_context;
@@ -58,10 +57,16 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
 #endif
 }
 
-- (UIImage *)decodedImageWithData:(NSData *)data {
-    UIImage *image = nil;
+- (UIImage *)decodedImageWithData:(NSData *)data options:(SDImageCoderOptions *)options {
     if (!data) {
         return nil;
+    }
+    CGFloat scale = 1;
+    if ([options valueForKey:SDImageCoderDecodeScaleFactor]) {
+        scale = [[options valueForKey:SDImageCoderDecodeScaleFactor] doubleValue];
+        if (scale < 1) {
+            scale = 1;
+        }
     }
     
     // Currently only support primary image :)
@@ -70,16 +75,16 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
         return nil;
     }
     
-#if SD_UIKIT
-    image = [[UIImage alloc] initWithCGImage:imageRef];
+#if SD_MAC
+    UIImage *image = [[UIImage alloc] initWithCGImage:imageRef scale:scale orientation:kCGImagePropertyOrientationUp];
 #else
-    image = [[UIImage alloc] initWithCGImage:imageRef size:NSZeroSize];
+    UIImage *image = [[UIImage alloc] initWithCGImage:imageRef scale:scale orientation:UIImageOrientationUp];
 #endif
     
     return image;
 }
 
-// Only decode the primary image (HEIF also support tied-image and still image)
+// Only decode the primary image (HEIF also support tied-image and animated image)
 - (nullable CGImageRef)sd_createHEIFImageWithData:(nonnull NSData *)data CF_RETURNS_RETAINED {
     heif_context* ctx = heif_context_alloc();
     if (!ctx) {
@@ -133,7 +138,7 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
     CGDataProviderRef provider =
     CGDataProviderCreateWithData(NULL, rgba, stride * height, FreeImageData);
     
-    CGColorSpaceRef colorSpaceRef = SDCGColorSpaceGetDeviceRGB();
+    CGColorSpaceRef colorSpaceRef = [SDImageCoderHelper colorSpaceGetDeviceRGB];
     CGColorRenderingIntent renderingIntent = kCGRenderingIntentDefault;
     CGImageRef imageRef = CGImageCreate(width, height, bitsPerComponent, bitsPerPixel, stride, colorSpaceRef, bitmapInfo, provider, NULL, NO, renderingIntent);
     
@@ -144,10 +149,6 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
     heif_context_free(ctx);
     
     return imageRef;
-}
-
-- (UIImage *)decompressedImageWithImage:(UIImage *)image data:(NSData *__autoreleasing  _Nullable *)data options:(NSDictionary<NSString *,NSObject *> *)optionsDict {
-    return image;
 }
 
 // libheif contains initilial encoding support using libx265, but currently is not fully support
@@ -162,7 +163,7 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
     return NO;
 }
 
-- (NSData *)encodedDataWithImage:(UIImage *)image format:(SDImageFormat)format {
+- (NSData *)encodedDataWithImage:(UIImage *)image format:(SDImageFormat)format options:(SDImageCoderOptions *)options {
     if (!image) {
         return nil;
     }
@@ -170,6 +171,9 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
     NSData *data;
     
     double compressionQuality = 1;
+    if ([options valueForKey:SDImageCoderEncodeCompressionQuality]) {
+        compressionQuality = [[options valueForKey:SDImageCoderEncodeCompressionQuality] doubleValue];
+    }
     
     data = [self sd_encodedHEIFDataWithImage:image quality:compressionQuality];
     
@@ -235,7 +239,7 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
     vImage_CGImageFormat destFormat = {
         .bitsPerComponent = 8,
         .bitsPerPixel = hasAlpha ? 32 : 24,
-        .colorSpace = SDCGColorSpaceGetDeviceRGB(),
+        .colorSpace = [SDImageCoderHelper colorSpaceGetDeviceRGB],
         .bitmapInfo = hasAlpha ? kCGImageAlphaLast | kCGBitmapByteOrderDefault : kCGImageAlphaNone | kCGBitmapByteOrderDefault // RGB888/RGBA8888 (Non-premultiplied to works for libwebp)
     };
     

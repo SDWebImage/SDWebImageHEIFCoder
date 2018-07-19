@@ -5,9 +5,11 @@
 [![License](https://img.shields.io/cocoapods/l/SDWebImageHEIFCoder.svg?style=flat)](https://cocoapods.org/pods/SDWebImageHEIFCoder)
 [![Platform](https://img.shields.io/cocoapods/p/SDWebImageHEIFCoder.svg?style=flat)](https://cocoapods.org/pods/SDWebImageHEIFCoder)
 
-## Example
+## 4.x compatibility
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+SDWebImage 5.x change the custom image coder API. This `master` branch follow the `5.x` branch of SDWebImage. For 4.x compatibility HEIF coder support, checkout `4.x` branch.
+
+## What's for
 
 This is a [SDWebImage](https://github.com/rs/SDWebImage) coder plugin to add [High Efficiency Image File Format (HEIF)](http://nokiatech.github.io/heif/index.html) support. Which is built based on the open-sourced [libheif](https://github.com/strukturag/libheif) codec.
 
@@ -51,16 +53,12 @@ By default will contains all subspec.
 ## Usage
 
 ```objective-c
-SDWebImageAPNGCoder *HEIFCoder = [SDWebImageHEIFCoder sharedCoder];
+SDWebImageHEIFCoder *HEIFCoder = [SDWebImageHEIFCoder sharedCoder];
 [[SDImageCodersManager sharedInstance] addCoder:HEIFCoder];
 UIImageView *imageView;
 NSURL *HEIFURL;
 [imageView sd_setImageWithURL:HEIFURL];
 ```
-
-## 4.x compatibility
-
-SDWebImage 5.x change the custom image coder API. This `master` branch follow the `5.x` branch of SDWebImage. For 4.x compatibility HEIF coder support, checkout `4.x` branch.
 
 ## Screenshot
 

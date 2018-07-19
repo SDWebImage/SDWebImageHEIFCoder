@@ -7,9 +7,8 @@
 //
 
 #import "SDViewController.h"
+#import <SDWebImage/SDWebImage.h>
 #import <SDWebImageHEIFCoder/SDWebImageHEIFCoder.h>
-#import <SDWebImage/SDWebImageCodersManager.h>
-#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface SDViewController ()
 
@@ -22,9 +21,9 @@
     [super viewDidLoad];
     
     SDWebImageHEIFCoder *HEIFCoder = [SDWebImageHEIFCoder sharedCoder];
-    [[SDWebImageCodersManager sharedInstance] addCoder:HEIFCoder];
+    [[SDImageCodersManager sharedManager] addCoder:HEIFCoder];
     NSURL *singleHEICURL = [NSURL URLWithString:@"http://nokiatech.github.io/heif/content/images/ski_jump_1440x960.heic"];
-    NSURL *stillHEICURL = [NSURL URLWithString:@"http://nokiatech.github.io/heif/content/images/autumn_1440x960.heic"];
+    NSURL *animatedHEICURL = [NSURL URLWithString:@"http://nokiatech.github.io/heif/content/image_sequences/starfield_animation.heic"];
     
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
     
@@ -38,14 +37,15 @@
         if (image) {
             NSLog(@"Single HEIC load success");
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                NSData *data = [[SDWebImageHEIFCoder sharedCoder] encodedDataWithImage:image format:SDImageFormatHEIC];
+                NSData *data = [[SDWebImageHEIFCoder sharedCoder] encodedDataWithImage:image format:SDImageFormatHEIC options:nil];
                 NSAssert(data, @"HEIC encoding failed");
                 NSLog(@"HEIC encoding success");
             });
         }
     }];
-    [imageView2 sd_setImageWithURL:stillHEICURL completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-        if (image.images) {
+    [imageView2 sd_setImageWithURL:animatedHEICURL completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        // libheif currently does not supports animation
+        if (image) {
             NSLog(@"Still HEIF load success");
         }
     }];
