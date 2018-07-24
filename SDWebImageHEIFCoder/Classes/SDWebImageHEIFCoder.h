@@ -7,6 +7,8 @@
 
 #import <SDWebImage/SDWebImage.h>
 
+static const SDImageFormat SDImageFormatHEIF = 10;
+
 @interface SDWebImageHEIFCoder : NSObject <SDImageCoder>
 
 @property (nonatomic, class, readonly, nonnull) SDWebImageHEIFCoder *sharedCoder;

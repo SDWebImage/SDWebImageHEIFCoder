@@ -34,7 +34,7 @@ it, simply add the following line to your Podfile:
 pod 'SDWebImageHEIFCoder'
 ```
 
-SDWebImageHEIFCoder contains 2 subspec `libde265` & `libx265`. Which integrate the codec plugin for libheif to support HEIF image decoding/encoding.
+SDWebImageHEIFCoder contains subspecs `libde265` & `libx265`. Which integrate the codec plugin for libheif to support HEIF image decoding/encoding.
 
 To enable HEIF decoding, you should add `libde265` subspec:
 
@@ -54,7 +54,7 @@ By default will contains all subspec.
 
 ```objective-c
 SDWebImageHEIFCoder *HEIFCoder = [SDWebImageHEIFCoder sharedCoder];
-[[SDImageCodersManager sharedInstance] addCoder:HEIFCoder];
+[[SDImageCodersManager sharedManager] addCoder:HEIFCoder];
 UIImageView *imageView;
 NSURL *HEIFURL;
 [imageView sd_setImageWithURL:HEIFURL];

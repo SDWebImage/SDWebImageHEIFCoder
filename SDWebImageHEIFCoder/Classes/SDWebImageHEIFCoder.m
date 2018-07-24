@@ -153,7 +153,7 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
 
 // libheif contains initilial encoding support using libx265, but currently is not fully support
 - (BOOL)canEncodeToFormat:(SDImageFormat)format {
-    if (format == SDImageFormatHEIC) {
+    if (format == SDImageFormatHEIC || format == SDImageFormatHEIF) {
 #if HAVE_X265
         return YES;
 #else
