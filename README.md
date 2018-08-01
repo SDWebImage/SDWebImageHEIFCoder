@@ -52,12 +52,40 @@ By default will contains all subspec.
 
 ## Usage
 
+To use HEIF coder, you should firstly add the `SDWebImageHEIFCoder` to the coders manager. Then you can call the View Category method to start load HEIF images.
+
++ Objective-C
+
 ```objective-c
 SDWebImageHEIFCoder *HEIFCoder = [SDWebImageHEIFCoder sharedCoder];
 [[SDImageCodersManager sharedManager] addCoder:HEIFCoder];
 UIImageView *imageView;
-NSURL *HEIFURL;
-[imageView sd_setImageWithURL:HEIFURL];
+[imageView sd_setImageWithURL:url];
+```
+
++ Swift
+
+```swift
+let HEIFCoder = SDWebImageHEIFCoder.shared
+SDImageCodersManager.shared.addCoder(HEIFCoder)
+let imageView: UIImageView
+imageView.sd_setImage(with: url)
+```
+
+`SDWebImageHEIFCoder` also support HEIF encoding (need x265 subspec). You can encode `UIImage` to HEIF compressed image data.
+
++ Objective-C
+
+```objectivec
+UIImage *image;
+NSData *imageData = [image sd_imageDataAsFormat:SDImageFormatHEIF];
+```
+
++ Swift
+
+```swift
+let image;
+let imageData = image.sd_imageData(asFormat: .HEIF)
 ```
 
 ## Screenshot
