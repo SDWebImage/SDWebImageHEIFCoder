@@ -70,5 +70,5 @@ Which is built based on the open-sourced libheif codec.
     }
   end
   
-  s.dependency 'SDWebImage/Core', '>= 5.0.0-beta'
+  s.dependency 'SDWebImage/Core', '>= 5.0.0-beta2'
 end
