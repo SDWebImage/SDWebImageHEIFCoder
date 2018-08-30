@@ -28,8 +28,8 @@ script:
   - set -o pipefail
 
   - echo Check if the library described by the podspec can be built
-  - pod lib lint --allow-warnings
+  - pod lib lint --use-libraries --allow-warnings
 
   - echo Build example
   - pod install --project-directory=Example
-  - xcodebuild build -workspace Example/SDWebImageHEIFCoder.xcworkspace -scheme SDWebImageHEIFCoder-Example -sdk iphonesimulator -destination 'name=iPhone 6s' -configuration Debug | xcpretty -c
+  - xcodebuild build -workspace Example/SDWebImageHEIFCoder.xcworkspace -scheme SDWebImageHEIFCoder-Example -sdk iphonesimulator -destination 'name=iPhone 8' -configuration Debug | xcpretty -c

@@ -34,7 +34,7 @@ Which is built based on the open-sourced libheif codec.
   s.subspec 'libheif' do |ss|
     ss.source_files = 'Vendors/libheif/libheif/*.{h,c,cc}', 'Vendors/include/libheif/*.h'
     ss.exclude_files = 'Vendors/libheif/libheif/*fuzzer.{h,c,cc}', 'Vendors/libheif/libheif/heif.h'
-    ss.public_header_files = 'SDWebImageHEIFCoder/Module/SDWebImageHEIFCoder.h' # Make all source_files as project header but not public header
+    ss.public_header_files = 'Vendors/include/libheif/*.h'
     ss.preserve_path = 'Vendors/include'
     ss.xcconfig = {
       'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) HAVE_UNISTD_H=1',
@@ -47,7 +47,6 @@ Which is built based on the open-sourced libheif codec.
   s.subspec 'libde265' do |ss|
     ss.dependency 'SDWebImageHEIFCoder/libheif'
     ss.source_files = 'Vendors/include/libde265/*.{h}'
-    ss.public_header_files = 'SDWebImageHEIFCoder/Module/SDWebImageHEIFCoder.h' # Make all source_files as project header but not public header
     ss.osx.vendored_libraries = 'Vendors/libde265/macOS/libde265.a'
     ss.ios.vendored_libraries = 'Vendors/libde265/iOS/libde265.a'
     ss.tvos.vendored_libraries = 'Vendors/libde265/tvOS/libde265.a'
@@ -62,7 +61,6 @@ Which is built based on the open-sourced libheif codec.
   s.subspec 'libx265' do |ss|
     ss.dependency 'SDWebImageHEIFCoder/libheif'
     ss.source_files = 'Vendors/include/libx265/*.{h}'
-    ss.public_header_files = 'SDWebImageHEIFCoder/Module/SDWebImageHEIFCoder.h' # Make all source_files as project header but not public header
     ss.osx.vendored_libraries = 'Vendors/libx265/macOS/libx265.a'
     ss.ios.vendored_libraries = 'Vendors/libx265/iOS/libx265.a'
     ss.tvos.vendored_libraries = 'Vendors/libx265/tvOS/libx265.a'
