@@ -1,7 +1,7 @@
 PODS:
-  - SDWebImage (5.0.0-beta2):
-    - SDWebImage/Core (= 5.0.0-beta2)
-  - SDWebImage/Core (5.0.0-beta2)
+  - SDWebImage (5.0.0-beta3):
+    - SDWebImage/Core (= 5.0.0-beta3)
+  - SDWebImage/Core (5.0.0-beta3)
   - SDWebImageHEIFCoder (0.2.0):
     - SDWebImage/Core (>= 5.0.0-beta2)
     - SDWebImageHEIFCoder/libde265 (= 0.2.0)
@@ -29,13 +29,13 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   SDWebImage:
-    :commit: 2bb336bc12a5690dd11988c0bc8bef2c7318508d
+    :commit: 1ed0b8cfe86066ea28093406fcd859efd40c9d96
     :git: https://github.com/rs/SDWebImage.git
 
 SPEC CHECKSUMS:
-  SDWebImage: 8e4aaf5805e954ad426702adf5a8c012a7f581d1
+  SDWebImage: e52654ceef9fdc19f4c612d64a5b6d3f05dd81a4
   SDWebImageHEIFCoder: df96e6f1be806db4b49bf89a09c09a231aaba2cb
 
-PODFILE CHECKSUM: 8af51e14dc08af7b356a1a8654150fc255b5a9d4
+PODFILE CHECKSUM: df5aca065f11d33c81555c33b606a5a7e6e7357a
 
 COCOAPODS: 1.5.3

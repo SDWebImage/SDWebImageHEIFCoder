@@ -1,6 +1,6 @@
 # SDWebImageHEIFCoder
 
-[![CI Status](https://img.shields.io/travis/DreamPiggy/SDWebImageHEIFCoder.svg?style=flat)](https://travis-ci.org/DreamPiggy/SDWebImageHEIFCoder)
+[![CI Status](https://img.shields.io/travis/SDWebImage/SDWebImageHEIFCoder.svg?style=flat)](https://travis-ci.org/SDWebImage/SDWebImageHEIFCoder)
 [![Version](https://img.shields.io/cocoapods/v/SDWebImageHEIFCoder.svg?style=flat)](https://cocoapods.org/pods/SDWebImageHEIFCoder)
 [![License](https://img.shields.io/cocoapods/l/SDWebImageHEIFCoder.svg?style=flat)](https://cocoapods.org/pods/SDWebImageHEIFCoder)
 [![Platform](https://img.shields.io/cocoapods/p/SDWebImageHEIFCoder.svg?style=flat)](https://cocoapods.org/pods/SDWebImageHEIFCoder)
@@ -90,7 +90,7 @@ let imageData = image.sd_imageData(asFormat: .HEIF)
 
 ## Screenshot
 
-<img src="https://raw.githubusercontent.com/dreampiggy/SDWebImageHEIFCoder/master/Example/Screenshot/HEIFDemo.png" width="300" />
+<img src="https://raw.githubusercontent.com/SDWebImage/SDWebImageHEIFCoder/master/Example/Screenshot/HEIFDemo.png" width="300" />
 
 The images are from [HEIF official site example](http://nokiatech.github.io/heif/examples.html)
 
