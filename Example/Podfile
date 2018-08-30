@@ -2,7 +2,7 @@ use_frameworks!
 inhibit_all_warnings!
 
 target 'SDWebImageHEIFCoder_Example' do
-  #pod 'SDWebImage', :git => 'https://github.com/rs/SDWebImage.git', :branch => '5.x'
+  pod 'SDWebImage', :git => 'https://github.com/rs/SDWebImage.git', :branch => '5.x'
   pod 'SDWebImageHEIFCoder', :path => '../'
 
   target 'SDWebImageHEIFCoder_Tests' do

@@ -20,7 +20,7 @@
 {
     [super viewDidLoad];
     
-    SDWebImageHEIFCoder *HEIFCoder = [SDWebImageHEIFCoder sharedCoder];
+    SDImageHEIFCoder *HEIFCoder = [SDImageHEIFCoder sharedCoder];
     [[SDImageCodersManager sharedManager] addCoder:HEIFCoder];
     NSURL *singleHEICURL = [NSURL URLWithString:@"http://nokiatech.github.io/heif/content/images/ski_jump_1440x960.heic"];
     NSURL *animatedHEICURL = [NSURL URLWithString:@"http://nokiatech.github.io/heif/content/image_sequences/starfield_animation.heic"];
@@ -37,7 +37,7 @@
         if (image) {
             NSLog(@"Single HEIC load success");
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                NSData *data = [[SDWebImageHEIFCoder sharedCoder] encodedDataWithImage:image format:SDImageFormatHEIC options:nil];
+                NSData *data = [[SDImageHEIFCoder sharedCoder] encodedDataWithImage:image format:SDImageFormatHEIC options:nil];
                 NSAssert(data, @"HEIC encoding failed");
                 NSLog(@"HEIC encoding success");
             });

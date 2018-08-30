@@ -1,11 +1,11 @@
 //
-//  SDWebImageHEIFCoder.m
+//  SDImageHEIFCoder.m
 //  SDWebImageHEIFCoder
 //
 //  Created by lizhuoli on 2018/5/8.
 //
 
-#import "SDWebImageHEIFCoder.h"
+#import "SDImageHEIFCoder.h"
 #import "heif.h"
 #import <Accelerate/Accelerate.h>
 
@@ -38,13 +38,13 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
     return error;
 }
 
-@implementation SDWebImageHEIFCoder
+@implementation SDImageHEIFCoder
 
 + (instancetype)sharedCoder {
-    static SDWebImageHEIFCoder *coder;
+    static SDImageHEIFCoder *coder;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        coder = [[SDWebImageHEIFCoder alloc] init];
+        coder = [[SDImageHEIFCoder alloc] init];
     });
     return coder;
 }

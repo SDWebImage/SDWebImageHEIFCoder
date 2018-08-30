@@ -1,0 +1,6 @@
+framework module SDWebImageHEIFCoder {
+  umbrella header "SDWebImageHEIFCoder.h"
+
+  export *
+  module * { export * }
+}
