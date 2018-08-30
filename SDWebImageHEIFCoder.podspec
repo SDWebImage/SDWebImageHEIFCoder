@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SDWebImageHEIFCoder'
-  s.version          = '0.2.0'
+  s.version          = '0.2.1'
   s.summary          = 'A SDWebImage coder plugin to support HEIF image'
 
   s.description      = <<-DESC
@@ -38,7 +38,7 @@ Which is built based on the open-sourced libheif codec.
     ss.preserve_path = 'Vendors/include'
     ss.xcconfig = {
       'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) HAVE_UNISTD_H=1',
-      'HEADER_SEARCH_PATHS' => '$(inherited) ${PODS_ROOT}/SDWebImageHEIFCoder/Vendors/include ${PODS_ROOT}/SDWebImageHEIFCoder/Vendors/include/libx265'
+      'HEADER_SEARCH_PATHS' => '$(inherited) ${PODS_ROOT}/SDWebImageHEIFCoder/Vendors/include ${PODS_ROOT}/SDWebImageHEIFCoder/Vendors/include/libx265 ${PODS_TARGET_SRCROOT}/Vendors/include ${PODS_TARGET_SRCROOT}/Vendors/include/libx265'
     }
     ss.libraries = 'c++'
   end
@@ -71,5 +71,5 @@ Which is built based on the open-sourced libheif codec.
     }
   end
   
-  s.dependency 'SDWebImage/Core', '>= 5.0.0-beta2'
+  s.dependency 'SDWebImage/Core', '>= 5.0.0-beta3'
 end

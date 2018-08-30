@@ -13,7 +13,7 @@
 // libheif
 #if __has_include(<SDWebImageHEIFCoder/heif.h>)
 #import <SDWebImageHEIFCoder/heif.h>
-#import <SDWebImageHEIFCoder/heif-version.h>
+#import <SDWebImageHEIFCoder/heif_version.h>
 #endif
 // libde265
 #if __has_include(<SDWebImageHEIFCoder/de265.h>)
