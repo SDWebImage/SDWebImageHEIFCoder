@@ -17,14 +17,18 @@ PODS:
 DEPENDENCIES:
   - SDWebImageHEIFCoder (from `../`)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - SDWebImage
+
 EXTERNAL SOURCES:
   SDWebImageHEIFCoder:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
-  SDWebImageHEIFCoder: b0ac0adfcb3e5e2baed8ee119023b7459a050e23
+  SDWebImageHEIFCoder: 9635d27cb44b4bfb1aa5e9adbe7417ec33ec6c0f
 
 PODFILE CHECKSUM: e55953b77c58aa714bbbe274a51f0dae78ac0d19
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3

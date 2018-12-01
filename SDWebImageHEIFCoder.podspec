@@ -24,6 +24,7 @@ Which is built based on the open-sourced libheif codec.
   s.osx.deployment_target = '10.10'
   s.ios.deployment_target = '8.0'
   s.tvos.deployment_target = '9.0'
+  s.watchos.deployment_target = '2.0'
 
   s.source_files = 'SDWebImageHEIFCoder/Classes/**/*'
   s.public_header_files = 'SDWebImageHEIFCoder/Classes/**/*.h'

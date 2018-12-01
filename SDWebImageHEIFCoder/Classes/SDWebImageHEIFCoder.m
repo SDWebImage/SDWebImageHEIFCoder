@@ -70,7 +70,7 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
         return nil;
     }
     
-#if SD_UIKIT
+#if SD_UIKIT || SD_WATCH
     image = [[UIImage alloc] initWithCGImage:imageRef];
 #else
     image = [[UIImage alloc] initWithCGImage:imageRef size:NSZeroSize];
