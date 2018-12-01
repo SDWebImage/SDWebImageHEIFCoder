@@ -49,6 +49,7 @@ Which is built based on the open-sourced libheif codec.
     ss.osx.vendored_libraries = 'Vendors/libde265/macOS/libde265.a'
     ss.ios.vendored_libraries = 'Vendors/libde265/iOS/libde265.a'
     ss.tvos.vendored_libraries = 'Vendors/libde265/tvOS/libde265.a'
+    ss.watchos.vendored_libraries = 'Vendors/libde265/watchOS/libde265.a'
     ss.preserve_path = 'Vendors/include'
     ss.xcconfig = {
       'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) HAVE_LIBDE265=1',
@@ -64,6 +65,7 @@ Which is built based on the open-sourced libheif codec.
     ss.osx.vendored_libraries = 'Vendors/libx265/macOS/libx265.a'
     ss.ios.vendored_libraries = 'Vendors/libx265/iOS/libx265.a'
     ss.tvos.vendored_libraries = 'Vendors/libx265/tvOS/libx265.a'
+    ss.watchos.vendored_libraries = 'Vendors/libx265/watchOS/libx265.a'
     ss.preserve_path = 'Vendors/include'
     ss.xcconfig = {
       'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) HAVE_X265=1',
