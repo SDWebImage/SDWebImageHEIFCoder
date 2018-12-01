@@ -21,7 +21,7 @@ Which is built based on the open-sourced libheif codec.
   s.author           = { 'DreamPiggy' => 'lizhuoli1126@126.com' }
   s.source           = { :git => 'https://github.com/SDWebImage/SDWebImageHEIFCoder.git', :tag => s.version.to_s, :submodules => true }
 
-  s.osx.deployment_target = '10.9'
+  s.osx.deployment_target = '10.10'
   s.ios.deployment_target = '8.0'
   s.tvos.deployment_target = '9.0'
   s.watchos.deployment_target = '2.0'

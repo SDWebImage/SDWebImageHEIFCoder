@@ -15,7 +15,7 @@ This is a [SDWebImage](https://github.com/rs/SDWebImage) coder plugin to add [Hi
 
 This HEIF coder plugin currently support HEIF single/still image **decoding** as well as HEIC image **encoding**.
 
-It support iOS 8+/macOS 10.9+ device without the dependency of Apple's Image/IO framework.
+It support iOS 8+/macOS 10.10+ device without the dependency of Apple's Image/IO framework.
 
 However, for better performance and hardware accelerate for iOS 11+ device, it's really recommended to use Image/IO instead.
 
@@ -23,7 +23,7 @@ However, for better performance and hardware accelerate for iOS 11+ device, it's
 
 + iOS 8
 + tvOS 9.0
-+ macOS 10.9
++ macOS 10.10
 + watchOS 2.0
 
 ## Installation
@@ -53,12 +53,12 @@ By default will contains only `libde265` subspec for most people's usage. Using 
 
 ## Usage
 
-To use HEIF coder, you should firstly add the `SDWebImageHEIFCoder` to the coders manager. Then you can call the View Category method to start load HEIF images.
+To use HEIF coder, you should firstly add the `SDImageHEIFCoder.sharedCoder` to the coders manager. Then you can call the View Category method to start load HEIF images.
 
 + Objective-C
 
 ```objective-c
-SDWebImageHEIFCoder *HEIFCoder = [SDWebImageHEIFCoder sharedCoder];
+SDImageHEIFCoder *HEIFCoder = SDImageHEIFCoder.sharedCoder;
 [[SDImageCodersManager sharedManager] addCoder:HEIFCoder];
 UIImageView *imageView;
 [imageView sd_setImageWithURL:url];
@@ -67,7 +67,7 @@ UIImageView *imageView;
 + Swift
 
 ```swift
-let HEIFCoder = SDWebImageHEIFCoder.shared
+let HEIFCoder = SDImageHEIFCoder.shared
 SDImageCodersManager.shared.addCoder(HEIFCoder)
 let imageView: UIImageView
 imageView.sd_setImage(with: url)
@@ -86,7 +86,7 @@ NSData *imageData = [image sd_imageDataAsFormat:SDImageFormatHEIF];
 
 ```swift
 let image;
-let imageData = image.sd_imageData(asFormat: .HEIF)
+let imageData = image.sd_imageData(as: .HEIF)
 ```
 
 ## Screenshot
