@@ -15,7 +15,7 @@ This is a [SDWebImage](https://github.com/rs/SDWebImage) coder plugin to add [Hi
 
 This HEIF coder plugin currently support HEIF single/still image **decoding** as well as HEIC image **encoding**.
 
-It support iOS 8+/macOS 10.10+ device without the dependency of Apple's Image/IO framework.
+It support iOS 8+/macOS 10.9+ device without the dependency of Apple's Image/IO framework.
 
 However, for better performance and hardware accelerate for iOS 11+ device, it's really recommended to use Image/IO instead.
 
@@ -23,7 +23,8 @@ However, for better performance and hardware accelerate for iOS 11+ device, it's
 
 + iOS 8
 + tvOS 9.0
-+ macOS 10.10
++ macOS 10.9
++ watchOS 2.0
 
 ## Installation
 
@@ -48,7 +49,7 @@ To enable HEIF encoding, you should add `libx265` subspec:
 pod 'SDWebImageHEIFCoder/libx265'
 ```
 
-By default will contains all subspec.
+By default will contains only `libde265` subspec for most people's usage. Using `libx265` encoding subspec only if you want HEIF encoding.
 
 ## Usage
 
@@ -101,7 +102,7 @@ DreamPiggy, lizhuoli1126@126.com
 ## License
 
 SDWebImageHEIFCoder itself is available under the MIT license. See the LICENSE file for more info.
-However, when using `libde265`, the license will be subject to LGPL licence. When using `libx265`, the license will be subject to GPL licence (or commercial licence if you have one)
+However, when using `libx265`, the license will be subject to GPL licence (or commercial licence if you have one). Check [x265.org](http://x265.org/) for more information.
 
 ## Thanks
 

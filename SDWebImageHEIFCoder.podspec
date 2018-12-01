@@ -21,20 +21,19 @@ Which is built based on the open-sourced libheif codec.
   s.author           = { 'DreamPiggy' => 'lizhuoli1126@126.com' }
   s.source           = { :git => 'https://github.com/SDWebImage/SDWebImageHEIFCoder.git', :tag => s.version.to_s, :submodules => true }
 
-  s.osx.deployment_target = '10.10'
+  s.osx.deployment_target = '10.9'
   s.ios.deployment_target = '8.0'
   s.tvos.deployment_target = '9.0'
+  s.watchos.deployment_target = '2.0'
 
-  s.source_files = 'SDWebImageHEIFCoder/Classes/**/*', 'SDWebImageHEIFCoder/Module/SDWebImageHEIFCoder.h'
-  s.public_header_files = 'SDWebImageHEIFCoder/Classes/**/*.h', 'SDWebImageHEIFCoder/Module/SDWebImageHEIFCoder.h'
   s.module_map = 'SDWebImageHEIFCoder/Module/SDWebImageHEIFCoder.modulemap'
-  s.default_subspecs = 'libheif', 'libde265', 'libx265'
+  s.default_subspecs = 'libheif', 'libde265'
 
   # HEIF core dependency
   s.subspec 'libheif' do |ss|
-    ss.source_files = 'Vendors/libheif/libheif/*.{h,c,cc}', 'Vendors/include/libheif/*.h'
-    ss.exclude_files = 'Vendors/libheif/libheif/*fuzzer.{h,c,cc}', 'Vendors/libheif/libheif/heif.h'
-    ss.public_header_files = 'Vendors/include/libheif/*.h'
+    ss.source_files = 'Vendors/libheif/libheif/*.{h,c,cc}', 'Vendors/include/libheif/*.h', 'SDWebImageHEIFCoder/Classes/**/*', 'SDWebImageHEIFCoder/Module/SDWebImageHEIFCoder.h'
+    ss.exclude_files = 'Vendors/libheif/libheif/*fuzzer.{h,c,cc}', 'Vendors/libheif/libheif/heif.h', 'Vendors/libheif/libheif/heif_decoder_libde265.{h,c,cc}', 'Vendors/libheif/libheif/heif_encoder_x265.{h,c,cc}'
+    ss.public_header_files = 'Vendors/include/libheif/*.h', 'SDWebImageHEIFCoder/Classes/**/*.h', 'SDWebImageHEIFCoder/Module/SDWebImageHEIFCoder.h'
     ss.preserve_path = 'Vendors/include'
     ss.xcconfig = {
       'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) HAVE_UNISTD_H=1',
@@ -46,7 +45,8 @@ Which is built based on the open-sourced libheif codec.
   # HEIF Decoding need libde265
   s.subspec 'libde265' do |ss|
     ss.dependency 'SDWebImageHEIFCoder/libheif'
-    ss.source_files = 'Vendors/include/libde265/*.{h}'
+    ss.source_files = 'Vendors/include/libde265/*.{h}', 'Vendors/libheif/libheif/heif_decoder_libde265.{h,c,cc}'
+    ss.public_header_files = 'Vendors/include/libde265/*.{h}'
     ss.osx.vendored_libraries = 'Vendors/libde265/macOS/libde265.a'
     ss.ios.vendored_libraries = 'Vendors/libde265/iOS/libde265.a'
     ss.tvos.vendored_libraries = 'Vendors/libde265/tvOS/libde265.a'
@@ -60,7 +60,8 @@ Which is built based on the open-sourced libheif codec.
   # HEIF Encoding need libx265
   s.subspec 'libx265' do |ss|
     ss.dependency 'SDWebImageHEIFCoder/libheif'
-    ss.source_files = 'Vendors/include/libx265/*.{h}'
+    ss.source_files = 'Vendors/include/libx265/*.{h}', 'Vendors/libheif/libheif/heif_encoder_x265.{h,c,cc}'
+    ss.public_header_files = 'Vendors/include/libx265/*.{h}'
     ss.osx.vendored_libraries = 'Vendors/libx265/macOS/libx265.a'
     ss.ios.vendored_libraries = 'Vendors/libx265/iOS/libx265.a'
     ss.tvos.vendored_libraries = 'Vendors/libx265/tvOS/libx265.a'
