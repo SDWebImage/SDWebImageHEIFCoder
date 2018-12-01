@@ -1,21 +1,17 @@
 PODS:
-  - SDWebImage/Core (4.3.3)
-  - SDWebImageHEIFCoder (0.1.1):
-    - SDWebImage/Core (~> 4.2)
-    - SDWebImageHEIFCoder/libde265 (= 0.1.1)
-    - SDWebImageHEIFCoder/libheif (= 0.1.1)
-    - SDWebImageHEIFCoder/libx265 (= 0.1.1)
-  - SDWebImageHEIFCoder/libde265 (0.1.1):
+  - SDWebImage/Core (4.4.2)
+  - SDWebImageHEIFCoder/libde265 (0.1.2):
     - SDWebImage/Core (~> 4.2)
     - SDWebImageHEIFCoder/libheif
-  - SDWebImageHEIFCoder/libheif (0.1.1):
+  - SDWebImageHEIFCoder/libheif (0.1.2):
     - SDWebImage/Core (~> 4.2)
-  - SDWebImageHEIFCoder/libx265 (0.1.1):
+  - SDWebImageHEIFCoder/libx265 (0.1.2):
     - SDWebImage/Core (~> 4.2)
     - SDWebImageHEIFCoder/libheif
 
 DEPENDENCIES:
-  - SDWebImageHEIFCoder (from `../`)
+  - SDWebImageHEIFCoder/libde265 (from `../`)
+  - SDWebImageHEIFCoder/libx265 (from `../`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -26,9 +22,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
-  SDWebImageHEIFCoder: 9635d27cb44b4bfb1aa5e9adbe7417ec33ec6c0f
+  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
+  SDWebImageHEIFCoder: 7b6986588bcea37dcce0c0b1d0f9f4f1599367d5
 
-PODFILE CHECKSUM: e55953b77c58aa714bbbe274a51f0dae78ac0d19
+PODFILE CHECKSUM: 6f0273ee2365d3edb08042f707a55bcbb5085458
 
 COCOAPODS: 1.5.3
