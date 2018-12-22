@@ -7,14 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		326D0EDD21CE36B200EBA412 /* SDWebImageHEIFCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 326D0EDB21CE36B200EBA412 /* SDWebImageHEIFCoder.m */; };
-		326D0EDE21CE36B200EBA412 /* SDWebImageHEIFCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 326D0EDC21CE36B200EBA412 /* SDWebImageHEIFCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		323CCB1321CE5F1700F77FB1 /* SDImageHEIFCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 323CCB0D21CE5F1700F77FB1 /* SDImageHEIFCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		323CCB1421CE5F1700F77FB1 /* SDImageHEIFCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 323CCB0D21CE5F1700F77FB1 /* SDImageHEIFCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		323CCB1521CE5F1700F77FB1 /* SDImageHEIFCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 323CCB0D21CE5F1700F77FB1 /* SDImageHEIFCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		323CCB1621CE5F1700F77FB1 /* SDImageHEIFCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 323CCB0D21CE5F1700F77FB1 /* SDImageHEIFCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		323CCB1721CE5F1700F77FB1 /* SDImageHEIFCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 323CCB0E21CE5F1700F77FB1 /* SDImageHEIFCoder.m */; };
+		323CCB1821CE5F1700F77FB1 /* SDImageHEIFCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 323CCB0E21CE5F1700F77FB1 /* SDImageHEIFCoder.m */; };
+		323CCB1921CE5F1700F77FB1 /* SDImageHEIFCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 323CCB0E21CE5F1700F77FB1 /* SDImageHEIFCoder.m */; };
+		323CCB1A21CE5F1700F77FB1 /* SDImageHEIFCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 323CCB0E21CE5F1700F77FB1 /* SDImageHEIFCoder.m */; };
+		323CCB2121CE5F4400F77FB1 /* SDWebImageHEIFCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 323CCB2021CE5F4300F77FB1 /* SDWebImageHEIFCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		323CCB2221CE5F4400F77FB1 /* SDWebImageHEIFCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 323CCB2021CE5F4300F77FB1 /* SDWebImageHEIFCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		323CCB2321CE5F4400F77FB1 /* SDWebImageHEIFCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 323CCB2021CE5F4300F77FB1 /* SDWebImageHEIFCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		323CCB2421CE5F4400F77FB1 /* SDWebImageHEIFCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 323CCB2021CE5F4300F77FB1 /* SDWebImageHEIFCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		326D0EE121CE394100EBA412 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326D0EE021CE394100EBA412 /* SDWebImage.framework */; };
 		326D0EE321CE394A00EBA412 /* libheif.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326D0EE221CE394A00EBA412 /* libheif.framework */; };
 		326D0EE521CE395300EBA412 /* libde265.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326D0EE421CE395300EBA412 /* libde265.framework */; };
-		326D0F0D21CE3EBA00EBA412 /* SDWebImageHEIFCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 326D0EDC21CE36B200EBA412 /* SDWebImageHEIFCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		326D0F0E21CE3EBB00EBA412 /* SDWebImageHEIFCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 326D0EDC21CE36B200EBA412 /* SDWebImageHEIFCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		326D0F0F21CE3EBB00EBA412 /* SDWebImageHEIFCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 326D0EDC21CE36B200EBA412 /* SDWebImageHEIFCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		326D0F1121CE3EE200EBA412 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326D0F1021CE3EE200EBA412 /* SDWebImage.framework */; };
 		326D0F1321CE3EEC00EBA412 /* libheif.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326D0F1221CE3EEC00EBA412 /* libheif.framework */; };
 		326D0F1621CE3F0300EBA412 /* libde265.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326D0F1521CE3F0300EBA412 /* libde265.framework */; };
@@ -24,16 +31,14 @@
 		326D0F2021CE3F2300EBA412 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326D0F1D21CE3F2300EBA412 /* SDWebImage.framework */; };
 		326D0F2121CE3F2300EBA412 /* libheif.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326D0F1E21CE3F2300EBA412 /* libheif.framework */; };
 		326D0F2221CE3F2300EBA412 /* libde265.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326D0F1F21CE3F2300EBA412 /* libde265.framework */; };
-		326D0F2321CE3F7A00EBA412 /* SDWebImageHEIFCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 326D0EDB21CE36B200EBA412 /* SDWebImageHEIFCoder.m */; };
-		326D0F2421CE3F7A00EBA412 /* SDWebImageHEIFCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 326D0EDB21CE36B200EBA412 /* SDWebImageHEIFCoder.m */; };
-		326D0F2521CE3F7B00EBA412 /* SDWebImageHEIFCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 326D0EDB21CE36B200EBA412 /* SDWebImageHEIFCoder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		323CCB0D21CE5F1700F77FB1 /* SDImageHEIFCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageHEIFCoder.h; sourceTree = "<group>"; };
+		323CCB0E21CE5F1700F77FB1 /* SDImageHEIFCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImageHEIFCoder.m; sourceTree = "<group>"; };
+		323CCB2021CE5F4300F77FB1 /* SDWebImageHEIFCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDWebImageHEIFCoder.h; path = Module/SDWebImageHEIFCoder.h; sourceTree = "<group>"; };
 		326D0EC321CE359400EBA412 /* SDWebImageHEIFCoder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImageHEIFCoder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		326D0ED921CE36AA00EBA412 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Module/Info.plist; sourceTree = "<group>"; };
-		326D0EDB21CE36B200EBA412 /* SDWebImageHEIFCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDWebImageHEIFCoder.m; path = Classes/SDWebImageHEIFCoder.m; sourceTree = "<group>"; };
-		326D0EDC21CE36B200EBA412 /* SDWebImageHEIFCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDWebImageHEIFCoder.h; path = Classes/SDWebImageHEIFCoder.h; sourceTree = "<group>"; };
 		326D0EE021CE394100EBA412 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = Carthage/Build/iOS/SDWebImage.framework; sourceTree = "<group>"; };
 		326D0EE221CE394A00EBA412 /* libheif.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libheif.framework; path = Carthage/Build/iOS/libheif.framework; sourceTree = "<group>"; };
 		326D0EE421CE395300EBA412 /* libde265.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libde265.framework; path = Carthage/Build/iOS/libde265.framework; sourceTree = "<group>"; };
@@ -95,6 +100,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		323CCB0B21CE5F1700F77FB1 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				323CCB0D21CE5F1700F77FB1 /* SDImageHEIFCoder.h */,
+				323CCB0E21CE5F1700F77FB1 /* SDImageHEIFCoder.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		326D0EB921CE359400EBA412 = {
 			isa = PBXGroup;
 			children = (
@@ -118,8 +132,8 @@
 		326D0EC521CE359400EBA412 /* SDWebImageHEIFCoder */ = {
 			isa = PBXGroup;
 			children = (
-				326D0EDC21CE36B200EBA412 /* SDWebImageHEIFCoder.h */,
-				326D0EDB21CE36B200EBA412 /* SDWebImageHEIFCoder.m */,
+				323CCB0B21CE5F1700F77FB1 /* Classes */,
+				323CCB2021CE5F4300F77FB1 /* SDWebImageHEIFCoder.h */,
 				326D0ED921CE36AA00EBA412 /* Info.plist */,
 			);
 			path = SDWebImageHEIFCoder;
@@ -151,7 +165,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				326D0EDE21CE36B200EBA412 /* SDWebImageHEIFCoder.h in Headers */,
+				323CCB2121CE5F4400F77FB1 /* SDWebImageHEIFCoder.h in Headers */,
+				323CCB1321CE5F1700F77FB1 /* SDImageHEIFCoder.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,7 +174,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				326D0F0D21CE3EBA00EBA412 /* SDWebImageHEIFCoder.h in Headers */,
+				323CCB2221CE5F4400F77FB1 /* SDWebImageHEIFCoder.h in Headers */,
+				323CCB1421CE5F1700F77FB1 /* SDImageHEIFCoder.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,7 +183,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				326D0F0E21CE3EBB00EBA412 /* SDWebImageHEIFCoder.h in Headers */,
+				323CCB2321CE5F4400F77FB1 /* SDWebImageHEIFCoder.h in Headers */,
+				323CCB1521CE5F1700F77FB1 /* SDImageHEIFCoder.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,7 +192,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				326D0F0F21CE3EBB00EBA412 /* SDWebImageHEIFCoder.h in Headers */,
+				323CCB2421CE5F4400F77FB1 /* SDWebImageHEIFCoder.h in Headers */,
+				323CCB1621CE5F1700F77FB1 /* SDImageHEIFCoder.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,7 +350,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				326D0EDD21CE36B200EBA412 /* SDWebImageHEIFCoder.m in Sources */,
+				323CCB1721CE5F1700F77FB1 /* SDImageHEIFCoder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,7 +358,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				326D0F2321CE3F7A00EBA412 /* SDWebImageHEIFCoder.m in Sources */,
+				323CCB1821CE5F1700F77FB1 /* SDImageHEIFCoder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,7 +366,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				326D0F2421CE3F7A00EBA412 /* SDWebImageHEIFCoder.m in Sources */,
+				323CCB1921CE5F1700F77FB1 /* SDImageHEIFCoder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,7 +374,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				326D0F2521CE3F7B00EBA412 /* SDWebImageHEIFCoder.m in Sources */,
+				323CCB1A21CE5F1700F77FB1 /* SDImageHEIFCoder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
