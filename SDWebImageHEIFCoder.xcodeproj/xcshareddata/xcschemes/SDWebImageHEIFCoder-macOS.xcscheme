@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "326D0EEA21CE3E0400EBA412"
-               BuildableName = "SDWebImageHEIFCoder_macOS.framework"
+               BuildableName = "SDWebImageHEIFCoder.framework"
                BlueprintName = "SDWebImageHEIFCoder-macOS"
                ReferencedContainer = "container:SDWebImageHEIFCoder.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "326D0EEA21CE3E0400EBA412"
-            BuildableName = "SDWebImageHEIFCoder_macOS.framework"
+            BuildableName = "SDWebImageHEIFCoder.framework"
             BlueprintName = "SDWebImageHEIFCoder-macOS"
             ReferencedContainer = "container:SDWebImageHEIFCoder.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "326D0EEA21CE3E0400EBA412"
-            BuildableName = "SDWebImageHEIFCoder_macOS.framework"
+            BuildableName = "SDWebImageHEIFCoder.framework"
             BlueprintName = "SDWebImageHEIFCoder-macOS"
             ReferencedContainer = "container:SDWebImageHEIFCoder.xcodeproj">
          </BuildableReference>

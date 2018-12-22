@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "326D0F0421CE3E1B00EBA412"
-               BuildableName = "SDWebImageHEIFCoder_watchOS.framework"
+               BuildableName = "SDWebImageHEIFCoder.framework"
                BlueprintName = "SDWebImageHEIFCoder-watchOS"
                ReferencedContainer = "container:SDWebImageHEIFCoder.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "326D0F0421CE3E1B00EBA412"
-            BuildableName = "SDWebImageHEIFCoder_watchOS.framework"
+            BuildableName = "SDWebImageHEIFCoder.framework"
             BlueprintName = "SDWebImageHEIFCoder-watchOS"
             ReferencedContainer = "container:SDWebImageHEIFCoder.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "326D0F0421CE3E1B00EBA412"
-            BuildableName = "SDWebImageHEIFCoder_watchOS.framework"
+            BuildableName = "SDWebImageHEIFCoder.framework"
             BlueprintName = "SDWebImageHEIFCoder-watchOS"
             ReferencedContainer = "container:SDWebImageHEIFCoder.xcodeproj">
          </BuildableReference>

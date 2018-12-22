@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "326D0EF721CE3E1000EBA412"
-               BuildableName = "SDWebImageHEIFCoder_tvOS.framework"
+               BuildableName = "SDWebImageHEIFCoder.framework"
                BlueprintName = "SDWebImageHEIFCoder-tvOS"
                ReferencedContainer = "container:SDWebImageHEIFCoder.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "326D0EF721CE3E1000EBA412"
-            BuildableName = "SDWebImageHEIFCoder_tvOS.framework"
+            BuildableName = "SDWebImageHEIFCoder.framework"
             BlueprintName = "SDWebImageHEIFCoder-tvOS"
             ReferencedContainer = "container:SDWebImageHEIFCoder.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "326D0EF721CE3E1000EBA412"
-            BuildableName = "SDWebImageHEIFCoder_tvOS.framework"
+            BuildableName = "SDWebImageHEIFCoder.framework"
             BlueprintName = "SDWebImageHEIFCoder-tvOS"
             ReferencedContainer = "container:SDWebImageHEIFCoder.xcodeproj">
          </BuildableReference>
