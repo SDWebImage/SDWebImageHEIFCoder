@@ -6,7 +6,11 @@
 //
 
 #import "SDImageHEIFCoder.h"
+#if __has_include(<libheif/heif.h>)
+#import <libheif/heif.h>
+#else
 #import "heif.h"
+#endif
 #import <Accelerate/Accelerate.h>
 
 typedef struct heif_context heif_context;

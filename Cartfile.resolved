@@ -1,0 +1,3 @@
+github "SDWebImage/SDWebImage" "5.0.0-beta3"
+github "SDWebImage/libde265-Xcode" "1.0.3"
+github "SDWebImage/libheif-Xcode" "1.3.2"
