@@ -1,0 +1,783 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		326D0EDD21CE36B200EBA412 /* SDWebImageHEIFCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 326D0EDB21CE36B200EBA412 /* SDWebImageHEIFCoder.m */; };
+		326D0EDE21CE36B200EBA412 /* SDWebImageHEIFCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 326D0EDC21CE36B200EBA412 /* SDWebImageHEIFCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		326D0EE121CE394100EBA412 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326D0EE021CE394100EBA412 /* SDWebImage.framework */; };
+		326D0EE321CE394A00EBA412 /* libheif.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326D0EE221CE394A00EBA412 /* libheif.framework */; };
+		326D0EE521CE395300EBA412 /* libde265.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326D0EE421CE395300EBA412 /* libde265.framework */; };
+		326D0F0D21CE3EBA00EBA412 /* SDWebImageHEIFCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 326D0EDC21CE36B200EBA412 /* SDWebImageHEIFCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		326D0F0E21CE3EBB00EBA412 /* SDWebImageHEIFCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 326D0EDC21CE36B200EBA412 /* SDWebImageHEIFCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		326D0F0F21CE3EBB00EBA412 /* SDWebImageHEIFCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 326D0EDC21CE36B200EBA412 /* SDWebImageHEIFCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		326D0F1121CE3EE200EBA412 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326D0F1021CE3EE200EBA412 /* SDWebImage.framework */; };
+		326D0F1321CE3EEC00EBA412 /* libheif.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326D0F1221CE3EEC00EBA412 /* libheif.framework */; };
+		326D0F1621CE3F0300EBA412 /* libde265.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326D0F1521CE3F0300EBA412 /* libde265.framework */; };
+		326D0F1A21CE3F1600EBA412 /* libheif.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326D0F1721CE3F1600EBA412 /* libheif.framework */; };
+		326D0F1B21CE3F1600EBA412 /* libde265.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326D0F1821CE3F1600EBA412 /* libde265.framework */; };
+		326D0F1C21CE3F1600EBA412 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326D0F1921CE3F1600EBA412 /* SDWebImage.framework */; };
+		326D0F2021CE3F2300EBA412 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326D0F1D21CE3F2300EBA412 /* SDWebImage.framework */; };
+		326D0F2121CE3F2300EBA412 /* libheif.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326D0F1E21CE3F2300EBA412 /* libheif.framework */; };
+		326D0F2221CE3F2300EBA412 /* libde265.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326D0F1F21CE3F2300EBA412 /* libde265.framework */; };
+		326D0F2321CE3F7A00EBA412 /* SDWebImageHEIFCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 326D0EDB21CE36B200EBA412 /* SDWebImageHEIFCoder.m */; };
+		326D0F2421CE3F7A00EBA412 /* SDWebImageHEIFCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 326D0EDB21CE36B200EBA412 /* SDWebImageHEIFCoder.m */; };
+		326D0F2521CE3F7B00EBA412 /* SDWebImageHEIFCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 326D0EDB21CE36B200EBA412 /* SDWebImageHEIFCoder.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		326D0EC321CE359400EBA412 /* SDWebImageHEIFCoder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImageHEIFCoder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		326D0ED921CE36AA00EBA412 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Module/Info.plist; sourceTree = "<group>"; };
+		326D0EDB21CE36B200EBA412 /* SDWebImageHEIFCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDWebImageHEIFCoder.m; path = Classes/SDWebImageHEIFCoder.m; sourceTree = "<group>"; };
+		326D0EDC21CE36B200EBA412 /* SDWebImageHEIFCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDWebImageHEIFCoder.h; path = Classes/SDWebImageHEIFCoder.h; sourceTree = "<group>"; };
+		326D0EE021CE394100EBA412 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = Carthage/Build/iOS/SDWebImage.framework; sourceTree = "<group>"; };
+		326D0EE221CE394A00EBA412 /* libheif.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libheif.framework; path = Carthage/Build/iOS/libheif.framework; sourceTree = "<group>"; };
+		326D0EE421CE395300EBA412 /* libde265.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libde265.framework; path = Carthage/Build/iOS/libde265.framework; sourceTree = "<group>"; };
+		326D0EEB21CE3E0400EBA412 /* SDWebImageHEIFCoder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImageHEIFCoder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		326D0EF821CE3E1000EBA412 /* SDWebImageHEIFCoder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImageHEIFCoder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		326D0F0521CE3E1B00EBA412 /* SDWebImageHEIFCoder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImageHEIFCoder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		326D0F1021CE3EE200EBA412 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = Carthage/Build/Mac/SDWebImage.framework; sourceTree = "<group>"; };
+		326D0F1221CE3EEC00EBA412 /* libheif.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libheif.framework; path = Carthage/Build/Mac/libheif.framework; sourceTree = "<group>"; };
+		326D0F1521CE3F0300EBA412 /* libde265.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libde265.framework; path = Carthage/Build/Mac/libde265.framework; sourceTree = "<group>"; };
+		326D0F1721CE3F1600EBA412 /* libheif.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libheif.framework; path = Carthage/Build/tvOS/libheif.framework; sourceTree = "<group>"; };
+		326D0F1821CE3F1600EBA412 /* libde265.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libde265.framework; path = Carthage/Build/tvOS/libde265.framework; sourceTree = "<group>"; };
+		326D0F1921CE3F1600EBA412 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = Carthage/Build/tvOS/SDWebImage.framework; sourceTree = "<group>"; };
+		326D0F1D21CE3F2300EBA412 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = Carthage/Build/watchOS/SDWebImage.framework; sourceTree = "<group>"; };
+		326D0F1E21CE3F2300EBA412 /* libheif.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libheif.framework; path = Carthage/Build/watchOS/libheif.framework; sourceTree = "<group>"; };
+		326D0F1F21CE3F2300EBA412 /* libde265.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libde265.framework; path = Carthage/Build/watchOS/libde265.framework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		326D0EC021CE359400EBA412 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				326D0EE521CE395300EBA412 /* libde265.framework in Frameworks */,
+				326D0EE321CE394A00EBA412 /* libheif.framework in Frameworks */,
+				326D0EE121CE394100EBA412 /* SDWebImage.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		326D0EE821CE3E0400EBA412 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				326D0F1621CE3F0300EBA412 /* libde265.framework in Frameworks */,
+				326D0F1321CE3EEC00EBA412 /* libheif.framework in Frameworks */,
+				326D0F1121CE3EE200EBA412 /* SDWebImage.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		326D0EF521CE3E1000EBA412 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				326D0F1A21CE3F1600EBA412 /* libheif.framework in Frameworks */,
+				326D0F1B21CE3F1600EBA412 /* libde265.framework in Frameworks */,
+				326D0F1C21CE3F1600EBA412 /* SDWebImage.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		326D0F0221CE3E1B00EBA412 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				326D0F2121CE3F2300EBA412 /* libheif.framework in Frameworks */,
+				326D0F2221CE3F2300EBA412 /* libde265.framework in Frameworks */,
+				326D0F2021CE3F2300EBA412 /* SDWebImage.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		326D0EB921CE359400EBA412 = {
+			isa = PBXGroup;
+			children = (
+				326D0EC521CE359400EBA412 /* SDWebImageHEIFCoder */,
+				326D0EC421CE359400EBA412 /* Products */,
+				326D0EDF21CE394000EBA412 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		326D0EC421CE359400EBA412 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				326D0EC321CE359400EBA412 /* SDWebImageHEIFCoder.framework */,
+				326D0EEB21CE3E0400EBA412 /* SDWebImageHEIFCoder.framework */,
+				326D0EF821CE3E1000EBA412 /* SDWebImageHEIFCoder.framework */,
+				326D0F0521CE3E1B00EBA412 /* SDWebImageHEIFCoder.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		326D0EC521CE359400EBA412 /* SDWebImageHEIFCoder */ = {
+			isa = PBXGroup;
+			children = (
+				326D0EDC21CE36B200EBA412 /* SDWebImageHEIFCoder.h */,
+				326D0EDB21CE36B200EBA412 /* SDWebImageHEIFCoder.m */,
+				326D0ED921CE36AA00EBA412 /* Info.plist */,
+			);
+			path = SDWebImageHEIFCoder;
+			sourceTree = "<group>";
+		};
+		326D0EDF21CE394000EBA412 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				326D0F1F21CE3F2300EBA412 /* libde265.framework */,
+				326D0F1E21CE3F2300EBA412 /* libheif.framework */,
+				326D0F1D21CE3F2300EBA412 /* SDWebImage.framework */,
+				326D0F1821CE3F1600EBA412 /* libde265.framework */,
+				326D0F1721CE3F1600EBA412 /* libheif.framework */,
+				326D0F1921CE3F1600EBA412 /* SDWebImage.framework */,
+				326D0F1521CE3F0300EBA412 /* libde265.framework */,
+				326D0F1221CE3EEC00EBA412 /* libheif.framework */,
+				326D0F1021CE3EE200EBA412 /* SDWebImage.framework */,
+				326D0EE421CE395300EBA412 /* libde265.framework */,
+				326D0EE221CE394A00EBA412 /* libheif.framework */,
+				326D0EE021CE394100EBA412 /* SDWebImage.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		326D0EBE21CE359400EBA412 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				326D0EDE21CE36B200EBA412 /* SDWebImageHEIFCoder.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		326D0EE621CE3E0400EBA412 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				326D0F0D21CE3EBA00EBA412 /* SDWebImageHEIFCoder.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		326D0EF321CE3E1000EBA412 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				326D0F0E21CE3EBB00EBA412 /* SDWebImageHEIFCoder.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		326D0F0021CE3E1B00EBA412 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				326D0F0F21CE3EBB00EBA412 /* SDWebImageHEIFCoder.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		326D0EC221CE359400EBA412 /* SDWebImageHEIFCoder */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 326D0ECB21CE359400EBA412 /* Build configuration list for PBXNativeTarget "SDWebImageHEIFCoder" */;
+			buildPhases = (
+				326D0EBE21CE359400EBA412 /* Headers */,
+				326D0EBF21CE359400EBA412 /* Sources */,
+				326D0EC021CE359400EBA412 /* Frameworks */,
+				326D0EC121CE359400EBA412 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SDWebImageHEIFCoder;
+			productName = SDWebImageHEIFCoder;
+			productReference = 326D0EC321CE359400EBA412 /* SDWebImageHEIFCoder.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		326D0EEA21CE3E0400EBA412 /* SDWebImageHEIFCoder-macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 326D0EF221CE3E0400EBA412 /* Build configuration list for PBXNativeTarget "SDWebImageHEIFCoder-macOS" */;
+			buildPhases = (
+				326D0EE621CE3E0400EBA412 /* Headers */,
+				326D0EE721CE3E0400EBA412 /* Sources */,
+				326D0EE821CE3E0400EBA412 /* Frameworks */,
+				326D0EE921CE3E0400EBA412 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SDWebImageHEIFCoder-macOS";
+			productName = "SDWebImageHEIFCoder-macOS";
+			productReference = 326D0EEB21CE3E0400EBA412 /* SDWebImageHEIFCoder.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		326D0EF721CE3E1000EBA412 /* SDWebImageHEIFCoder-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 326D0EFD21CE3E1000EBA412 /* Build configuration list for PBXNativeTarget "SDWebImageHEIFCoder-tvOS" */;
+			buildPhases = (
+				326D0EF321CE3E1000EBA412 /* Headers */,
+				326D0EF421CE3E1000EBA412 /* Sources */,
+				326D0EF521CE3E1000EBA412 /* Frameworks */,
+				326D0EF621CE3E1000EBA412 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SDWebImageHEIFCoder-tvOS";
+			productName = "SDWebImageHEIFCoder-tvOS";
+			productReference = 326D0EF821CE3E1000EBA412 /* SDWebImageHEIFCoder.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		326D0F0421CE3E1B00EBA412 /* SDWebImageHEIFCoder-watchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 326D0F0A21CE3E1B00EBA412 /* Build configuration list for PBXNativeTarget "SDWebImageHEIFCoder-watchOS" */;
+			buildPhases = (
+				326D0F0021CE3E1B00EBA412 /* Headers */,
+				326D0F0121CE3E1B00EBA412 /* Sources */,
+				326D0F0221CE3E1B00EBA412 /* Frameworks */,
+				326D0F0321CE3E1B00EBA412 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SDWebImageHEIFCoder-watchOS";
+			productName = "SDWebImageHEIFCoder-watchOS";
+			productReference = 326D0F0521CE3E1B00EBA412 /* SDWebImageHEIFCoder.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		326D0EBA21CE359400EBA412 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1010;
+				TargetAttributes = {
+					326D0EC221CE359400EBA412 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					326D0EEA21CE3E0400EBA412 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					326D0EF721CE3E1000EBA412 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					326D0F0421CE3E1B00EBA412 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+				};
+			};
+			buildConfigurationList = 326D0EBD21CE359400EBA412 /* Build configuration list for PBXProject "SDWebImageHEIFCoder" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 326D0EB921CE359400EBA412;
+			productRefGroup = 326D0EC421CE359400EBA412 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				326D0EC221CE359400EBA412 /* SDWebImageHEIFCoder */,
+				326D0EEA21CE3E0400EBA412 /* SDWebImageHEIFCoder-macOS */,
+				326D0EF721CE3E1000EBA412 /* SDWebImageHEIFCoder-tvOS */,
+				326D0F0421CE3E1B00EBA412 /* SDWebImageHEIFCoder-watchOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		326D0EC121CE359400EBA412 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		326D0EE921CE3E0400EBA412 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		326D0EF621CE3E1000EBA412 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		326D0F0321CE3E1B00EBA412 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		326D0EBF21CE359400EBA412 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				326D0EDD21CE36B200EBA412 /* SDWebImageHEIFCoder.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		326D0EE721CE3E0400EBA412 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				326D0F2321CE3F7A00EBA412 /* SDWebImageHEIFCoder.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		326D0EF421CE3E1000EBA412 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				326D0F2421CE3F7A00EBA412 /* SDWebImageHEIFCoder.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		326D0F0121CE3E1B00EBA412 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				326D0F2521CE3F7B00EBA412 /* SDWebImageHEIFCoder.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		326D0EC921CE359400EBA412 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		326D0ECA21CE359400EBA412 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		326D0ECC21CE359400EBA412 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					HAVE_X265,
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/SDWebImageHEIFCoder/Module/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.SDWebImage.SDWebImageHEIFCoder;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		326D0ECD21CE359400EBA412 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = HAVE_X265;
+				INFOPLIST_FILE = "$(SRCROOT)/SDWebImageHEIFCoder/Module/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.SDWebImage.SDWebImageHEIFCoder;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		326D0EF021CE3E0400EBA412 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "$(SRCROOT)/SDWebImageHEIFCoder/Module/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.SDWebImage.SDWebImageHEIFCoder-macOS";
+				PRODUCT_MODULE_NAME = SDWebImageHEIFCoder;
+				PRODUCT_NAME = SDWebImageHEIFCoder;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		326D0EF121CE3E0400EBA412 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "$(SRCROOT)/SDWebImageHEIFCoder/Module/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.SDWebImage.SDWebImageHEIFCoder-macOS";
+				PRODUCT_MODULE_NAME = SDWebImageHEIFCoder;
+				PRODUCT_NAME = SDWebImageHEIFCoder;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		326D0EFE21CE3E1000EBA412 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/SDWebImageHEIFCoder/Module/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.SDWebImage.SDWebImageHEIFCoder-tvOS";
+				PRODUCT_MODULE_NAME = SDWebImageHEIFCoder;
+				PRODUCT_NAME = SDWebImageHEIFCoder;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		326D0EFF21CE3E1000EBA412 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/SDWebImageHEIFCoder/Module/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.SDWebImage.SDWebImageHEIFCoder-tvOS";
+				PRODUCT_MODULE_NAME = SDWebImageHEIFCoder;
+				PRODUCT_NAME = SDWebImageHEIFCoder;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+		326D0F0B21CE3E1B00EBA412 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/watchOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/SDWebImageHEIFCoder/Module/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.SDWebImage.SDWebImageHEIFCoder-watchOS";
+				PRODUCT_MODULE_NAME = SDWebImageHEIFCoder;
+				PRODUCT_NAME = SDWebImageHEIFCoder;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		326D0F0C21CE3E1B00EBA412 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/watchOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/SDWebImageHEIFCoder/Module/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.SDWebImage.SDWebImageHEIFCoder-watchOS";
+				PRODUCT_MODULE_NAME = SDWebImageHEIFCoder;
+				PRODUCT_NAME = SDWebImageHEIFCoder;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		326D0EBD21CE359400EBA412 /* Build configuration list for PBXProject "SDWebImageHEIFCoder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				326D0EC921CE359400EBA412 /* Debug */,
+				326D0ECA21CE359400EBA412 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		326D0ECB21CE359400EBA412 /* Build configuration list for PBXNativeTarget "SDWebImageHEIFCoder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				326D0ECC21CE359400EBA412 /* Debug */,
+				326D0ECD21CE359400EBA412 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		326D0EF221CE3E0400EBA412 /* Build configuration list for PBXNativeTarget "SDWebImageHEIFCoder-macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				326D0EF021CE3E0400EBA412 /* Debug */,
+				326D0EF121CE3E0400EBA412 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		326D0EFD21CE3E1000EBA412 /* Build configuration list for PBXNativeTarget "SDWebImageHEIFCoder-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				326D0EFE21CE3E1000EBA412 /* Debug */,
+				326D0EFF21CE3E1000EBA412 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		326D0F0A21CE3E1B00EBA412 /* Build configuration list for PBXNativeTarget "SDWebImageHEIFCoder-watchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				326D0F0B21CE3E1B00EBA412 /* Debug */,
+				326D0F0C21CE3E1B00EBA412 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 326D0EBA21CE359400EBA412 /* Project object */;
+}
