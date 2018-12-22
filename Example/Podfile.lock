@@ -1,5 +1,5 @@
 PODS:
-  - SDWebImage/Core (4.4.2)
+  - SDWebImage/Core (4.4.3)
   - SDWebImageHEIFCoder/libde265 (0.1.2):
     - SDWebImage/Core (~> 4.2)
     - SDWebImageHEIFCoder/libheif
@@ -22,7 +22,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
+  SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
   SDWebImageHEIFCoder: fa5516639b2a7e14430ffa6a74826407778b2ce7
 
 PODFILE CHECKSUM: 6f0273ee2365d3edb08042f707a55bcbb5085458

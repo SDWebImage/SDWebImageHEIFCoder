@@ -4,6 +4,7 @@
 [![Version](https://img.shields.io/cocoapods/v/SDWebImageHEIFCoder.svg?style=flat)](https://cocoapods.org/pods/SDWebImageHEIFCoder)
 [![License](https://img.shields.io/cocoapods/l/SDWebImageHEIFCoder.svg?style=flat)](https://cocoapods.org/pods/SDWebImageHEIFCoder)
 [![Platform](https://img.shields.io/cocoapods/p/SDWebImageHEIFCoder.svg?style=flat)](https://cocoapods.org/pods/SDWebImageHEIFCoder)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/SDWebImage/SDWebImageHEIFCoder)
 
 ## Example
 
@@ -26,6 +27,7 @@ However, for better performance and hardware accelerate for iOS 11+ device, it's
 
 ## Installation
 
+#### CocoaPods
 SDWebImageHEIFCoder is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
@@ -48,6 +50,16 @@ pod 'SDWebImageHEIFCoder/libx265'
 ```
 
 By default will contains only `libde265` subspec for most people's usage. Using `libx265` encoding subspec only if you want HEIF encoding.
+
+#### Carthage
+
+SDWebImageHEIFCoder is available through [Carthage](https://github.com/Carthage/Carthage).
+
+Carthage does not support like CocoaPods' subspec, since most of user use HEIF decoding without x265 library. The framework through Carthage only supports libde265 for HEIF decoding.
+
+```
+github "SDWebImage/SDWebImageHEIFCoder"
+```
 
 ## Usage
 
