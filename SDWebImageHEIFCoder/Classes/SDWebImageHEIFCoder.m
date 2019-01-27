@@ -278,6 +278,7 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
         return nil;
     }
     
+    free(src.data);
     void * rgba = dest.data; // Converted buffer
     
     // code to fill in the image
