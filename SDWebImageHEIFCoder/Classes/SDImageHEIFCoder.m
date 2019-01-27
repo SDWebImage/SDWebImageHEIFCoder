@@ -23,10 +23,6 @@ typedef enum heif_chroma heif_chroma;
 typedef enum heif_channel heif_channel;
 typedef enum heif_colorspace heif_colorspace;
 
-static void FreeImageData(void *info, const void *data, size_t size) {
-    free((void *)data);
-}
-
 static heif_error WriteImageData(heif_context * ctx, const void * data, size_t size, void * userdata) {
     NSMutableData *imageData = (__bridge NSMutableData *)userdata;
     NSCParameterAssert(imageData);
@@ -84,6 +80,7 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
 #else
     UIImage *image = [[UIImage alloc] initWithCGImage:imageRef scale:scale orientation:UIImageOrientationUp];
 #endif
+    CGImageRelease(imageRef);
     
     return image;
 }
@@ -140,7 +137,7 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
         return nil;
     }
     CGDataProviderRef provider =
-    CGDataProviderCreateWithData(NULL, rgba, stride * height, FreeImageData);
+    CGDataProviderCreateWithData(NULL, rgba, stride * height, NULL);
     
     CGColorSpaceRef colorSpaceRef = [SDImageCoderHelper colorSpaceGetDeviceRGB];
     CGColorRenderingIntent renderingIntent = kCGRenderingIntentDefault;
@@ -267,12 +264,14 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
     };
     if (!dest.data) {
         free(src.data);
+        vImageConverter_Release(convertor);
         heif_context_free(ctx);
         return nil;
     }
     
     // Convert input color mode to RGB888/RGBA8888
     v_error = vImageConvert_AnyToAny(convertor, &src, &dest, NULL, kvImageNoFlags);
+    vImageConverter_Release(convertor);
     if (v_error != kvImageNoError) {
         free(src.data);
         free(dest.data);
@@ -280,6 +279,7 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
         return nil;
     }
     
+    free(src.data);
     void * rgba = dest.data; // Converted buffer
     
     // code to fill in the image
