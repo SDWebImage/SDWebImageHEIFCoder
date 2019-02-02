@@ -37,7 +37,7 @@ Which is built based on the open-sourced libheif codec.
     ss.preserve_path = 'Vendors'
     ss.xcconfig = {
       'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) HAVE_UNISTD_H=1',
-      'HEADER_SEARCH_PATHS' => '$(inherited) ${PODS_ROOT}/SDWebImageHEIFCoder/Vendors/include ${PODS_ROOT}/SDWebImageHEIFCoder/Vendors/include/libx265 ${PODS_TARGET_SRCROOT}/Vendors/include ${PODS_TARGET_SRCROOT}/Vendors/include/libx265'
+      'HEADER_SEARCH_PATHS' => '$(inherited) ${PODS_ROOT}/SDWebImageHEIFCoder/Vendors/include ${PODS_TARGET_SRCROOT}/Vendors/include'
     }
     ss.libraries = 'c++'
   end
