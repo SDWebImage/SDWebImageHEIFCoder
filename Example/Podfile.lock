@@ -1,11 +1,33 @@
 PODS:
-  - SDWebImage/Core (5.0.0-beta4)
-  - SDWebImageHEIFCoder/libde265 (0.2.3):
+  - libx265 (3.0):
+    - libx265/common (= 3.0)
+    - libx265/core (= 3.0)
+    - libx265/encoder (= 3.0)
+    - libx265/input (= 3.0)
+    - libx265/output (= 3.0)
+    - libx265/x265 (= 3.0)
+  - libx265/common (3.0):
+    - libx265/core
+  - libx265/core (3.0)
+  - libx265/encoder (3.0):
+    - libx265/common
+  - libx265/input (3.0):
+    - libx265/common
+  - libx265/output (3.0):
+    - libx265/common
+  - libx265/x265 (3.0):
+    - libx265/common
+    - libx265/encoder
+    - libx265/input
+    - libx265/output
+  - SDWebImage/Core (5.0.0-beta5)
+  - SDWebImageHEIFCoder/libde265 (0.2.4):
     - SDWebImage/Core (>= 5.0.0-beta4)
     - SDWebImageHEIFCoder/libheif
-  - SDWebImageHEIFCoder/libheif (0.2.3):
+  - SDWebImageHEIFCoder/libheif (0.2.4):
     - SDWebImage/Core (>= 5.0.0-beta4)
-  - SDWebImageHEIFCoder/libx265 (0.2.3):
+  - SDWebImageHEIFCoder/libx265 (0.2.4):
+    - libx265
     - SDWebImage/Core (>= 5.0.0-beta4)
     - SDWebImageHEIFCoder/libheif
 
@@ -15,6 +37,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - libx265
     - SDWebImage
 
 EXTERNAL SOURCES:
@@ -22,9 +45,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  SDWebImage: 56bfe1114b11f1d5766d6d0e3b3456cfd7e1e8b7
-  SDWebImageHEIFCoder: e632735ef0720743f80558a3eb3520b096279f9a
+  libx265: 4bed919b0c7dfeaa45fc017be2c2cad33b40f753
+  SDWebImage: fd609df53c0f55fdcd4705bd14c01c9d5c348d0c
+  SDWebImageHEIFCoder: df20dc1722b4ac4376c7e2ffaac9c9919c497803
 
-PODFILE CHECKSUM: 81286dae2d6687e2636b6da7a2f711402137c2f9
+PODFILE CHECKSUM: 717a0a62a9ecf8e9cae767ce167f207323c85df8
 
 COCOAPODS: 1.5.3

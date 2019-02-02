@@ -34,7 +34,7 @@ Which is built based on the open-sourced libheif codec.
     ss.source_files = 'Vendors/libheif/libheif/*.{h,c,cc}', 'Vendors/include/libheif/*.h', 'SDWebImageHEIFCoder/Classes/**/*', 'SDWebImageHEIFCoder/Module/SDWebImageHEIFCoder.h'
     ss.exclude_files = 'Vendors/libheif/libheif/*fuzzer.{h,c,cc}', 'Vendors/libheif/libheif/heif.h', 'Vendors/libheif/libheif/heif_decoder_libde265.{h,c,cc}', 'Vendors/libheif/libheif/heif_encoder_x265.{h,c,cc}'
     ss.public_header_files = 'Vendors/include/libheif/*.h', 'SDWebImageHEIFCoder/Classes/**/*.h', 'SDWebImageHEIFCoder/Module/SDWebImageHEIFCoder.h'
-    ss.preserve_path = 'Vendors/include'
+    ss.preserve_path = 'Vendors'
     ss.xcconfig = {
       'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) HAVE_UNISTD_H=1',
       'HEADER_SEARCH_PATHS' => '$(inherited) ${PODS_ROOT}/SDWebImageHEIFCoder/Vendors/include ${PODS_ROOT}/SDWebImageHEIFCoder/Vendors/include/libx265 ${PODS_TARGET_SRCROOT}/Vendors/include ${PODS_TARGET_SRCROOT}/Vendors/include/libx265'
@@ -51,7 +51,7 @@ Which is built based on the open-sourced libheif codec.
     ss.ios.vendored_libraries = 'Vendors/libde265/iOS/libde265.a'
     ss.tvos.vendored_libraries = 'Vendors/libde265/tvOS/libde265.a'
     ss.watchos.vendored_libraries = 'Vendors/libde265/watchOS/libde265.a'
-    ss.preserve_path = 'Vendors/include'
+    ss.preserve_path = 'Vendors'
     ss.xcconfig = {
       'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) HAVE_LIBDE265=1',
       'HEADER_SEARCH_PATHS' => '$(inherited) ${PODS_ROOT}/SDWebImageHEIFCoder/Vendors/include'
@@ -60,14 +60,11 @@ Which is built based on the open-sourced libheif codec.
 
   # HEIF Encoding need libx265
   s.subspec 'libx265' do |ss|
+    ss.dependency 'libx265'
     ss.dependency 'SDWebImageHEIFCoder/libheif'
-    ss.source_files = 'Vendors/include/libx265/*.{h}', 'Vendors/libheif/libheif/heif_encoder_x265.{h,c,cc}'
-    ss.public_header_files = 'Vendors/include/libx265/*.{h}'
-    ss.osx.vendored_libraries = 'Vendors/libx265/macOS/libx265.a'
-    ss.ios.vendored_libraries = 'Vendors/libx265/iOS/libx265.a'
-    ss.tvos.vendored_libraries = 'Vendors/libx265/tvOS/libx265.a'
-    ss.watchos.vendored_libraries = 'Vendors/libx265/watchOS/libx265.a'
-    ss.preserve_path = 'Vendors/include'
+    ss.source_files = 'Vendors/libheif/libheif/heif_encoder_x265.{h,c,cc}'
+    ss.public_header_files = 'Vendors/libheif/libheif/heif_encoder_x265.h'
+    ss.preserve_path = 'Vendors'
     ss.xcconfig = {
       'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) HAVE_X265=1',
       'HEADER_SEARCH_PATHS' => '$(inherited) ${PODS_ROOT}/SDWebImageHEIFCoder/Vendors/include'
