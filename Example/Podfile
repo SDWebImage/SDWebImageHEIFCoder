@@ -14,14 +14,3 @@ target 'SDWebImageHEIFCoder_Example' do
     
   end
 end
-
-post_install do |installer|
-
-  installer.pods_project.targets.each do |target|
-    if target.name == "SDWebImageHEIFCoder"
-      target.build_configurations.each do |config|
-        config.build_settings['HEADER_SEARCH_PATHS'] ||= ['$(inherited)', '${SRCROOT}/../../Vendors/include']
-      end
-    end
-  end
-end

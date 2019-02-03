@@ -28,7 +28,9 @@ script:
   - set -o pipefail
 
   - echo Check if the library described by the podspec can be built
-  - pod lib lint --use-libraries --allow-warnings
+  # Run full subspecs linting consuming too much of build time because CocoaPods use source code of Pods
+  # Since`libx265` && `libde265` is Pod and have their own linting, don't waste time to lint full subspecs combination
+  - pod lib lint --use-libraries --allow-warnings --no-subspecs --fail-fast
 
   - echo Build example
   - pod install --project-directory=Example
