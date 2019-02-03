@@ -15,11 +15,6 @@
 #import <SDWebImageHEIFCoder/heif.h>
 #import <SDWebImageHEIFCoder/heif_version.h>
 #endif
-// libde265
-#if __has_include(<SDWebImageHEIFCoder/de265.h>)
-#import <SDWebImageHEIFCoder/de265.h>
-#import <SDWebImageHEIFCoder/de265-version.h>
-#endif
 
 FOUNDATION_EXPORT double SDWebImageHEIFCoderVersionNumber;
 FOUNDATION_EXPORT const unsigned char SDWebImageHEIFCoderVersionString[];

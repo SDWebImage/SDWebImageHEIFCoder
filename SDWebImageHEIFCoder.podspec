@@ -44,13 +44,10 @@ Which is built based on the open-sourced libheif codec.
 
   # HEIF Decoding need libde265
   s.subspec 'libde265' do |ss|
+    ss.dependency 'libde265'
     ss.dependency 'SDWebImageHEIFCoder/libheif'
-    ss.source_files = 'Vendors/include/libde265/*.{h}', 'Vendors/libheif/libheif/heif_decoder_libde265.{h,c,cc}'
-    ss.public_header_files = 'Vendors/include/libde265/*.{h}'
-    ss.osx.vendored_libraries = 'Vendors/libde265/macOS/libde265.a'
-    ss.ios.vendored_libraries = 'Vendors/libde265/iOS/libde265.a'
-    ss.tvos.vendored_libraries = 'Vendors/libde265/tvOS/libde265.a'
-    ss.watchos.vendored_libraries = 'Vendors/libde265/watchOS/libde265.a'
+    ss.source_files = 'Vendors/libheif/libheif/heif_decoder_libde265.{h,c,cc}'
+    ss.private_header_files = 'Vendors/libheif/libheif/heif_decoder_libde265.h'
     ss.preserve_path = 'Vendors'
     ss.xcconfig = {
       'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) HAVE_LIBDE265=1',
@@ -63,11 +60,11 @@ Which is built based on the open-sourced libheif codec.
     ss.dependency 'libx265'
     ss.dependency 'SDWebImageHEIFCoder/libheif'
     ss.source_files = 'Vendors/libheif/libheif/heif_encoder_x265.{h,c,cc}'
-    ss.public_header_files = 'Vendors/libheif/libheif/heif_encoder_x265.h'
+    ss.private_header_files = 'Vendors/libheif/libheif/heif_encoder_x265.h'
     ss.preserve_path = 'Vendors'
     ss.xcconfig = {
       'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) HAVE_X265=1',
-      'HEADER_SEARCH_PATHS' => '$(inherited) ${PODS_ROOT}/SDWebImageHEIFCoder/Vendors/include'
+      'HEADER_SEARCH_PATHS' => '$(inherited) ${PODS_ROOT}/SDWebImageHEIFCoder/Vendors/include ${PODS_ROOT}/libx265/source/'
     }
   end
   
