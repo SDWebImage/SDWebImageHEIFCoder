@@ -31,6 +31,7 @@ Which is built based on the open-sourced libheif codec.
 
   # HEIF core dependency
   s.subspec 'libheif' do |ss|
+    ss.dependency 'libheif/libheif'
     ss.source_files = 'SDWebImageHEIFCoder/Classes/**/*', 'SDWebImageHEIFCoder/Module/SDWebImageHEIFCoder.h'
   end
 

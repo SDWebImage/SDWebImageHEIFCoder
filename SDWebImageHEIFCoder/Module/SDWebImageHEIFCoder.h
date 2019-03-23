@@ -10,11 +10,6 @@
 #endif
 
 #import <SDWebImageHEIFCoder/SDImageHEIFCoder.h>
-// libheif
-#if __has_include(<SDWebImageHEIFCoder/heif.h>)
-#import <SDWebImageHEIFCoder/heif.h>
-#import <SDWebImageHEIFCoder/heif_version.h>
-#endif
 
 FOUNDATION_EXPORT double SDWebImageHEIFCoderVersionNumber;
 FOUNDATION_EXPORT const unsigned char SDWebImageHEIFCoderVersionString[];
