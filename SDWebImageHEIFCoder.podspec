@@ -27,44 +27,28 @@ Which is built based on the open-sourced libheif codec.
   s.watchos.deployment_target = '2.0'
 
   s.module_map = 'SDWebImageHEIFCoder/Module/SDWebImageHEIFCoder.modulemap'
-  s.default_subspecs = 'libheif', 'libde265'
+  s.default_subspec = 'libde265'
 
   # HEIF core dependency
   s.subspec 'libheif' do |ss|
-    ss.source_files = 'Vendors/libheif/libheif/*.{h,c,cc}', 'Vendors/include/libheif/*.h', 'SDWebImageHEIFCoder/Classes/**/*', 'SDWebImageHEIFCoder/Module/SDWebImageHEIFCoder.h'
-    ss.exclude_files = 'Vendors/libheif/libheif/*fuzzer.{h,c,cc}', 'Vendors/libheif/libheif/heif.h', 'Vendors/libheif/libheif/heif_decoder_libde265.{h,c,cc}', 'Vendors/libheif/libheif/heif_encoder_x265.{h,c,cc}'
-    ss.public_header_files = 'Vendors/include/libheif/*.h', 'SDWebImageHEIFCoder/Classes/**/*.h', 'SDWebImageHEIFCoder/Module/SDWebImageHEIFCoder.h'
-    ss.preserve_path = 'Vendors'
-    ss.xcconfig = {
-      'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) HAVE_UNISTD_H=1',
-      'HEADER_SEARCH_PATHS' => '$(inherited) ${PODS_ROOT}/SDWebImageHEIFCoder/Vendors/include ${PODS_TARGET_SRCROOT}/Vendors/include'
-    }
-    ss.libraries = 'c++'
+    ss.source_files = 'SDWebImageHEIFCoder/Classes/**/*', 'SDWebImageHEIFCoder/Module/SDWebImageHEIFCoder.h'
   end
 
   # HEIF Decoding need libde265
   s.subspec 'libde265' do |ss|
-    ss.dependency 'libde265'
+    ss.dependency 'libheif/libde265'
     ss.dependency 'SDWebImageHEIFCoder/libheif'
-    ss.source_files = 'Vendors/libheif/libheif/heif_decoder_libde265.{h,c,cc}'
-    ss.private_header_files = 'Vendors/libheif/libheif/heif_decoder_libde265.h'
-    ss.preserve_path = 'Vendors'
     ss.xcconfig = {
-      'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) HAVE_LIBDE265=1',
-      'HEADER_SEARCH_PATHS' => '$(inherited) ${PODS_ROOT}/SDWebImageHEIFCoder/Vendors/include'
+      'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) HAVE_LIBDE265=1'
     }
   end
 
   # HEIF Encoding need libx265
   s.subspec 'libx265' do |ss|
-    ss.dependency 'libx265'
+    ss.dependency 'libheif/libx265'
     ss.dependency 'SDWebImageHEIFCoder/libheif'
-    ss.source_files = 'Vendors/libheif/libheif/heif_encoder_x265.{h,c,cc}'
-    ss.private_header_files = 'Vendors/libheif/libheif/heif_encoder_x265.h'
-    ss.preserve_path = 'Vendors'
     ss.xcconfig = {
-      'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) HAVE_X265=1',
-      'HEADER_SEARCH_PATHS' => '$(inherited) ${PODS_ROOT}/SDWebImageHEIFCoder/Vendors/include ${PODS_ROOT}/libx265/source/'
+      'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) HAVE_X265=1'
     }
   end
   

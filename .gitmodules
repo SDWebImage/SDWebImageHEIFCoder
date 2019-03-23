@@ -1,3 +1,0 @@
-[submodule "Vendors/libheif"]
-	path = Vendors/libheif
-	url = https://github.com/strukturag/libheif.git
