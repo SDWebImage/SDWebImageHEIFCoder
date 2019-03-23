@@ -341,10 +341,11 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SDWebImageHEIFCoder_Example/Pods-SDWebImageHEIFCoder_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SDWebImageHEIFCoder_Example/Pods-SDWebImageHEIFCoder_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImageHEIFCoder/SDWebImageHEIFCoder.framework",
 				"${BUILT_PRODUCTS_DIR}/libde265/libde265.framework",
+				"${BUILT_PRODUCTS_DIR}/libheif/libheif.framework",
 				"${BUILT_PRODUCTS_DIR}/libx265/libx265.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -354,11 +355,12 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImageHEIFCoder.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libde265.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libheif.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libx265.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SDWebImageHEIFCoder_Example/Pods-SDWebImageHEIFCoder_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SDWebImageHEIFCoder_Example/Pods-SDWebImageHEIFCoder_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
