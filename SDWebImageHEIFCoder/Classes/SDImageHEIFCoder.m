@@ -50,7 +50,7 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
 }
 
 - (BOOL)canDecodeFromData:(NSData *)data {
-#if HAVE_LIBDE265
+#if HAVE_LIBDE265 || HAVE_AOM
     return [[self class] isHEIFFormatForData:data];
 #else
     return NO;
@@ -171,6 +171,12 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
 - (BOOL)canEncodeToFormat:(SDImageFormat)format {
     if (format == SDImageFormatHEIC || format == SDImageFormatHEIF) {
 #if HAVE_X265
+        return YES;
+#else
+        return NO;
+#endif
+    } else if (format == SDImageFormatAVIF) {
+#if HAVE_AOM
         return YES;
 #else
         return NO;
@@ -363,6 +369,7 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
     if (data.length >= 12) {
         //....ftypmif1 ....ftypmsf1 ....ftypheic ....ftypheix ....ftyphevc ....ftyphevx
         NSString *testString = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(4, 8)] encoding:NSASCIIStringEncoding];
+#if HAVE_LIBDE265
         if ([testString isEqualToString:@"ftypmif1"]
             || [testString isEqualToString:@"ftypmsf1"]
             || [testString isEqualToString:@"ftypheic"]
@@ -371,6 +378,13 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
             || [testString isEqualToString:@"ftyphevx"]) {
             return YES;
         }
+#endif
+#if HAVE_AOM
+        if ([testString isEqualToString:@"ftypavif"]
+            || [testString isEqualToString:@"ftypavis"]) {
+            return YES;
+        }
+#endif
     }
     
     return NO;

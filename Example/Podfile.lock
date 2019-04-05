@@ -1,5 +1,9 @@
 PODS:
+  - libaom (1.0.1)
   - libde265 (1.0.3)
+  - libheif/libaom (1.4.0):
+    - libaom (>= 1.0.1)
+    - libheif/libheif
   - libheif/libde265 (1.4.0):
     - libde265
     - libheif/libheif
@@ -29,41 +33,57 @@ PODS:
     - libx265/encoder
     - libx265/input
     - libx265/output
-  - SDWebImage/Core (5.0.1)
-  - SDWebImageHEIFCoder/libde265 (0.5.1):
+  - SDWebImage/Core (5.0.2)
+  - SDWebImageHEIFCoder/libaom (0.5.2):
+    - libheif/libaom
+    - SDWebImage/Core (~> 5.0)
+    - SDWebImageHEIFCoder/libheif
+  - SDWebImageHEIFCoder/libde265 (0.5.2):
     - libheif/libde265
     - SDWebImage/Core (~> 5.0)
     - SDWebImageHEIFCoder/libheif
-  - SDWebImageHEIFCoder/libheif (0.5.1):
+  - SDWebImageHEIFCoder/libheif (0.5.2):
     - libheif/libheif (>= 1.4.0)
     - SDWebImage/Core (~> 5.0)
-  - SDWebImageHEIFCoder/libx265 (0.5.1):
+  - SDWebImageHEIFCoder/libx265 (0.5.2):
     - libheif/libx265
     - SDWebImage/Core (~> 5.0)
     - SDWebImageHEIFCoder/libheif
 
 DEPENDENCIES:
+  - libheif/libaom (from `https://github.com/dreampiggy/libheif.git`, branch `cocoapods_avif`)
+  - libheif/libde265 (from `https://github.com/dreampiggy/libheif.git`, branch `cocoapods_avif`)
+  - SDWebImageHEIFCoder/libaom (from `../`)
   - SDWebImageHEIFCoder/libde265 (from `../`)
   - SDWebImageHEIFCoder/libx265 (from `../`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - libaom
     - libde265
-    - libheif
     - libx265
     - SDWebImage
 
 EXTERNAL SOURCES:
+  libheif:
+    :branch: cocoapods_avif
+    :git: https://github.com/dreampiggy/libheif.git
   SDWebImageHEIFCoder:
     :path: "../"
 
-SPEC CHECKSUMS:
-  libde265: b2a0cc3d2aeaafb792b43fcf2a122f42e1de107c
-  libheif: e79ed1935019556d3b7a5b8926dcbaa478cb4180
-  libx265: 23ab716aae3eff1e6b68b3db6ace8883867691c4
-  SDWebImage: 27dd2c9ea07a2252f94557c9fbb6105ee94b74c9
-  SDWebImageHEIFCoder: 8e078eff3c4dab7d4031331a225948aab396bfa7
+CHECKOUT OPTIONS:
+  libheif:
+    :commit: 5f8f74a913abc4e91a495326d4c5f535efe8b240
+    :git: https://github.com/dreampiggy/libheif.git
 
-PODFILE CHECKSUM: ed097a0e3cb0df40f8e18e8e1e8b396ec38d29ff
+SPEC CHECKSUMS:
+  libaom: 1e48c68559b8d6191c1a9f266e0bee83b2dd21fd
+  libde265: b2a0cc3d2aeaafb792b43fcf2a122f42e1de107c
+  libheif: 0f7d3e215560d92234acfaad89ca1e7306d4a3d0
+  libx265: 23ab716aae3eff1e6b68b3db6ace8883867691c4
+  SDWebImage: 6764b5fa0f73c203728052955dbefa2bf1f33282
+  SDWebImageHEIFCoder: 8b02ef1fc782606c28d51ed48bb91983edc7ad8e
+
+PODFILE CHECKSUM: 7798feb2c1491ee12d239e4590ffcc49be98a342
 
 COCOAPODS: 1.6.1

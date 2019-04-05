@@ -396,7 +396,8 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SDWebImageHEIFCoder_Example macOS/Pods-SDWebImageHEIFCoder_Example macOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage-macOS/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImageHEIFCoder-macOS/SDWebImageHEIFCoder.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImageHEIFCoder-libde265-libheif-libx265/SDWebImageHEIFCoder.framework",
+				"${BUILT_PRODUCTS_DIR}/libaom-macOS/libaom.framework",
 				"${BUILT_PRODUCTS_DIR}/libde265-macOS/libde265.framework",
 				"${BUILT_PRODUCTS_DIR}/libheif-macOS/libheif.framework",
 				"${BUILT_PRODUCTS_DIR}/libx265-macOS/libx265.framework",
@@ -407,6 +408,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImageHEIFCoder.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libaom.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libde265.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libheif.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libx265.framework",
@@ -488,7 +490,8 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SDWebImageHEIFCoder_Example/Pods-SDWebImageHEIFCoder_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage-iOS/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImageHEIFCoder-iOS/SDWebImageHEIFCoder.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImageHEIFCoder-libaom-libde265-libheif-libx265/SDWebImageHEIFCoder.framework",
+				"${BUILT_PRODUCTS_DIR}/libaom-iOS/libaom.framework",
 				"${BUILT_PRODUCTS_DIR}/libde265-iOS/libde265.framework",
 				"${BUILT_PRODUCTS_DIR}/libheif-iOS/libheif.framework",
 				"${BUILT_PRODUCTS_DIR}/libx265-iOS/libx265.framework",
@@ -499,6 +502,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImageHEIFCoder.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libaom.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libde265.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libheif.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libx265.framework",

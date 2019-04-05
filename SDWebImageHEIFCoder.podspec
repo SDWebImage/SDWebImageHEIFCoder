@@ -52,6 +52,15 @@ Which is built based on the open-sourced libheif codec.
       'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) HAVE_X265=1'
     }
   end
+
+  # AVIF Decoding and Encoding need libaom
+  s.subspec 'libaom' do |ss|
+    ss.dependency 'libheif/libaom'
+    ss.dependency 'SDWebImageHEIFCoder/libheif'
+    ss.xcconfig = {
+      'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) HAVE_AOM=1'
+    }
+  end
   
   s.dependency 'SDWebImage/Core', '~> 5.0'
 end

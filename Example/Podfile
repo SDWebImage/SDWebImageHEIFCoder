@@ -5,7 +5,12 @@ target 'SDWebImageHEIFCoder_Example' do
   platform :ios, '8.0'
   pod 'SDWebImageHEIFCoder', :path => '../', :subspecs => [
   'libde265',
-  'libx265'
+  'libx265',
+  'libaom'
+  ]
+  pod 'libheif', :git => 'https://github.com/dreampiggy/libheif.git', :branch => 'cocoapods_avif', :subspecs => [
+  'libde265',
+  'libaom'
   ]
 
   target 'SDWebImageHEIFCoder_Tests' do
@@ -20,5 +25,9 @@ target 'SDWebImageHEIFCoder_Example macOS' do
   pod 'SDWebImageHEIFCoder', :path => '../', :subspecs => [
   'libde265',
   'libx265'
+  ]
+  pod 'libheif', :git => 'https://github.com/dreampiggy/libheif.git', :branch => 'cocoapods_avif', :subspecs => [
+  'libde265',
+  'libaom'
   ]
 end
