@@ -34,4 +34,5 @@ script:
 
   - echo Build example
   - pod install --project-directory=Example
-  - xcodebuild build -workspace Example/SDWebImageHEIFCoder.xcworkspace -scheme SDWebImageHEIFCoder-Example -sdk iphonesimulator -destination 'name=iPhone 8' -configuration Debug | xcpretty -c
+  - xcodebuild build -workspace Example/SDWebImageHEIFCoder.xcworkspace -scheme 'SDWebImageHEIFCoder-Example' -sdk iphonesimulator -destination 'name=iPhone 8' -configuration Debug | xcpretty -c
+  - xcodebuild build -workspace Example/SDWebImageHEIFCoder.xcworkspace -scheme 'SDWebImageHEIFCoder-Example macOS' -sdk macosx -configuration Debug | xcpretty -c

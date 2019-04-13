@@ -104,6 +104,7 @@ let imageData = image.sd_imageData(as: .HEIF)
 ## Screenshot
 
 <img src="https://raw.githubusercontent.com/SDWebImage/SDWebImageHEIFCoder/master/Example/Screenshot/HEIFDemo.png" width="300" />
+<img src="https://raw.githubusercontent.com/SDWebImage/SDWebImageHEIFCoder/master/Example/Screenshot/HEIFDemo-macOS.png" width="600" />
 
 The images are from [HEIF official site example](http://nokiatech.github.io/heif/examples.html)
 
