@@ -17,8 +17,8 @@
     
     SDImageHEIFCoder *HEIFCoder = [SDImageHEIFCoder sharedCoder];
     [[SDImageCodersManager sharedManager] addCoder:HEIFCoder];
-    NSURL *staticHEIFURL = [NSURL URLWithString:@"http://nokiatech.github.io/heif/content/images/ski_jump_1440x960.heic"];
-    NSURL *animatedHEIFURL = [NSURL URLWithString:@"http://nokiatech.github.io/heif/content/image_sequences/starfield_animation.heic"];
+    NSURL *HEICURL = [NSURL URLWithString:@"http://nokiatech.github.io/heif/content/images/ski_jump_1440x960.heic"];
+    NSURL *AVIFURL = [NSURL URLWithString:@"https://raw.githubusercontent.com/AOMediaCodec/av1-avif/master/testFiles/Microsoft/Chimera_10bit_cropped_to_1920x1008.avif"];
     
     CGSize screenSize = self.view.bounds.size;
     
@@ -31,7 +31,7 @@
     [self.view addSubview:imageView1];
     [self.view addSubview:imageView2];
     
-    [imageView1 sd_setImageWithURL:staticHEIFURL completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+    [imageView1 sd_setImageWithURL:HEICURL completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if (image) {
             NSLog(@"Static HEIF load success");
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -42,16 +42,9 @@
             });
         }
     }];
-    [imageView2 sd_setImageWithURL:animatedHEIFURL completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-        if (image.sd_isAnimated) {
-            NSLog(@"Animated HEIF load success");
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                // Animated HEIF encoding is really slow, specify the lowest quality with fast speed
-                NSData *HEIFData = [SDImageHEIFCoder.sharedCoder encodedDataWithImage:image format:SDImageFormatHEIF options:@{SDImageCoderEncodeCompressionQuality : @(0)}];
-                if (HEIFData) {
-                    NSLog(@"Animated HEIF encode success");
-                }
-            });
+    [imageView2 sd_setImageWithURL:AVIFURL completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        if (image) {
+            NSLog(@"AVIF load success");
         }
     }];
 }

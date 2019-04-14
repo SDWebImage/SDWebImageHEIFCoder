@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		02611B7015E8FA9225C7A277 /* Pods_SDWebImageHEIFCoder_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C56612731812E8C66FD75D78 /* Pods_SDWebImageHEIFCoder_Tests.framework */; };
+		0588EFAB441E2AFF647BF1A3 /* Pods_SDWebImageHEIFCoder_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88BDED79F5466CB6ED3CD2F7 /* Pods_SDWebImageHEIFCoder_Tests.framework */; };
+		16263553CB3C63517F94AE8A /* Pods_SDWebImageHEIFCoder_Example_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C952E92B45A3C574F1D15EEF /* Pods_SDWebImageHEIFCoder_Example_macOS.framework */; };
 		32DE7FAC2261EA5400CF1A88 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DE7FAB2261EA5400CF1A88 /* AppDelegate.m */; };
 		32DE7FAF2261EA5400CF1A88 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DE7FAE2261EA5400CF1A88 /* ViewController.m */; };
 		32DE7FB12261EA5400CF1A88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32DE7FB02261EA5400CF1A88 /* Assets.xcassets */; };
 		32DE7FB42261EA5400CF1A88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32DE7FB22261EA5400CF1A88 /* Main.storyboard */; };
 		32DE7FB72261EA5400CF1A88 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DE7FB62261EA5400CF1A88 /* main.m */; };
+		3A7AB3D0FB478EE5A12C5502 /* Pods_SDWebImageHEIFCoder_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AF991D3E0118CD0FFB0ACCD /* Pods_SDWebImageHEIFCoder_Example.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -28,8 +30,6 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
-		C8FC400702982DCE3137FF1E /* Pods_SDWebImageHEIFCoder_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB362D312C46B9817266DAB /* Pods_SDWebImageHEIFCoder_Example.framework */; };
-		EF9F662659DA33FEAF30A93A /* Pods_SDWebImageHEIFCoder_Example_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2AF860EE1234E07BC0DB72D /* Pods_SDWebImageHEIFCoder_Example_macOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0AF991D3E0118CD0FFB0ACCD /* Pods_SDWebImageHEIFCoder_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDWebImageHEIFCoder_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3223E81322623D46004129E9 /* libaom.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libaom.a; path = ../../../../../../usr/local/Cellar/aom/1.0.0/lib/libaom.a; sourceTree = "<group>"; };
 		32DE7FA82261EA5300CF1A88 /* SDWebImageHEIFCoder_Example macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SDWebImageHEIFCoder_Example macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		32DE7FAA2261EA5300CF1A88 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		32DE7FAB2261EA5400CF1A88 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -77,14 +79,13 @@
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7B8FAB679E1472168E8617DA /* SDWebImageHEIFCoder.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SDWebImageHEIFCoder.podspec; path = ../SDWebImageHEIFCoder.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		88BDED79F5466CB6ED3CD2F7 /* Pods_SDWebImageHEIFCoder_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDWebImageHEIFCoder_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AE65D38B3BF6E4CCAFAF73D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		A1EC1B641EF75BEA2475590E /* Pods-SDWebImageHEIFCoder_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDWebImageHEIFCoder_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-SDWebImageHEIFCoder_Example/Pods-SDWebImageHEIFCoder_Example.release.xcconfig"; sourceTree = "<group>"; };
 		A67B84CEC3645A0A997486A2 /* Pods-SDWebImageHEIFCoder_Example macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDWebImageHEIFCoder_Example macOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SDWebImageHEIFCoder_Example macOS/Pods-SDWebImageHEIFCoder_Example macOS.debug.xcconfig"; sourceTree = "<group>"; };
-		AAB362D312C46B9817266DAB /* Pods_SDWebImageHEIFCoder_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDWebImageHEIFCoder_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB0B536057FCDF0347F3135D /* Pods-SDWebImageHEIFCoder_Example macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDWebImageHEIFCoder_Example macOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-SDWebImageHEIFCoder_Example macOS/Pods-SDWebImageHEIFCoder_Example macOS.release.xcconfig"; sourceTree = "<group>"; };
 		AD1FAB2DFC3830F2A4ADBB8B /* Pods-SDWebImageHEIFCoder_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDWebImageHEIFCoder_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SDWebImageHEIFCoder_Tests/Pods-SDWebImageHEIFCoder_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		B2AF860EE1234E07BC0DB72D /* Pods_SDWebImageHEIFCoder_Example_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDWebImageHEIFCoder_Example_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C56612731812E8C66FD75D78 /* Pods_SDWebImageHEIFCoder_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDWebImageHEIFCoder_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C952E92B45A3C574F1D15EEF /* Pods_SDWebImageHEIFCoder_Example_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDWebImageHEIFCoder_Example_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E246A920ED516D3F3B26DB31 /* Pods-SDWebImageHEIFCoder_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDWebImageHEIFCoder_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SDWebImageHEIFCoder_Tests/Pods-SDWebImageHEIFCoder_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		EDAAE4F3946D0D53727C85E0 /* Pods-SDWebImageHEIFCoder_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDWebImageHEIFCoder_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SDWebImageHEIFCoder_Example/Pods-SDWebImageHEIFCoder_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,7 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF9F662659DA33FEAF30A93A /* Pods_SDWebImageHEIFCoder_Example_macOS.framework in Frameworks */,
+				16263553CB3C63517F94AE8A /* Pods_SDWebImageHEIFCoder_Example_macOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,7 +106,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				C8FC400702982DCE3137FF1E /* Pods_SDWebImageHEIFCoder_Example.framework in Frameworks */,
+				3A7AB3D0FB478EE5A12C5502 /* Pods_SDWebImageHEIFCoder_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,7 +117,7 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				02611B7015E8FA9225C7A277 /* Pods_SDWebImageHEIFCoder_Tests.framework in Frameworks */,
+				0588EFAB441E2AFF647BF1A3 /* Pods_SDWebImageHEIFCoder_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,13 +167,14 @@
 		6003F58C195388D20070C39A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3223E81322623D46004129E9 /* libaom.a */,
 				6003F58D195388D20070C39A /* Foundation.framework */,
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				AAB362D312C46B9817266DAB /* Pods_SDWebImageHEIFCoder_Example.framework */,
-				C56612731812E8C66FD75D78 /* Pods_SDWebImageHEIFCoder_Tests.framework */,
-				B2AF860EE1234E07BC0DB72D /* Pods_SDWebImageHEIFCoder_Example_macOS.framework */,
+				0AF991D3E0118CD0FFB0ACCD /* Pods_SDWebImageHEIFCoder_Example.framework */,
+				C952E92B45A3C574F1D15EEF /* Pods_SDWebImageHEIFCoder_Example_macOS.framework */,
+				88BDED79F5466CB6ED3CD2F7 /* Pods_SDWebImageHEIFCoder_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -257,7 +259,7 @@
 				32DE7FA42261EA5300CF1A88 /* Sources */,
 				32DE7FA52261EA5300CF1A88 /* Frameworks */,
 				32DE7FA62261EA5300CF1A88 /* Resources */,
-				96669B7112262C063F62EA79 /* [CP] Embed Pods Frameworks */,
+				781E680B77F04382301DB64D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -276,7 +278,7 @@
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				F39A86DB2BA8E836FE67CC7B /* [CP] Embed Pods Frameworks */,
+				8C9773534A2E22BB787E77C5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -386,7 +388,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		96669B7112262C063F62EA79 /* [CP] Embed Pods Frameworks */ = {
+		781E680B77F04382301DB64D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -396,7 +398,7 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SDWebImageHEIFCoder_Example macOS/Pods-SDWebImageHEIFCoder_Example macOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage-macOS/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImageHEIFCoder-libde265-libheif-libx265/SDWebImageHEIFCoder.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImageHEIFCoder-macOS/SDWebImageHEIFCoder.framework",
 				"${BUILT_PRODUCTS_DIR}/libaom-macOS/libaom.framework",
 				"${BUILT_PRODUCTS_DIR}/libde265-macOS/libde265.framework",
 				"${BUILT_PRODUCTS_DIR}/libheif-macOS/libheif.framework",
@@ -416,6 +418,38 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SDWebImageHEIFCoder_Example macOS/Pods-SDWebImageHEIFCoder_Example macOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8C9773534A2E22BB787E77C5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SDWebImageHEIFCoder_Example/Pods-SDWebImageHEIFCoder_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage-iOS/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImageHEIFCoder-iOS/SDWebImageHEIFCoder.framework",
+				"${BUILT_PRODUCTS_DIR}/libaom-iOS/libaom.framework",
+				"${BUILT_PRODUCTS_DIR}/libde265-iOS/libde265.framework",
+				"${BUILT_PRODUCTS_DIR}/libheif-iOS/libheif.framework",
+				"${BUILT_PRODUCTS_DIR}/libx265-iOS/libx265.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImageHEIFCoder.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libaom.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libde265.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libheif.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libx265.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SDWebImageHEIFCoder_Example/Pods-SDWebImageHEIFCoder_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A2C66F452A1B40946E468D96 /* [CP] Check Pods Manifest.lock */ = {
@@ -478,38 +512,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F39A86DB2BA8E836FE67CC7B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SDWebImageHEIFCoder_Example/Pods-SDWebImageHEIFCoder_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage-iOS/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImageHEIFCoder-libaom-libde265-libheif-libx265/SDWebImageHEIFCoder.framework",
-				"${BUILT_PRODUCTS_DIR}/libaom-iOS/libaom.framework",
-				"${BUILT_PRODUCTS_DIR}/libde265-iOS/libde265.framework",
-				"${BUILT_PRODUCTS_DIR}/libheif-iOS/libheif.framework",
-				"${BUILT_PRODUCTS_DIR}/libx265-iOS/libx265.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImageHEIFCoder.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libaom.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libde265.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libheif.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libx265.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SDWebImageHEIFCoder_Example/Pods-SDWebImageHEIFCoder_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -607,6 +609,42 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage-macOS/SDWebImage.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImageHEIFCoder-macOS/SDWebImageHEIFCoder.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/libaom-macOS/libaom.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/libavif-macOS/libavif.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/libde265-macOS/libde265.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/libheif-macOS/libheif.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/libx265-macOS/libx265.framework/Headers\"",
+					"$(inherited)",
+					"${PODS_ROOT}/libaom",
+					"${PODS_TARGET_SRCROOT}/",
+					"${PODS_ROOT}/libaom/generate",
+					"${PODS_TARGET_SRCROOT}/generate",
+					"$(inherited)",
+					"$(PODS_ROOT)/libavif/include",
+					"$(PODS_TARGET_SRCROOT)/include",
+					"${PODS_ROOT}/libaom/",
+					"$(inherited)",
+					"${PODS_ROOT}/libde265/",
+					"${PODS_TARGET_SRCROOT}/",
+					"${PODS_ROOT}/libde265/libde265",
+					"${PODS_TARGET_SRCROOT}/libde265",
+					"$(inherited)",
+					"${PODS_ROOT}/libheif/",
+					"${PODS_TARGET_SRCROOT}/",
+					"${PODS_ROOT}/libaom/",
+					"$(inherited)",
+					"${PODS_ROOT}/libheif/",
+					"${PODS_TARGET_SRCROOT}/",
+					"$(inherited)",
+					"${PODS_ROOT}/libheif/",
+					"${PODS_TARGET_SRCROOT}/",
+					"${PODS_ROOT}/libx265/source/",
+					/usr/local/include,
+				);
 				INFOPLIST_FILE = "SDWebImageHEIFCoder_Example macOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
@@ -637,6 +675,42 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage-macOS/SDWebImage.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImageHEIFCoder-macOS/SDWebImageHEIFCoder.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/libaom-macOS/libaom.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/libavif-macOS/libavif.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/libde265-macOS/libde265.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/libheif-macOS/libheif.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/libx265-macOS/libx265.framework/Headers\"",
+					"$(inherited)",
+					"${PODS_ROOT}/libaom",
+					"${PODS_TARGET_SRCROOT}/",
+					"${PODS_ROOT}/libaom/generate",
+					"${PODS_TARGET_SRCROOT}/generate",
+					"$(inherited)",
+					"$(PODS_ROOT)/libavif/include",
+					"$(PODS_TARGET_SRCROOT)/include",
+					"${PODS_ROOT}/libaom/",
+					"$(inherited)",
+					"${PODS_ROOT}/libde265/",
+					"${PODS_TARGET_SRCROOT}/",
+					"${PODS_ROOT}/libde265/libde265",
+					"${PODS_TARGET_SRCROOT}/libde265",
+					"$(inherited)",
+					"${PODS_ROOT}/libheif/",
+					"${PODS_TARGET_SRCROOT}/",
+					"${PODS_ROOT}/libaom/",
+					"$(inherited)",
+					"${PODS_ROOT}/libheif/",
+					"${PODS_TARGET_SRCROOT}/",
+					"$(inherited)",
+					"${PODS_ROOT}/libheif/",
+					"${PODS_TARGET_SRCROOT}/",
+					"${PODS_ROOT}/libx265/source/",
+					/usr/local/include,
+				);
 				INFOPLIST_FILE = "SDWebImageHEIFCoder_Example macOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;

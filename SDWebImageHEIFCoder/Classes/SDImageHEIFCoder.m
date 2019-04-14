@@ -22,6 +22,7 @@ typedef struct heif_error heif_error;
 typedef enum heif_chroma heif_chroma;
 typedef enum heif_channel heif_channel;
 typedef enum heif_colorspace heif_colorspace;
+typedef enum heif_compression_format heif_compression_format;
 
 static heif_error WriteImageData(heif_context * ctx, const void * data, size_t size, void * userdata) {
     NSMutableData *imageData = (__bridge NSMutableData *)userdata;
@@ -197,12 +198,12 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
         compressionQuality = [[options valueForKey:SDImageCoderEncodeCompressionQuality] doubleValue];
     }
     
-    data = [self sd_encodedHEIFDataWithImage:image quality:compressionQuality];
+    data = [self sd_encodedHEIFDataWithImage:image format:format quality:compressionQuality];
     
     return data;
 }
 
-- (nullable NSData *)sd_encodedHEIFDataWithImage:(nonnull UIImage *)image quality:(double)quality {
+- (nullable NSData *)sd_encodedHEIFDataWithImage:(nonnull UIImage *)image format:(SDImageFormat)format quality:(double)quality {
     CGImageRef imageRef = image.CGImage;
     if (!imageRef) {
         return nil;
@@ -237,9 +238,18 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
     }
     heif_error error;
     
+    heif_compression_format compression_format;
+    if (format == SDImageFormatHEIF || format == SDImageFormatHEIC) {
+        compression_format = heif_compression_HEVC;
+    } else if (format == SDImageFormatAVIF) {
+        compression_format = heif_compression_AV1;
+    } else {
+        return nil;
+    }
+    
     // get the default encoder
     heif_encoder* encoder;
-    error = heif_context_get_encoder_for_format(ctx, heif_compression_HEVC, &encoder);
+    error = heif_context_get_encoder_for_format(ctx, compression_format, &encoder);
     if (error.code != heif_error_Ok) {
         heif_context_free(ctx);
         return nil;
