@@ -38,6 +38,10 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
     return error;
 }
 
+static void FreeImageData(void *info, const void *data, size_t size) {
+    free((void *)data);
+}
+
 @implementation SDImageHEIFCoder
 
 + (instancetype)sharedCoder {
@@ -109,8 +113,23 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
     }
     
     // check alpha channel
-    bool hasAlpha = heif_image_handle_has_alpha_channel(handle);
-    heif_chroma chroma = hasAlpha ? heif_chroma_interleaved_32bit : heif_chroma_interleaved_24bit;
+    BOOL hasAlpha = heif_image_handle_has_alpha_channel(handle);
+    int depth = heif_image_handle_get_chroma_bits_per_pixel(handle);
+    BOOL hasHighDepth = depth > 8;
+    heif_chroma chroma;
+    if (hasAlpha) {
+        if (hasHighDepth) {
+            chroma = heif_chroma_interleaved_RRGGBB_BE;
+        } else {
+            chroma = heif_chroma_interleaved_RGBA;
+        }
+    } else {
+        if (hasHighDepth) {
+            chroma = heif_chroma_interleaved_RRGGBBAA_BE;
+        } else {
+            chroma = heif_chroma_interleaved_RGB;
+        }
+    }
     
     // decode the image and convert colorspace to RGB/RGBA, saved as 24bit/32bit interleaved
     heif_image* img;
@@ -125,7 +144,7 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
     width =  heif_image_get_width(img, heif_channel_interleaved);
     height = heif_image_get_height(img, heif_channel_interleaved);
     bitsPerPixel = heif_image_get_bits_per_pixel(img, heif_channel_interleaved);
-    bitsPerComponent = 8;
+    bitsPerComponent = hasHighDepth ? 16 : 8;
     CGBitmapInfo bitmapInfo = kCGBitmapByteOrderDefault;
     bitmapInfo |= hasAlpha ? kCGImageAlphaPremultipliedLast : kCGImageAlphaNone;
     
@@ -137,7 +156,7 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
         return nil;
     }
     CGDataProviderRef provider =
-    CGDataProviderCreateWithData(NULL, rgba, stride * height, NULL);
+    CGDataProviderCreateWithData(NULL, rgba, stride * height, FreeImageData);
     
     CGColorSpaceRef colorSpaceRef = [SDImageCoderHelper colorSpaceGetDeviceRGB];
     CGColorRenderingIntent renderingIntent = kCGRenderingIntentDefault;
