@@ -16,6 +16,8 @@ This is a [SDWebImage](https://github.com/rs/SDWebImage) coder plugin to add [Hi
 
 This HEIF coder plugin currently support HEIF single/still image **decoding** as well as HEIC image **encoding**.
 
+The decoding supports [HDR](https://en.wikipedia.org/wiki/High-dynamic-range_imaging) HEIF image with 10/12 bit depth (larger than normal 8 bit) as well.
+
 It support iOS 8+/macOS 10.10+ device without the dependency of Apple's Image/IO framework.
 
 However, for better performance and hardware accelerate for iOS 11+ device, it's really recommended to use Image/IO instead.
