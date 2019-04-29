@@ -38,10 +38,6 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
     return error;
 }
 
-static void FreeImageData(void *info, const void *data, size_t size) {
-    free((void *)data);
-}
-
 @implementation SDImageHEIFCoder
 
 + (instancetype)sharedCoder {
@@ -156,7 +152,7 @@ static void FreeImageData(void *info, const void *data, size_t size) {
         return nil;
     }
     CGDataProviderRef provider =
-    CGDataProviderCreateWithData(NULL, rgba, stride * height, FreeImageData);
+    CGDataProviderCreateWithData(NULL, rgba, stride * height, NULL);
     
     CGColorSpaceRef colorSpaceRef = [SDImageCoderHelper colorSpaceGetDeviceRGB];
     CGColorRenderingIntent renderingIntent = kCGRenderingIntentDefault;

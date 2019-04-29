@@ -30,14 +30,14 @@ PODS:
     - libx265/input
     - libx265/output
   - SDWebImage/Core (5.0.1)
-  - SDWebImageHEIFCoder/libde265 (0.5.0):
+  - SDWebImageHEIFCoder/libde265 (0.5.1):
     - libheif/libde265
     - SDWebImage/Core (~> 5.0)
     - SDWebImageHEIFCoder/libheif
-  - SDWebImageHEIFCoder/libheif (0.5.0):
+  - SDWebImageHEIFCoder/libheif (0.5.1):
     - libheif/libheif (>= 1.4.0)
     - SDWebImage/Core (~> 5.0)
-  - SDWebImageHEIFCoder/libx265 (0.5.0):
+  - SDWebImageHEIFCoder/libx265 (0.5.1):
     - libheif/libx265
     - SDWebImage/Core (~> 5.0)
     - SDWebImageHEIFCoder/libheif
@@ -62,7 +62,7 @@ SPEC CHECKSUMS:
   libheif: e79ed1935019556d3b7a5b8926dcbaa478cb4180
   libx265: 23ab716aae3eff1e6b68b3db6ace8883867691c4
   SDWebImage: 27dd2c9ea07a2252f94557c9fbb6105ee94b74c9
-  SDWebImageHEIFCoder: f32066bbb57e85ec65b3f6d9ed4607bbbd0ae1c9
+  SDWebImageHEIFCoder: 8e078eff3c4dab7d4031331a225948aab396bfa7
 
 PODFILE CHECKSUM: ed097a0e3cb0df40f8e18e8e1e8b396ec38d29ff
 
