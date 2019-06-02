@@ -38,6 +38,11 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
     return error;
 }
 
+static void FreeImageData(void *info, const void *data, size_t size) {
+    heif_image *img = (heif_image *)info;
+    heif_image_release(img); // `heif_image_release` will free the bitmap buffer. We do not call `free`
+}
+
 @implementation SDImageHEIFCoder
 
 + (instancetype)sharedCoder {
@@ -152,7 +157,7 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
         return nil;
     }
     CGDataProviderRef provider =
-    CGDataProviderCreateWithData(NULL, rgba, stride * height, NULL);
+    CGDataProviderCreateWithData(img, rgba, stride * height, FreeImageData);
     
     CGColorSpaceRef colorSpaceRef = [SDImageCoderHelper colorSpaceGetDeviceRGB];
     CGColorRenderingIntent renderingIntent = kCGRenderingIntentDefault;
@@ -160,7 +165,6 @@ static heif_error WriteImageData(heif_context * ctx, const void * data, size_t s
     
     // clean up
     CGDataProviderRelease(provider);
-    heif_image_release(img);
     heif_image_handle_release(handle);
     heif_context_free(ctx);
     
