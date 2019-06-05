@@ -15,8 +15,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    SDImageHEIFCoder *HEIFCoder = [SDImageHEIFCoder sharedCoder];
-    [[SDImageCodersManager sharedManager] addCoder:HEIFCoder];
     NSURL *staticHEIFURL = [NSURL URLWithString:@"http://nokiatech.github.io/heif/content/images/ski_jump_1440x960.heic"];
     NSURL *animatedHEIFURL = [NSURL URLWithString:@"http://nokiatech.github.io/heif/content/image_sequences/starfield_animation.heic"];
     

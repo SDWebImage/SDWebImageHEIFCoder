@@ -20,7 +20,11 @@ The decoding supports [HDR](https://en.wikipedia.org/wiki/High-dynamic-range_ima
 
 It support iOS 8+/macOS 10.10+ device without the dependency of Apple's Image/IO framework.
 
-However, for better performance and hardware accelerate for iOS 11+ device, it's really recommended to use Image/IO instead.
+## Performance
+
+Apple's Image/IO framework supports Hardware-Accelerated HEIF decoding (A9+ chip) and encoding on (A10+ chip). And provide a backup Software decoding and encoding on all iOS 11+/macOS 10.13+ devices.
+
+This coder is used for backward-compatible solution. And the codec only do Software decoding / encoding, which is slower than Image/IO. So if possible, choose to use Image/IO (SDWebImage's built-in coder) firstly.
 
 ## Requirements
 
@@ -67,13 +71,37 @@ github "SDWebImage/SDWebImageHEIFCoder"
 
 ## Usage
 
-To use HEIF coder, you should firstly add the `SDImageHEIFCoder.sharedCoder` to the coders manager. Then you can call the View Category method to start load HEIF images.
+To use HEIF coder, you should firstly add the `SDImageHEIFCoder.sharedCoder` to the coders manager. You can also detect the target platform compatibility for HEIF and choose add coder.
 
 + Objective-C
 
 ```objective-c
-SDImageHEIFCoder *HEIFCoder = SDImageHEIFCoder.sharedCoder;
-[[SDImageCodersManager sharedManager] addCoder:HEIFCoder];
+if (@available(iOS 11.0, macOS 10.13, tvOS 11.0, *)) {
+    // These version supports Image/IO built-in decoding
+} else {
+    // Don't support HEIF decoding, add coder
+    SDImageHEIFCoder *HEIFCoder = [SDImageHEIFCoder sharedCoder];
+    [[SDImageCodersManager sharedManager] addCoder:HEIFCoder];
+}
+```
+
++ Swift
+
+```swift
+if #available(iOS 11.0, macOS 10.13, tvOS 11.0, *) {
+    // These version supports Image/IO built-in decoding
+} else {
+    // Don't support HEIF decoding, add coder
+    let HEIFCoder = SDImageHEIFCoder.shared
+    SDImageCodersManager.shared.addCoder(HEIFCoder)
+}
+```
+
+Then you can call the View Category method to start load HEIF images.
+
++ Objective-C
+
+```objective-c
 UIImageView *imageView;
 [imageView sd_setImageWithURL:url];
 ```
@@ -81,8 +109,6 @@ UIImageView *imageView;
 + Swift
 
 ```swift
-let HEIFCoder = SDImageHEIFCoder.shared
-SDImageCodersManager.shared.addCoder(HEIFCoder)
 let imageView: UIImageView
 imageView.sd_setImage(with: url)
 ```
