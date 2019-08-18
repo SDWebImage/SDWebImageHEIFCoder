@@ -208,8 +208,6 @@ static void FreeImageData(void *info, const void *data, size_t size) {
     
     size_t width = CGImageGetWidth(imageRef);
     size_t height = CGImageGetHeight(imageRef);
-    size_t bytesPerRow = CGImageGetBytesPerRow(imageRef);
-    size_t bitsPerPixel = CGImageGetBitsPerPixel(imageRef);
     CGBitmapInfo bitmapInfo = CGImageGetBitmapInfo(imageRef);
     CGImageAlphaInfo alphaInfo = bitmapInfo & kCGBitmapAlphaInfoMask;
     CGBitmapInfo byteOrderInfo = bitmapInfo & kCGBitmapByteOrderMask;
@@ -250,6 +248,9 @@ static void FreeImageData(void *info, const void *data, size_t size) {
     vImageConverterRef convertor = NULL;
     vImage_Error v_error = kvImageNoError;
     
+    size_t bitsPerPixel = hasAlpha ? 32 : 24;
+    size_t bytesPerRow = (width * bitsPerPixel + 7) / 8;
+    
     vImage_CGImageFormat srcFormat = {
         .bitsPerComponent = (uint32_t)CGImageGetBitsPerComponent(imageRef),
         .bitsPerPixel = (uint32_t)CGImageGetBitsPerPixel(imageRef),
@@ -258,7 +259,7 @@ static void FreeImageData(void *info, const void *data, size_t size) {
     };
     vImage_CGImageFormat destFormat = {
         .bitsPerComponent = 8,
-        .bitsPerPixel = hasAlpha ? 32 : 24,
+        .bitsPerPixel = bitsPerPixel,
         .colorSpace = [SDImageCoderHelper colorSpaceGetDeviceRGB],
         .bitmapInfo = hasAlpha ? kCGImageAlphaLast | kCGBitmapByteOrderDefault : kCGImageAlphaNone | kCGBitmapByteOrderDefault // RGB888/RGBA8888 (Non-premultiplied to works for libwebp)
     };
