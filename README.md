@@ -4,6 +4,7 @@
 [![Version](https://img.shields.io/cocoapods/v/SDWebImageHEIFCoder.svg?style=flat)](https://cocoapods.org/pods/SDWebImageHEIFCoder)
 [![License](https://img.shields.io/cocoapods/l/SDWebImageHEIFCoder.svg?style=flat)](https://cocoapods.org/pods/SDWebImageHEIFCoder)
 [![Platform](https://img.shields.io/cocoapods/p/SDWebImageHEIFCoder.svg?style=flat)](https://cocoapods.org/pods/SDWebImageHEIFCoder)
+[![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-compatible-brightgreen.svg?style=flat)](https://swift.org/package-manager/)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/SDWebImage/SDWebImageHEIFCoder)
 
 ## 4.x compatibility
@@ -67,6 +68,20 @@ Carthage does not support like CocoaPods' subspec, since most of user use HEIF d
 
 ```
 github "SDWebImage/SDWebImageHEIFCoder"
+```
+
+#### Swift Package Manager (Xcode 11+)
+
+SDWebImageHEIFCoder is available through [Swift Package Manager](https://swift.org/package-manager).
+
+The framework through SwiftPM only supports libde265 for HEIF decoding.
+
+```swift
+let package = Package(
+    dependencies: [
+        .package(url: "https://github.com/SDWebImage/SDWebImageHEIFCoder.git", from: "0.6")
+    ]
+)
 ```
 
 ## Usage
