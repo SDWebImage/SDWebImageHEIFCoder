@@ -1,0 +1,34 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "libde265",
+        "repositoryURL": "https://github.com/SDWebImage/libde265-Xcode.git",
+        "state": {
+          "branch": null,
+          "revision": "39b0430c631669dba8e578a2ececae3a05dbb935",
+          "version": "1.0.4"
+        }
+      },
+      {
+        "package": "libheif",
+        "repositoryURL": "https://github.com/SDWebImage/libheif-Xcode.git",
+        "state": {
+          "branch": null,
+          "revision": "e78f3a9bf4f45f857032029a519adae46170978f",
+          "version": "1.6.1"
+        }
+      },
+      {
+        "package": "SDWebImage",
+        "repositoryURL": "https://github.com/SDWebImage/SDWebImage.git",
+        "state": {
+          "branch": null,
+          "revision": "247f74a5d191e9c6bd601d292c99cf9fe1658930",
+          "version": "5.4.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
