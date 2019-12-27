@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode9.4
+osx_image: xcode11.2
 
 env:
   global:
@@ -33,5 +33,5 @@ script:
 
   - echo Build example
   - pod install --project-directory=Example
-  - xcodebuild build -workspace Example/SDWebImageHEIFCoder.xcworkspace -scheme 'SDWebImageHEIFCoder-Example' -sdk iphonesimulator -destination 'name=iPhone 8' -configuration Debug | xcpretty -c
-  - xcodebuild build -workspace Example/SDWebImageHEIFCoder.xcworkspace -scheme 'SDWebImageHEIFCoder-Example macOS' -sdk macosx -configuration Debug | xcpretty -c
+  - xcodebuild build -workspace Example/SDWebImageHEIFCoder.xcworkspace -scheme 'SDWebImageHEIFCoder-Example' -destination 'name=iPhone 11 Pro' -configuration Debug | xcpretty -c
+  - xcodebuild build -workspace Example/SDWebImageHEIFCoder.xcworkspace -scheme 'SDWebImageHEIFCoder-Example macOS' -destination 'platform=macOS,arch=x86_64' -configuration Debug | xcpretty -c
