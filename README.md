@@ -86,6 +86,8 @@ let package = Package(
 
 ## Usage
 
+### Add Coder
+
 To use HEIF coder, you should firstly add the `SDImageHEIFCoder.sharedCoder` to the coders manager. You can also detect the target platform compatibility for HEIF and choose add coder.
 
 + Objective-C
@@ -112,6 +114,8 @@ if #available(iOS 11.0, macOS 10.13, tvOS 11.0, *) {
 }
 ```
 
+### Loading
+
 Then you can call the View Category method to start load HEIF images.
 
 + Objective-C
@@ -127,6 +131,52 @@ UIImageView *imageView;
 let imageView: UIImageView
 imageView.sd_setImage(with: url)
 ```
+
+### Decoding
+
+`SDImageHEIFCoder` currently supports decode the static HEIF images.
+
+Note HEIF sequence images(.heics) is not supported currently, only supported in built-in coder from SDWebImage for iOS 13+/macOS 10.15+, also supported by [Safari and WebKit](https://bugs.webkit.org/show_bug.cgi?id=197384).
+
++ Objective-C
+
+```objective-c
+// HEIF image decoding
+NSData *heifData;
+UIImage *image = [[SDImageHEIFCoder sharedCoder] decodedImageWithData:heifData options:nil];
+```
+
++ Swift
+
+```swift
+// HEIF image decoding
+let heifData: Data
+let image = SDImageHEIFCoder.shared.decodedImage(with: data, options: nil)
+```
+
+### Thumbnail Decoding (0.7.0+)
+
+HEIF image container supports embed thumbnail image. If we can found a suitable thumbnail image, we pick that instead for quickly display, else we will decode full pixel image and scale down.
+
++ Objective-C
+
+```objective-c
+// HEIF thumbnail image decoding
+NSData *heifData;
+CGSize thumbnailSize = CGSizeMake(300, 300);
+UIImage *thumbnailImage = [[SDImageHEIFCoder sharedCoder] decodedImageWithData:heifData options:@{SDImageCoderDecodeThumbnailPixelSize : @(thumbnailSize}];
+```
+
++ Swift
+
+```swift
+// HEIF thumbnail image decoding
+let heifData: Data
+let thumbnailSize = CGSize(width: 300, height: 300)
+let image = SDImageHEIFCoder.shared.decodedImage(with: data, options: [.decodeThumbnailPixelSize: thumbnailSize])
+```
+
+### Encoding
 
 `SDWebImageHEIFCoder` also support HEIF encoding (need x265 subspec). You can encode `UIImage` to HEIF compressed image data.
 

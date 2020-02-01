@@ -17,13 +17,8 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
-    if (@available(iOS 11.0, macOS 10.13, tvOS 11.0, *)) {
-        // These version supports Image/IO built-in decoding (hardware accelerate for A9+ device)
-    } else {
-        // Don't support HEIF decoding, add coder
-        SDImageHEIFCoder *HEIFCoder = [SDImageHEIFCoder sharedCoder];
-        [[SDImageCodersManager sharedManager] addCoder:HEIFCoder];
-    }
+    SDImageHEIFCoder *HEIFCoder = [SDImageHEIFCoder sharedCoder];
+    [[SDImageCodersManager sharedManager] addCoder:HEIFCoder];
 }
 
 
