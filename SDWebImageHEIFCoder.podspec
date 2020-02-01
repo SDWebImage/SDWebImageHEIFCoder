@@ -31,7 +31,7 @@ Which is built based on the open-sourced libheif codec.
 
   # HEIF core dependency
   s.subspec 'libheif' do |ss|
-    ss.dependency 'libheif/libheif', '>= 1.4.0'
+    ss.dependency 'libheif/libheif', '>= 1.6.0'
     ss.source_files = 'SDWebImageHEIFCoder/Classes/**/*', 'SDWebImageHEIFCoder/Module/SDWebImageHEIFCoder.h'
   end
 
@@ -53,5 +53,5 @@ Which is built based on the open-sourced libheif codec.
     }
   end
   
-  s.dependency 'SDWebImage/Core', '~> 5.0'
+  s.dependency 'SDWebImage/Core', '~> 5.5'
 end

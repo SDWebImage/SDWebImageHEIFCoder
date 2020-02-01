@@ -43,6 +43,38 @@ static void FreeImageData(void *info, const void *data, size_t size) {
     heif_image_release(img); // `heif_image_release` will free the bitmap buffer. We do not call `free`
 }
 
+/// Calculate the actual thumnail pixel size
+static CGSize SDCalculateThumbnailSize(CGSize fullSize, BOOL preserveAspectRatio, CGSize thumbnailSize) {
+    CGFloat width = fullSize.width;
+    CGFloat height = fullSize.height;
+    CGFloat resultWidth;
+    CGFloat resultHeight;
+    
+    if (width == 0 || height == 0 || thumbnailSize.width == 0 || thumbnailSize.height == 0 || (width <= thumbnailSize.width && height <= thumbnailSize.height)) {
+        // Full Pixel
+        resultWidth = width;
+        resultHeight = height;
+    } else {
+        // Thumbnail
+        if (preserveAspectRatio) {
+            CGFloat pixelRatio = width / height;
+            CGFloat thumbnailRatio = thumbnailSize.width / thumbnailSize.height;
+            if (pixelRatio > thumbnailRatio) {
+                resultWidth = thumbnailSize.width;
+                resultHeight = ceil(thumbnailSize.width / pixelRatio);
+            } else {
+                resultHeight = thumbnailSize.height;
+                resultWidth = ceil(thumbnailSize.height * pixelRatio);
+            }
+        } else {
+            resultWidth = thumbnailSize.width;
+            resultHeight = thumbnailSize.height;
+        }
+    }
+    
+    return CGSizeMake(resultWidth, resultHeight);
+}
+
 @implementation SDImageHEIFCoder
 
 + (instancetype)sharedCoder {
@@ -74,8 +106,24 @@ static void FreeImageData(void *info, const void *data, size_t size) {
         }
     }
     
+    CGSize thumbnailSize = CGSizeZero;
+    NSValue *thumbnailSizeValue = options[SDImageCoderDecodeThumbnailPixelSize];
+    if (thumbnailSizeValue != nil) {
+#if SD_MAC
+        thumbnailSize = thumbnailSizeValue.sizeValue;
+#else
+        thumbnailSize = thumbnailSizeValue.CGSizeValue;
+#endif
+    }
+    
+    BOOL preserveAspectRatio = YES;
+    NSNumber *preserveAspectRatioValue = options[SDImageCoderDecodePreserveAspectRatio];
+    if (preserveAspectRatioValue != nil) {
+        preserveAspectRatio = preserveAspectRatioValue.boolValue;
+    }
+    
     // Currently only support primary image :)
-    CGImageRef imageRef = [self sd_createHEIFImageWithData:data];
+    CGImageRef imageRef = [self sd_createHEIFImageWithData:data thumbnailSize:thumbnailSize preserveAspectRatio:preserveAspectRatio];
     if (!imageRef) {
         return nil;
     }
@@ -91,7 +139,7 @@ static void FreeImageData(void *info, const void *data, size_t size) {
 }
 
 // Only decode the primary image (HEIF also support tied-image and animated image)
-- (nullable CGImageRef)sd_createHEIFImageWithData:(nonnull NSData *)data CF_RETURNS_RETAINED {
+- (nullable CGImageRef)sd_createHEIFImageWithData:(nonnull NSData *)data thumbnailSize:(CGSize)thumbnailSize preserveAspectRatio:(BOOL)preserveAspectRatio CF_RETURNS_RETAINED {
     heif_context* ctx = heif_context_alloc();
     if (!ctx) {
         return nil;
@@ -112,6 +160,50 @@ static void FreeImageData(void *info, const void *data, size_t size) {
         heif_context_free(ctx);
         return nil;
     }
+    
+    // check thumbnail firstly
+    if (thumbnailSize.width > 0 && thumbnailSize.height > 0) {
+        heif_item_id thumbnailID;
+        int thumbnailCount = heif_image_handle_get_list_of_thumbnail_IDs(handle, &thumbnailID, 1);
+        if (thumbnailCount > 0) {
+            heif_image_handle *thumbnailHandle;
+            error = heif_image_handle_get_thumbnail(handle, thumbnailID, &thumbnailHandle);
+            if (error.code != heif_error_Ok) {
+                heif_image_handle_release(handle);
+                heif_context_free(ctx);
+                return nil;
+            }
+            
+            // use full image to scale down if pixel size is smaller than thumbnail size
+            int handleWidth = heif_image_handle_get_width(handle);
+            int handleHeight = heif_image_handle_get_height(handle);
+            if (handleWidth < thumbnailSize.width && handleHeight < thumbnailSize.height) {
+                CGImageRef imageRef = [self sd_createFrameWithImageHandle:thumbnailHandle thumbnailSize:thumbnailSize preserveAspectRatio:preserveAspectRatio];
+                
+                // clean up
+                heif_image_handle_release(thumbnailHandle);
+                heif_image_handle_release(handle);
+                heif_context_free(ctx);
+                
+                return imageRef;
+            } else {
+                // clean up
+                heif_image_handle_release(thumbnailHandle);
+            }
+        }
+    }
+    
+    CGImageRef imageRef = [self sd_createFrameWithImageHandle:handle thumbnailSize:thumbnailSize preserveAspectRatio:preserveAspectRatio];
+    
+    // clean up
+    heif_image_handle_release(handle);
+    heif_context_free(ctx);
+    
+    return imageRef;
+}
+
+- (nullable CGImageRef)sd_createFrameWithImageHandle:(heif_image_handle *)handle thumbnailSize:(CGSize)thumbnailSize preserveAspectRatio:(BOOL)preserveAspectRatio CF_RETURNS_RETAINED {
+    heif_error error;
     
     // check alpha channel
     BOOL hasAlpha = heif_image_handle_has_alpha_channel(handle);
@@ -136,13 +228,25 @@ static void FreeImageData(void *info, const void *data, size_t size) {
     heif_image* img;
     error = heif_decode_image(handle, &img, heif_colorspace_RGB, chroma, NULL);
     if (error.code != heif_error_Ok) {
-        heif_image_handle_release(handle);
-        heif_context_free(ctx);
         return nil;
     }
     
+    int handleWidth = heif_image_handle_get_width(handle);
+    int handleHeight = heif_image_handle_get_height(handle);
+    CGSize scaledSize = SDCalculateThumbnailSize(CGSizeMake(handleWidth, handleHeight), preserveAspectRatio, thumbnailSize);
+    // use scaling for thumbnail
+    if (scaledSize.width > 0 && scaledSize.height > 0 && scaledSize.width != handleWidth && scaledSize.height != handleHeight) {
+        heif_image *scaled_img;
+        error = heif_image_scale_image(img, &scaled_img, scaledSize.width, scaledSize.height, NULL);
+        heif_image_release(img);
+        if (error.code != heif_error_Ok) {
+            return nil;
+        }
+        img = scaled_img;
+    }
+    
     int width, height, stride, bitsPerPixel, bitsPerComponent;
-    width =  heif_image_get_width(img, heif_channel_interleaved);
+    width = heif_image_get_width(img, heif_channel_interleaved);
     height = heif_image_get_height(img, heif_channel_interleaved);
     bitsPerPixel = heif_image_get_bits_per_pixel(img, heif_channel_interleaved);
     bitsPerComponent = hasHighDepth ? 16 : 8;
@@ -152,8 +256,6 @@ static void FreeImageData(void *info, const void *data, size_t size) {
     const uint8_t *rgba = heif_image_get_plane_readonly(img, heif_channel_interleaved, &stride);
     if (!rgba) {
         heif_image_release(img);
-        heif_image_handle_release(handle);
-        heif_context_free(ctx);
         return nil;
     }
     CGDataProviderRef provider =
@@ -165,8 +267,6 @@ static void FreeImageData(void *info, const void *data, size_t size) {
     
     // clean up
     CGDataProviderRelease(provider);
-    heif_image_handle_release(handle);
-    heif_context_free(ctx);
     
     return imageRef;
 }
