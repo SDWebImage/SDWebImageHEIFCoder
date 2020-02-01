@@ -134,6 +134,10 @@ imageView.sd_setImage(with: url)
 
 ### Decoding
 
+`SDImageHEIFCoder` currently supports decode the static HEIF images.
+
+Note HEIF sequence images(.heics) is not supported currently, only supported in built-in coder from SDWebImage for iOS 13+/macOS 10.15+, also supported by [Safari and WebKit](https://bugs.webkit.org/show_bug.cgi?id=197384).
+
 + Objective-C
 
 ```objective-c
@@ -151,6 +155,8 @@ let image = SDImageHEIFCoder.shared.decodedImage(with: data, options: nil)
 ```
 
 ### Thumbnail Decoding (0.7.0+)
+
+HEIF image container supports embed thumbnail image. If we can found a suitable thumbnail image, we pick that instead for quickly display, else we will decode full pixel image and scale down.
 
 + Objective-C
 
