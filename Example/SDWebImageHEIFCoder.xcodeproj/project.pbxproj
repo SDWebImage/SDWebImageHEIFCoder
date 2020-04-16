@@ -341,9 +341,6 @@
 							};
 						};
 					};
-					6003F589195388D20070C39A = {
-						DevelopmentTeam = H7W77QXGX2;
-					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -772,7 +769,6 @@
 			baseConfigurationReference = EDAAE4F3946D0D53727C85E0 /* Pods-SDWebImageHEIFCoder_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = H7W77QXGX2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SDWebImageHEIFCoder/SDWebImageHEIFCoder-Prefix.pch";
 				INFOPLIST_FILE = "SDWebImageHEIFCoder/SDWebImageHEIFCoder-Info.plist";
@@ -788,7 +784,6 @@
 			baseConfigurationReference = A1EC1B641EF75BEA2475590E /* Pods-SDWebImageHEIFCoder_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = H7W77QXGX2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SDWebImageHEIFCoder/SDWebImageHEIFCoder-Prefix.pch";
 				INFOPLIST_FILE = "SDWebImageHEIFCoder/SDWebImageHEIFCoder-Info.plist";
