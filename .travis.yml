@@ -45,4 +45,5 @@ script:
   - mv ~/Library/Developer/Xcode/DerivedData/ ./DerivedData/iOS
 
 after_success:
-    - bash <(curl -s https://codecov.io/bash) -D './DerivedData/iOS' -J '^SDWebImageHEIFCoder$' -c -X gcov -F ios
+    - bash <(curl -s https://codecov.io/bash) -D './DerivedData/iOS' -J '^SDWebImageHEIFCoder$' -X gcov -F ios -v
+    - cat ./SDWebImageHEIFCoder.framework.coverage.txt
