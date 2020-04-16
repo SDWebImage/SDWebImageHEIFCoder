@@ -350,6 +350,9 @@ static CGSize SDCalculateThumbnailSize(CGSize fullSize, BOOL preserveAspectRatio
     
     size_t bitsPerPixel = hasAlpha ? 32 : 24;
     size_t bytesPerRow = (width * bitsPerPixel + 7) / 8;
+    // use 16 byte alignment, see libheif's source code heif_image.cc :)
+    int alignment = 16; // must be power of two
+    bytesPerRow = (bytesPerRow+alignment-1) & ~(alignment-1);
     
     vImage_CGImageFormat srcFormat = {
         .bitsPerComponent = (uint32_t)CGImageGetBitsPerComponent(imageRef),
