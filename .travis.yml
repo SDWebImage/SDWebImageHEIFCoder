@@ -41,7 +41,7 @@ script:
   - mkdir DerivedData
 
   - echo Run the tests
-  - xcodebuild clean test -workspace Example/SDWebImageHEIFCoder.xcworkspace -scheme 'SDWebImageHEIFCoder_Tests' -sdk iphonesimulator -destination 'name=iPhone 11 Pro' -configuration Debug -UseModernBuildSystem=NO | xcpretty -c
+  - xcodebuild clean test -workspace Example/SDWebImageHEIFCoder.xcworkspace -scheme 'SDWebImageHEIFCoder_Tests' -sdk iphonesimulator -destination 'name=iPhone 11 Pro' -configuration Debug | xcpretty -c
   - mv ~/Library/Developer/Xcode/DerivedData/ ./DerivedData/iOS
 
 after_success:
