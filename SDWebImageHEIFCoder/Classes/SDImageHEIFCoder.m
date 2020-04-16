@@ -470,7 +470,8 @@ static CGSize SDCalculateThumbnailSize(CGSize fullSize, BOOL preserveAspectRatio
     }
     
     // check thumbnail encoding
-    if (maxPixelSize.width > 0 && maxPixelSize.height > 0 && width > 0 && height > 0) {
+    int ctuSize = 64;
+    if (maxPixelSize.width > 0 && maxPixelSize.height > 0 && width >= ctuSize && height >= ctuSize) {
         CGFloat pixelRatio = (CGFloat)width / (CGFloat)height;
         CGFloat maxPixelSizeRatio = maxPixelSize.width / maxPixelSize.height;
         CGFloat finalPixelSize;
@@ -479,6 +480,9 @@ static CGSize SDCalculateThumbnailSize(CGSize fullSize, BOOL preserveAspectRatio
         } else {
             finalPixelSize = maxPixelSize.height;
         }
+        // x265 cannot encode images smaller than one CTU size
+        // https://bitbucket.org/multicoreware/x265/issues/475/x265-does-not-allow-image-sizes-smaller
+        // -> use smaller CTU sizes for very small images
         error = heif_context_encode_thumbnail(ctx, img, handle, encoder, NULL, (int)finalPixelSize, NULL);
         if (error.code != heif_error_Ok) {
             heif_image_release(img);
