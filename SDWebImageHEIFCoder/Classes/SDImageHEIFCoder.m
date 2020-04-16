@@ -294,13 +294,26 @@ static CGSize SDCalculateThumbnailSize(CGSize fullSize, BOOL preserveAspectRatio
     if ([options valueForKey:SDImageCoderEncodeCompressionQuality]) {
         compressionQuality = [[options valueForKey:SDImageCoderEncodeCompressionQuality] doubleValue];
     }
+    CGSize maxPixelSize = CGSizeZero;
+    NSValue *maxPixelSizeValue = options[SDImageCoderEncodeMaxPixelSize];
+    if (maxPixelSizeValue != nil) {
+#if SD_MAC
+        maxPixelSize = maxPixelSizeValue.sizeValue;
+#else
+        maxPixelSize = maxPixelSizeValue.CGSizeValue;
+#endif
+    }
+    NSUInteger maxFileSize = 0;
+    if (options[SDImageCoderEncodeMaxFileSize]) {
+        maxFileSize = [options[SDImageCoderEncodeMaxFileSize] unsignedIntegerValue];
+    }
     
-    data = [self sd_encodedHEIFDataWithImage:image quality:compressionQuality];
+    data = [self sd_encodedHEIFDataWithImage:image quality:compressionQuality maxPixelSize:maxPixelSize maxFileSize:maxFileSize];
     
     return data;
 }
 
-- (nullable NSData *)sd_encodedHEIFDataWithImage:(nonnull UIImage *)image quality:(double)quality {
+- (nullable NSData *)sd_encodedHEIFDataWithImage:(nonnull UIImage *)image quality:(double)quality maxPixelSize:(CGSize)maxPixelSize maxFileSize:(NSUInteger)maxFileSize {
     CGImageRef imageRef = image.CGImage;
     if (!imageRef) {
         return nil;
@@ -364,7 +377,7 @@ static CGSize SDCalculateThumbnailSize(CGSize fullSize, BOOL preserveAspectRatio
         .bitsPerComponent = 8,
         .bitsPerPixel = bitsPerPixel,
         .colorSpace = [SDImageCoderHelper colorSpaceGetDeviceRGB],
-        .bitmapInfo = hasAlpha ? kCGImageAlphaLast | kCGBitmapByteOrderDefault : kCGImageAlphaNone | kCGBitmapByteOrderDefault // RGB888/RGBA8888 (Non-premultiplied to works for libwebp)
+        .bitmapInfo = hasAlpha ? kCGImageAlphaLast | kCGBitmapByteOrderDefault : kCGImageAlphaNone | kCGBitmapByteOrderDefault // RGB888/RGBA8888 (Non-premultiplied to works for libheif)
     };
     
     convertor = vImageConverter_CreateWithCGImageFormat(&srcFormat, &destFormat, NULL, kvImageNoFlags, &v_error);
@@ -439,12 +452,33 @@ static CGSize SDCalculateThumbnailSize(CGSize fullSize, BOOL preserveAspectRatio
     free(rgba);
     
     // encode the image
-    error = heif_context_encode_image(ctx, img, encoder, NULL, NULL);
+    heif_image_handle *handle;
+    error = heif_context_encode_image(ctx, img, encoder, NULL, &handle);
     if (error.code != heif_error_Ok) {
         heif_image_release(img);
         heif_encoder_release(encoder);
         heif_context_free(ctx);
         return nil;
+    }
+    
+    // check thumbnail encoding
+    if (maxPixelSize.width > 0 && maxPixelSize.height > 0 && width > 0 && height > 0) {
+        CGFloat pixelRatio = (CGFloat)width / (CGFloat)height;
+        CGFloat maxPixelSizeRatio = maxPixelSize.width / maxPixelSize.height;
+        CGFloat finalPixelSize;
+        if (pixelRatio > maxPixelSizeRatio) {
+            finalPixelSize = maxPixelSize.width;
+        } else {
+            finalPixelSize = maxPixelSize.height;
+        }
+        error = heif_context_encode_thumbnail(ctx, img, handle, encoder, NULL, (int)finalPixelSize, NULL);
+        if (error.code != heif_error_Ok) {
+            heif_image_release(img);
+            heif_encoder_release(encoder);
+            heif_image_handle_release(handle);
+            heif_context_free(ctx);
+            return nil;
+        }
     }
     
     NSMutableData *mutableData = [NSMutableData data];
@@ -457,6 +491,7 @@ static CGSize SDCalculateThumbnailSize(CGSize fullSize, BOOL preserveAspectRatio
     // clean up
     heif_image_release(img);
     heif_encoder_release(encoder);
+    heif_image_handle_release(handle);
     heif_context_free(ctx);
     
     return [mutableData copy];

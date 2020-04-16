@@ -53,5 +53,5 @@ Which is built based on the open-sourced libheif codec.
     }
   end
   
-  s.dependency 'SDWebImage/Core', '~> 5.5'
+  s.dependency 'SDWebImage/Core', '~> 5.7'
 end
