@@ -174,21 +174,15 @@ static CGSize SDCalculateThumbnailSize(CGSize fullSize, BOOL preserveAspectRatio
                 return nil;
             }
             
-            // use full image to scale down if pixel size is smaller than thumbnail size
-            int handleWidth = heif_image_handle_get_width(handle);
-            int handleHeight = heif_image_handle_get_height(handle);
+            int handleWidth = heif_image_handle_get_width(thumbnailHandle);
+            int handleHeight = heif_image_handle_get_height(thumbnailHandle);
             if (handleWidth < thumbnailSize.width && handleHeight < thumbnailSize.height) {
-                CGImageRef imageRef = [self sd_createFrameWithImageHandle:thumbnailHandle thumbnailSize:thumbnailSize preserveAspectRatio:preserveAspectRatio];
-                
-                // clean up
+                // use full image to scale down if pixel size is smaller than thumbnail size
                 heif_image_handle_release(thumbnailHandle);
-                heif_image_handle_release(handle);
-                heif_context_free(ctx);
-                
-                return imageRef;
             } else {
-                // clean up
-                heif_image_handle_release(thumbnailHandle);
+                // else, the thumbnail is large enough to directly use
+                heif_image_handle_release(handle);
+                handle = thumbnailHandle;
             }
         }
     }
@@ -294,13 +288,26 @@ static CGSize SDCalculateThumbnailSize(CGSize fullSize, BOOL preserveAspectRatio
     if ([options valueForKey:SDImageCoderEncodeCompressionQuality]) {
         compressionQuality = [[options valueForKey:SDImageCoderEncodeCompressionQuality] doubleValue];
     }
+    CGSize maxPixelSize = CGSizeZero;
+    NSValue *maxPixelSizeValue = options[SDImageCoderEncodeMaxPixelSize];
+    if (maxPixelSizeValue != nil) {
+#if SD_MAC
+        maxPixelSize = maxPixelSizeValue.sizeValue;
+#else
+        maxPixelSize = maxPixelSizeValue.CGSizeValue;
+#endif
+    }
+    NSUInteger maxFileSize = 0;
+    if (options[SDImageCoderEncodeMaxFileSize]) {
+        maxFileSize = [options[SDImageCoderEncodeMaxFileSize] unsignedIntegerValue];
+    }
     
-    data = [self sd_encodedHEIFDataWithImage:image quality:compressionQuality];
+    data = [self sd_encodedHEIFDataWithImage:image quality:compressionQuality maxPixelSize:maxPixelSize maxFileSize:maxFileSize];
     
     return data;
 }
 
-- (nullable NSData *)sd_encodedHEIFDataWithImage:(nonnull UIImage *)image quality:(double)quality {
+- (nullable NSData *)sd_encodedHEIFDataWithImage:(nonnull UIImage *)image quality:(double)quality maxPixelSize:(CGSize)maxPixelSize maxFileSize:(NSUInteger)maxFileSize {
     CGImageRef imageRef = image.CGImage;
     if (!imageRef) {
         return nil;
@@ -342,7 +349,21 @@ static CGSize SDCalculateThumbnailSize(CGSize fullSize, BOOL preserveAspectRatio
     }
     
     // set the encoder parameters
-    heif_encoder_set_lossy_quality(encoder, quality * 100);
+    if (maxFileSize > 0) {
+        // if we want to actually the limit bytes, use ABR to limit bitrate
+        // I'm not professional in x265 video encoding, learn more: https://slhck.info/video/2017/03/01/rate-control.html
+        unsigned long bitrate = maxFileSize * 8 / 1000; // kbps, 1 second
+        size_t length = snprintf(NULL, 0, "%d", bitrate);
+        char *bitrate_str = malloc(length + 1);
+        snprintf(bitrate_str, length + 1, "%d", bitrate);
+        heif_encoder_set_parameter(encoder, "x265:bitrate", bitrate_str);
+        heif_encoder_set_parameter(encoder, "x265:vbv-maxrate", bitrate_str);
+        heif_encoder_set_parameter(encoder, "x265:vbv-bufsize", bitrate_str);
+        free(bitrate_str);
+    } else {
+        // else use the CRF quality (libheif's default quality params)
+        heif_encoder_set_lossy_quality(encoder, quality * 100);
+    }
     
     // libheif supports RGB888/RGBA8888 color mode, convert all to this
     vImageConverterRef convertor = NULL;
@@ -364,7 +385,7 @@ static CGSize SDCalculateThumbnailSize(CGSize fullSize, BOOL preserveAspectRatio
         .bitsPerComponent = 8,
         .bitsPerPixel = bitsPerPixel,
         .colorSpace = [SDImageCoderHelper colorSpaceGetDeviceRGB],
-        .bitmapInfo = hasAlpha ? kCGImageAlphaLast | kCGBitmapByteOrderDefault : kCGImageAlphaNone | kCGBitmapByteOrderDefault // RGB888/RGBA8888 (Non-premultiplied to works for libwebp)
+        .bitmapInfo = hasAlpha ? kCGImageAlphaLast | kCGBitmapByteOrderDefault : kCGImageAlphaNone | kCGBitmapByteOrderDefault // RGB888/RGBA8888 (Non-premultiplied to works for libheif)
     };
     
     convertor = vImageConverter_CreateWithCGImageFormat(&srcFormat, &destFormat, NULL, kvImageNoFlags, &v_error);
@@ -438,14 +459,37 @@ static CGSize SDCalculateThumbnailSize(CGSize fullSize, BOOL preserveAspectRatio
     // free the rgba buffer
     free(rgba);
     
+    // check thumbnail encoding
+    int ctuSize = 64;
+    // x265 cannot encode images smaller than one CTU size
+    // https://bitbucket.org/multicoreware/x265/issues/475/x265-does-not-allow-image-sizes-smaller
+    // -> use smaller CTU sizes for very small images
+    if (maxPixelSize.width > 0 && maxPixelSize.height > 0 && width >= ctuSize && height >= ctuSize) {
+        CGSize scaledSize = SDCalculateThumbnailSize(CGSizeMake(width, height), YES, maxPixelSize);
+        heif_image *thumbnail_img;
+        error = heif_image_scale_image(img, &thumbnail_img, (int)scaledSize.width, (int)scaledSize.height, NULL);
+        if (error.code != heif_error_Ok) {
+            heif_image_release(img);
+            heif_encoder_release(encoder);
+            heif_context_free(ctx);
+            return nil;
+        }
+        heif_image_release(img);
+        img = thumbnail_img;
+    }
+    
     // encode the image
-    error = heif_context_encode_image(ctx, img, encoder, NULL, NULL);
+    heif_image_handle *handle;
+    error = heif_context_encode_image(ctx, img, encoder, NULL, &handle);
     if (error.code != heif_error_Ok) {
         heif_image_release(img);
         heif_encoder_release(encoder);
         heif_context_free(ctx);
         return nil;
     }
+
+//    Support embed thumbnail image
+//    error = heif_context_encode_thumbnail(ctx, img, handle, encoder, NULL, (int)finalPixelSize, NULL);
     
     NSMutableData *mutableData = [NSMutableData data];
     heif_writer writer;
@@ -457,6 +501,7 @@ static CGSize SDCalculateThumbnailSize(CGSize fullSize, BOOL preserveAspectRatio
     // clean up
     heif_image_release(img);
     heif_encoder_release(encoder);
+    heif_image_handle_release(handle);
     heif_context_free(ctx);
     
     return [mutableData copy];

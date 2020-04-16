@@ -35,8 +35,10 @@
         if (image) {
             NSLog(@"Single HEIC load success");
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                NSData *data = [[SDImageHEIFCoder sharedCoder] encodedDataWithImage:image format:SDImageFormatHEIC options:nil];
+                NSData *data = [[SDImageHEIFCoder sharedCoder] encodedDataWithImage:image format:SDImageFormatHEIC options:@{SDImageCoderEncodeMaxPixelSize : @(CGSizeMake(100, 100))}];
                 NSAssert(data, @"HEIC encoding failed");
+                UIImage *thumbnailImage = [[SDImageHEIFCoder sharedCoder] decodedImageWithData:data options:@{SDImageCoderDecodeThumbnailPixelSize : @(CGSizeMake(100, 100))}];
+                NSAssert(thumbnailImage.size.width == 100, @"HEIC thumbnail encoding and then thumbnail decoding");
                 NSLog(@"HEIC encoding success");
             });
         }

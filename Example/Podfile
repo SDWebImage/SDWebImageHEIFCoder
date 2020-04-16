@@ -10,7 +10,7 @@ target 'SDWebImageHEIFCoder_Example' do
 
   target 'SDWebImageHEIFCoder_Tests' do
     inherit! :search_paths
-
+    pod 'Expecta'
     
   end
 end

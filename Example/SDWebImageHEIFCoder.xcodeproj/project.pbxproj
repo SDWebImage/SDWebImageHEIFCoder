@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		02611B7015E8FA9225C7A277 /* Pods_SDWebImageHEIFCoder_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C56612731812E8C66FD75D78 /* Pods_SDWebImageHEIFCoder_Tests.framework */; };
+		32B50E1D244841DD0078E964 /* TestImageAnimated.heic in Resources */ = {isa = PBXBuildFile; fileRef = 32B50E1B244841DD0078E964 /* TestImageAnimated.heic */; };
+		32B50E1E244841DD0078E964 /* TestImageStatic.heic in Resources */ = {isa = PBXBuildFile; fileRef = 32B50E1C244841DD0078E964 /* TestImageStatic.heic */; };
 		32DE7FAC2261EA5400CF1A88 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DE7FAB2261EA5400CF1A88 /* AppDelegate.m */; };
 		32DE7FAF2261EA5400CF1A88 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DE7FAE2261EA5400CF1A88 /* ViewController.m */; };
 		32DE7FB12261EA5400CF1A88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32DE7FB02261EA5400CF1A88 /* Assets.xcassets */; };
@@ -25,7 +27,7 @@
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
-		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
+		6003F5BC195388D20070C39A /* SDWebImageHEIFCoderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* SDWebImageHEIFCoderTests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		C8FC400702982DCE3137FF1E /* Pods_SDWebImageHEIFCoder_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB362D312C46B9817266DAB /* Pods_SDWebImageHEIFCoder_Example.framework */; };
@@ -43,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		32B50E1B244841DD0078E964 /* TestImageAnimated.heic */ = {isa = PBXFileReference; lastKnownFileType = file; path = TestImageAnimated.heic; sourceTree = "<group>"; };
+		32B50E1C244841DD0078E964 /* TestImageStatic.heic */ = {isa = PBXFileReference; lastKnownFileType = file; path = TestImageStatic.heic; sourceTree = "<group>"; };
 		32DE7FA82261EA5300CF1A88 /* SDWebImageHEIFCoder_Example macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SDWebImageHEIFCoder_Example macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		32DE7FAA2261EA5300CF1A88 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		32DE7FAB2261EA5400CF1A88 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -72,7 +76,7 @@
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
+		6003F5BB195388D20070C39A /* SDWebImageHEIFCoderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDWebImageHEIFCoderTests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7B8FAB679E1472168E8617DA /* SDWebImageHEIFCoder.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SDWebImageHEIFCoder.podspec; path = ../SDWebImageHEIFCoder.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -123,6 +127,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		32B50E1A244841310078E964 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				32B50E1B244841DD0078E964 /* TestImageAnimated.heic */,
+				32B50E1C244841DD0078E964 /* TestImageStatic.heic */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		32DE7FA92261EA5300CF1A88 /* SDWebImageHEIFCoder_Example macOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,10 +220,12 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				6003F5BB195388D20070C39A /* Tests.m */,
+				32B50E1A244841310078E964 /* Images */,
+				6003F5BB195388D20070C39A /* SDWebImageHEIFCoderTests.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 			);
-			path = Tests;
+			name = Tests;
+			path = ../Tests;
 			sourceTree = "<group>";
 		};
 		6003F5B6195388D20070C39A /* Supporting Files */ = {
@@ -295,6 +310,7 @@
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
+				027BFE092DEF3CDEB1FF8404 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -380,12 +396,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */,
+				32B50E1D244841DD0078E964 /* TestImageAnimated.heic in Resources */,
+				32B50E1E244841DD0078E964 /* TestImageStatic.heic in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		027BFE092DEF3CDEB1FF8404 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SDWebImageHEIFCoder_Tests/Pods-SDWebImageHEIFCoder_Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Expecta/Expecta.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Expecta.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SDWebImageHEIFCoder_Tests/Pods-SDWebImageHEIFCoder_Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		96669B7112262C063F62EA79 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -527,7 +563,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6003F5BC195388D20070C39A /* Tests.m in Sources */,
+				6003F5BC195388D20070C39A /* SDWebImageHEIFCoderTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -774,12 +810,12 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
+				GCC_PREFIX_HEADER = "../Tests/Tests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "Tests/Tests-Info.plist";
+				INFOPLIST_FILE = "../Tests/Tests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SDWebImageHEIFCoder_Example.app/SDWebImageHEIFCoder_Example";
@@ -798,8 +834,8 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
-				INFOPLIST_FILE = "Tests/Tests-Info.plist";
+				GCC_PREFIX_HEADER = "../Tests/Tests-Prefix.pch";
+				INFOPLIST_FILE = "../Tests/Tests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SDWebImageHEIFCoder_Example.app/SDWebImageHEIFCoder_Example";
