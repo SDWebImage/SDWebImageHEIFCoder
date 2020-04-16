@@ -174,21 +174,15 @@ static CGSize SDCalculateThumbnailSize(CGSize fullSize, BOOL preserveAspectRatio
                 return nil;
             }
             
-            // use full image to scale down if pixel size is smaller than thumbnail size
-            int handleWidth = heif_image_handle_get_width(handle);
-            int handleHeight = heif_image_handle_get_height(handle);
+            int handleWidth = heif_image_handle_get_width(thumbnailHandle);
+            int handleHeight = heif_image_handle_get_height(thumbnailHandle);
             if (handleWidth < thumbnailSize.width && handleHeight < thumbnailSize.height) {
-                CGImageRef imageRef = [self sd_createFrameWithImageHandle:thumbnailHandle thumbnailSize:thumbnailSize preserveAspectRatio:preserveAspectRatio];
-                
-                // clean up
+                // use full image to scale down if pixel size is smaller than thumbnail size
                 heif_image_handle_release(thumbnailHandle);
-                heif_image_handle_release(handle);
-                heif_context_free(ctx);
-                
-                return imageRef;
             } else {
-                // clean up
-                heif_image_handle_release(thumbnailHandle);
+                // else, the thumbnail is large enough to directly use
+                heif_image_handle_release(handle);
+                handle = thumbnailHandle;
             }
         }
     }
