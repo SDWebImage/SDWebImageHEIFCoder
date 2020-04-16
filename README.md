@@ -200,7 +200,7 @@ let lossyData = SDImageHEIFCoder.shared.encodedData(with: image, format: .heif, 
 let limitedData = SDImageHEIFCoder.shared.encodedData(with: image, format: .heif, options: [.encodeMaxFileSize: 1024 * 10]) // v0.8.0 feature, limit output file size <= 10KB
 ```
 
-### Thumbnail Encoding
+### Thumbnail Encoding (0.8.0+)
 
 + Objective-C
 
