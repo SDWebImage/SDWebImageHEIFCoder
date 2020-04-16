@@ -349,7 +349,21 @@ static CGSize SDCalculateThumbnailSize(CGSize fullSize, BOOL preserveAspectRatio
     }
     
     // set the encoder parameters
-    heif_encoder_set_lossy_quality(encoder, quality * 100);
+    if (maxFileSize > 0) {
+        // if we want to actually the limit bytes, use ABR to limit bitrate
+        // I'm not professional in x265 video encoding, learn more: https://slhck.info/video/2017/03/01/rate-control.html
+        unsigned long bitrate = maxFileSize * 8 / 1000; // kbps, 1 second
+        size_t length = snprintf(NULL, 0, "%d", bitrate);
+        char *bitrate_str = malloc(length + 1);
+        snprintf(bitrate_str, length + 1, "%d", bitrate);
+        heif_encoder_set_parameter(encoder, "x265:bitrate", bitrate_str);
+        heif_encoder_set_parameter(encoder, "x265:vbv-maxrate", bitrate_str);
+        heif_encoder_set_parameter(encoder, "x265:vbv-bufsize", bitrate_str);
+        free(bitrate_str);
+    } else {
+        // else use the CRF quality (libheif's default quality params)
+        heif_encoder_set_lossy_quality(encoder, quality * 100);
+    }
     
     // libheif supports RGB888/RGBA8888 color mode, convert all to this
     vImageConverterRef convertor = NULL;
