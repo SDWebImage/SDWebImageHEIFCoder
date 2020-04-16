@@ -459,6 +459,25 @@ static CGSize SDCalculateThumbnailSize(CGSize fullSize, BOOL preserveAspectRatio
     // free the rgba buffer
     free(rgba);
     
+    // check thumbnail encoding
+    int ctuSize = 64;
+    // x265 cannot encode images smaller than one CTU size
+    // https://bitbucket.org/multicoreware/x265/issues/475/x265-does-not-allow-image-sizes-smaller
+    // -> use smaller CTU sizes for very small images
+    if (maxPixelSize.width > 0 && maxPixelSize.height > 0 && width >= ctuSize && height >= ctuSize) {
+        CGSize scaledSize = SDCalculateThumbnailSize(CGSizeMake(width, height), YES, maxPixelSize);
+        heif_image *thumbnail_img;
+        error = heif_image_scale_image(img, &thumbnail_img, (int)scaledSize.width, (int)scaledSize.height, NULL);
+        if (error.code != heif_error_Ok) {
+            heif_image_release(img);
+            heif_encoder_release(encoder);
+            heif_context_free(ctx);
+            return nil;
+        }
+        heif_image_release(img);
+        img = thumbnail_img;
+    }
+    
     // encode the image
     heif_image_handle *handle;
     error = heif_context_encode_image(ctx, img, encoder, NULL, &handle);
@@ -468,30 +487,9 @@ static CGSize SDCalculateThumbnailSize(CGSize fullSize, BOOL preserveAspectRatio
         heif_context_free(ctx);
         return nil;
     }
-    
-    // check thumbnail encoding
-    int ctuSize = 64;
-    if (maxPixelSize.width > 0 && maxPixelSize.height > 0 && width >= ctuSize && height >= ctuSize) {
-        CGFloat pixelRatio = (CGFloat)width / (CGFloat)height;
-        CGFloat maxPixelSizeRatio = maxPixelSize.width / maxPixelSize.height;
-        CGFloat finalPixelSize;
-        if (pixelRatio > maxPixelSizeRatio) {
-            finalPixelSize = maxPixelSize.width;
-        } else {
-            finalPixelSize = maxPixelSize.height;
-        }
-        // x265 cannot encode images smaller than one CTU size
-        // https://bitbucket.org/multicoreware/x265/issues/475/x265-does-not-allow-image-sizes-smaller
-        // -> use smaller CTU sizes for very small images
-        error = heif_context_encode_thumbnail(ctx, img, handle, encoder, NULL, (int)finalPixelSize, NULL);
-        if (error.code != heif_error_Ok) {
-            heif_image_release(img);
-            heif_encoder_release(encoder);
-            heif_image_handle_release(handle);
-            heif_context_free(ctx);
-            return nil;
-        }
-    }
+
+//    Support embed thumbnail image
+//    error = heif_context_encode_thumbnail(ctx, img, handle, encoder, NULL, (int)finalPixelSize, NULL);
     
     NSMutableData *mutableData = [NSMutableData data];
     heif_writer writer;

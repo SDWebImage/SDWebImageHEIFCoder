@@ -199,7 +199,7 @@ const int64_t kAsyncTestTimeout = 5;
         }
         NSData *outputMaxImageData = [coder encodedDataWithImage:inputImage format:encodingFormat options:@{SDImageCoderEncodeMaxPixelSize : @(CGSizeMake(maxWidth, maxHeight))}];
         expect(outputMaxImageData).toNot.beNil();
-        UIImage *outputMaxImage = [coder decodedImageWithData:outputMaxImageData options:@{SDImageCoderDecodeThumbnailPixelSize : @(CGSizeMake(maxWidth, maxHeight))}];
+        UIImage *outputMaxImage = [coder decodedImageWithData:outputMaxImageData options:nil];
         // Image/IO's thumbnail API does not always use round to preserve precision, we check ABS <= 1
         expect(ABS(outputMaxImage.size.width - maxPixelSize.width)).beLessThanOrEqualTo(1);
         expect(ABS(outputMaxImage.size.height - maxPixelSize.height)).beLessThanOrEqualTo(1);
