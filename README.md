@@ -6,6 +6,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/SDWebImageHEIFCoder.svg?style=flat)](https://cocoapods.org/pods/SDWebImageHEIFCoder)
 [![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-compatible-brightgreen.svg?style=flat)](https://swift.org/package-manager/)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/SDWebImage/SDWebImageHEIFCoder)
+[![codecov](https://codecov.io/gh/SDWebImage/SDWebImageHEIFCoder/branch/master/graph/badge.svg)](https://codecov.io/gh/SDWebImage/SDWebImageHEIFCoder)
 
 ## 4.x compatibility
 
