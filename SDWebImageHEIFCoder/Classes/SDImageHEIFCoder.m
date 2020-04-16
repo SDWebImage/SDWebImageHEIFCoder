@@ -451,13 +451,7 @@ static CGSize SDCalculateThumbnailSize(CGSize fullSize, BOOL preserveAspectRatio
     // fill the plane
     int stride;
     uint8_t *planar = heif_image_get_plane(img, channel, &stride);
-    size_t bytes_per_pixel = (bitsPerPixel + 7) / 8;
-    for (int y = 0 ; y < height ; y++) {
-        memcpy(planar + y * stride, rgba + y * stride, width * bytes_per_pixel);
-    }
-    
-    // free the rgba buffer
-    free(rgba);
+    planar = rgba;
     
     // check thumbnail encoding
     int ctuSize = 64;
@@ -469,6 +463,7 @@ static CGSize SDCalculateThumbnailSize(CGSize fullSize, BOOL preserveAspectRatio
         heif_image *thumbnail_img;
         error = heif_image_scale_image(img, &thumbnail_img, (int)scaledSize.width, (int)scaledSize.height, NULL);
         if (error.code != heif_error_Ok) {
+            free(rgba);
             heif_image_release(img);
             heif_encoder_release(encoder);
             heif_context_free(ctx);
@@ -482,6 +477,7 @@ static CGSize SDCalculateThumbnailSize(CGSize fullSize, BOOL preserveAspectRatio
     heif_image_handle *handle;
     error = heif_context_encode_image(ctx, img, encoder, NULL, &handle);
     if (error.code != heif_error_Ok) {
+        free(rgba);
         heif_image_release(img);
         heif_encoder_release(encoder);
         heif_context_free(ctx);
@@ -499,6 +495,7 @@ static CGSize SDCalculateThumbnailSize(CGSize fullSize, BOOL preserveAspectRatio
     error = heif_context_write(ctx, &writer, (__bridge void *)(mutableData));
     
     // clean up
+    free(rgba);
     heif_image_release(img);
     heif_encoder_release(encoder);
     heif_image_handle_release(handle);
