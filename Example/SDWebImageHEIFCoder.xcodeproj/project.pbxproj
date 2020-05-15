@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		02611B7015E8FA9225C7A277 /* Pods_SDWebImageHEIFCoder_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C56612731812E8C66FD75D78 /* Pods_SDWebImageHEIFCoder_Tests.framework */; };
+		327C6B97246E4C3600AB0AA4 /* TestImage.heic in Resources */ = {isa = PBXBuildFile; fileRef = 327C6B96246E4C3600AB0AA4 /* TestImage.heic */; };
 		32B50E1D244841DD0078E964 /* TestImageAnimated.heic in Resources */ = {isa = PBXBuildFile; fileRef = 32B50E1B244841DD0078E964 /* TestImageAnimated.heic */; };
 		32B50E1E244841DD0078E964 /* TestImageStatic.heic in Resources */ = {isa = PBXBuildFile; fileRef = 32B50E1C244841DD0078E964 /* TestImageStatic.heic */; };
 		32DE7FAC2261EA5400CF1A88 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DE7FAB2261EA5400CF1A88 /* AppDelegate.m */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		327C6B96246E4C3600AB0AA4 /* TestImage.heic */ = {isa = PBXFileReference; lastKnownFileType = file; path = TestImage.heic; sourceTree = "<group>"; };
 		32B50E1B244841DD0078E964 /* TestImageAnimated.heic */ = {isa = PBXFileReference; lastKnownFileType = file; path = TestImageAnimated.heic; sourceTree = "<group>"; };
 		32B50E1C244841DD0078E964 /* TestImageStatic.heic */ = {isa = PBXFileReference; lastKnownFileType = file; path = TestImageStatic.heic; sourceTree = "<group>"; };
 		32DE7FA82261EA5300CF1A88 /* SDWebImageHEIFCoder_Example macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SDWebImageHEIFCoder_Example macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,6 +134,7 @@
 			children = (
 				32B50E1B244841DD0078E964 /* TestImageAnimated.heic */,
 				32B50E1C244841DD0078E964 /* TestImageStatic.heic */,
+				327C6B96246E4C3600AB0AA4 /* TestImage.heic */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				327C6B97246E4C3600AB0AA4 /* TestImage.heic in Resources */,
 				6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */,
 				32B50E1D244841DD0078E964 /* TestImageAnimated.heic in Resources */,
 				32B50E1E244841DD0078E964 /* TestImageStatic.heic in Resources */,

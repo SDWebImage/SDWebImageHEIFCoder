@@ -10,18 +10,22 @@
 @import XCTest;
 #import <SDWebImage/SDWebImage.h>
 #import <SDWebImageHEIFCoder/SDWebImageHEIFCoder.h>
+#import <libheif/heif.h>
 #import <Expecta/Expecta.h>
 
 const int64_t kAsyncTestTimeout = 5;
 
-@interface SDWebImageHEIFCoderTests : XCTestCase
-@end
+typedef struct heif_context heif_context;
+typedef struct heif_image_handle heif_image_handle;
+typedef struct heif_image heif_image;
+typedef struct heif_encoder heif_encoder;
+typedef struct heif_writer heif_writer;
+typedef struct heif_error heif_error;
+typedef enum heif_chroma heif_chroma;
+typedef enum heif_channel heif_channel;
+typedef enum heif_colorspace heif_colorspace;
 
-@interface SDWebImageHEIFCoderTests (Helpers)
-- (void)verifyCoder:(id<SDImageCoder>)coder
-  withLocalImageURL:(NSURL *)imageUrl
-   supportsEncoding:(BOOL)supportsEncoding
-    isAnimatedImage:(BOOL)isAnimated;
+@interface SDWebImageHEIFCoderTests : XCTestCase
 @end
 
 @interface SDHEIFCoderFrame : NSObject
@@ -100,9 +104,30 @@ const int64_t kAsyncTestTimeout = 5;
     XCTAssertLessThanOrEqual(dataWithLimit.length, maxFileSize);
 }
 
-@end
-
-@implementation SDWebImageHEIFCoderTests (Helpers)
+- (void)test19ThatEmbedThumbnailHEICWorks {
+    // The input HEIC does not contains any embed thumbnail
+    NSURL *heicURL = [[NSBundle bundleForClass:[self class]] URLForResource:@"TestImage" withExtension:@"heic"];
+    NSData *heicData = [NSData dataWithContentsOfURL:heicURL];
+    NSArray *thumbnailImages = [self thumbnailImagesFromData:heicData];
+    expect(thumbnailImages.count).equal(0);
+    
+    UIImage *image = [SDImageHEIFCoder.sharedCoder decodedImageWithData:heicData options:nil];
+    // Encode with embed thumbnail
+    NSData *encodedData = [SDImageHEIFCoder.sharedCoder encodedDataWithImage:image format:SDImageFormatHEIC options:@{SDImageCoderEncodeEmbedThumbnail : @(YES)}];
+    
+    [encodedData writeToFile:@"/tmp/1.heic" atomically:YES];
+    
+    // The new HEIC contains one embed thumbnail
+    NSArray *thumbnailImages2 = [self thumbnailImagesFromData:encodedData];
+    expect(thumbnailImages2.count).equal(1);
+    
+    // Cuurent we use 320x320 for thubmnail (keep aspect ratio), check the behavior :)
+    NSDictionary *thumbnailImageInfo = thumbnailImages2.firstObject;
+    NSUInteger thumbnailWidth = [thumbnailImageInfo[@"width"] unsignedIntegerValue];
+    NSUInteger thumbnailHeight = [thumbnailImageInfo[@"height"] unsignedIntegerValue];
+    expect(thumbnailWidth).equal(320);
+    expect(thumbnailHeight).equal(212);
+}
 
 - (void)verifyCoder:(id<SDImageCoder>)coder
   withLocalImageURL:(NSURL *)imageUrl
@@ -207,6 +232,61 @@ const int64_t kAsyncTestTimeout = 5;
         expect(outputMaxImage.images.count).to.equal(inputImage.images.count);
 #endif
     }
+}
+
+- (NSArray *)thumbnailImagesFromData:(NSData *)data {
+    heif_context* ctx = heif_context_alloc();
+    if (!ctx) {
+        return nil;
+    }
+    
+    const void *bytes = data.bytes;
+    const size_t size = data.length;
+    heif_error error = heif_context_read_from_memory(ctx, bytes, size, NULL);
+    if (error.code != heif_error_Ok) {
+        heif_context_free(ctx);
+        return nil;
+    }
+    
+    // get a handle to the primary image
+    heif_image_handle* handle;
+    error = heif_context_get_primary_image_handle(ctx, &handle);
+    if (error.code != heif_error_Ok) {
+        heif_context_free(ctx);
+        return nil;
+    }
+    
+    // check thumbnail count
+    int thumbnailCount = heif_image_handle_get_number_of_thumbnails(handle);
+    
+    // check thumbnail size
+    heif_item_id *thumbnailIDs = calloc(thumbnailCount, sizeof(heif_item_id));
+    thumbnailCount = heif_image_handle_get_list_of_thumbnail_IDs(handle, thumbnailIDs, thumbnailCount);
+    
+    NSMutableArray *thumbnailImages = [NSMutableArray arrayWithCapacity:thumbnailCount];
+    for (int i = 0; i < thumbnailCount; i++) {
+        heif_image_handle *thumbnailHandle;
+        error = heif_image_handle_get_thumbnail(handle, thumbnailIDs[i], &thumbnailHandle);
+        if (error.code != heif_error_Ok) {
+            heif_image_handle_release(handle);
+            heif_context_free(ctx);
+            free(thumbnailIDs);
+            return nil;
+        }
+        
+        int handleWidth = heif_image_handle_get_width(thumbnailHandle);
+        int handleHeight = heif_image_handle_get_height(thumbnailHandle);
+        heif_image_handle_release(thumbnailHandle);
+        
+        NSDictionary *thumbnailImage = @{@"width": @(handleWidth), @"height": @(handleHeight)};
+        [thumbnailImages addObject:thumbnailImage];
+    }
+    
+    free(thumbnailIDs);
+    heif_image_handle_release(handle);
+    heif_context_free(ctx);
+    
+    return [thumbnailImages copy];
 }
 
 @end

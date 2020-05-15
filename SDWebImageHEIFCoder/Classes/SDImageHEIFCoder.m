@@ -23,6 +23,8 @@ typedef enum heif_chroma heif_chroma;
 typedef enum heif_channel heif_channel;
 typedef enum heif_colorspace heif_colorspace;
 
+static int HEIFMaxThumbnailPixelSize = 320; // Max Limit to thumbnail. This value is from Image/IO decompile result, which is also hardcoded :)
+
 static heif_error WriteImageData(heif_context * ctx, const void * data, size_t size, void * userdata) {
     NSMutableData *imageData = (__bridge NSMutableData *)userdata;
     NSCParameterAssert(imageData);
@@ -301,13 +303,17 @@ static CGSize SDCalculateThumbnailSize(CGSize fullSize, BOOL preserveAspectRatio
     if (options[SDImageCoderEncodeMaxFileSize]) {
         maxFileSize = [options[SDImageCoderEncodeMaxFileSize] unsignedIntegerValue];
     }
+    BOOL embedThumbnail = NO;
+    if (options[SDImageCoderEncodeEmbedThumbnail]) {
+        embedThumbnail = options[SDImageCoderEncodeEmbedThumbnail];
+    }
     
-    data = [self sd_encodedHEIFDataWithImage:image quality:compressionQuality maxPixelSize:maxPixelSize maxFileSize:maxFileSize];
+    data = [self sd_encodedHEIFDataWithImage:image quality:compressionQuality maxPixelSize:maxPixelSize maxFileSize:maxFileSize embedThumbnail:embedThumbnail];
     
     return data;
 }
 
-- (nullable NSData *)sd_encodedHEIFDataWithImage:(nonnull UIImage *)image quality:(double)quality maxPixelSize:(CGSize)maxPixelSize maxFileSize:(NSUInteger)maxFileSize {
+- (nullable NSData *)sd_encodedHEIFDataWithImage:(nonnull UIImage *)image quality:(double)quality maxPixelSize:(CGSize)maxPixelSize maxFileSize:(NSUInteger)maxFileSize embedThumbnail:(BOOL)embedThumbnail {
     CGImageRef imageRef = image.CGImage;
     if (!imageRef) {
         return nil;
@@ -484,8 +490,16 @@ static CGSize SDCalculateThumbnailSize(CGSize fullSize, BOOL preserveAspectRatio
         return nil;
     }
 
-//    Support embed thumbnail image
-//    error = heif_context_encode_thumbnail(ctx, img, handle, encoder, NULL, (int)finalPixelSize, NULL);
+    // support embed thumbnail image
+    if (embedThumbnail) {
+        heif_image *thumbnail_img = img;
+        CGSize scaledSize = SDCalculateThumbnailSize(CGSizeMake(width, height), YES, maxPixelSize);
+        int maxSize = HEIFMaxThumbnailPixelSize;
+        if (scaledSize.width > maxSize || scaledSize.height > maxSize) {
+            scaledSize = CGSizeMake(maxSize, maxSize);
+        }
+        error = heif_context_encode_thumbnail(ctx, img, handle, encoder, NULL, (int)MAX(scaledSize.width, scaledSize.height), NULL);
+    }
     
     NSMutableData *mutableData = [NSMutableData data];
     heif_writer writer;
