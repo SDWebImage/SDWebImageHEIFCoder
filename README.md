@@ -208,7 +208,9 @@ let limitedData = SDImageHEIFCoder.shared.encodedData(with: image, format: .heif
 ```objective-c
 // HEIF image thumbnail encoding
 UIImage *image;
-NSData *thumbnailData = [[SDImageHEIFCoder sharedCoder] encodedDataWithImage:image format:SDImageFormatHEIF options:@{SDImageCoderEncodeMaxPixelSize : @(CGSizeMake(200, 200)}]; // v0.8.0 feature, encoding max pixel size
+NSData *thumbnailData = [[SDImageHEIFCoder sharedCoder] encodedDataWithImage:image format:SDImageFormatHEIF options:@{SDImageCoderEncodeMaxPixelSize : @(CGSizeMake(200, 200)}, SDImageCoderEncodeEmbedThumbnail : @(YES)];
+// v0.8.0 feature, encoding max pixel size
+// v0.9.0 feature, control whether to embed thumbnail (max 320x320 pixels)
 ```
 
 + Swift
@@ -216,7 +218,9 @@ NSData *thumbnailData = [[SDImageHEIFCoder sharedCoder] encodedDataWithImage:ima
 ```swift
 // HEIF image thumbnail encoding
 let image: UIImage
-let thumbnailData = SDImageHEIFCoder.shared.encodedData(with: image, format: .heif, options: [.encodeMaxPixelSize: CGSize(width: 200, height: 200)]) // v0.8.0 feature, encoding max pixel size
+let thumbnailData = SDImageHEIFCoder.shared.encodedData(with: image, format: .heif, options: [.encodeMaxPixelSize: CGSize(width: 200, height: 200), .encodeEmbedThumbnail : true])
+// v0.8.0 feature, encoding max pixel size
+// v0.9.0 feature, control whether to embed thumbnail (max 320x320 pixels)
 ```
 
 See more documentation in [SDWebImage Wiki - Coders](https://github.com/SDWebImage/SDWebImage/wiki/Advanced-Usage#custom-coder-420)
