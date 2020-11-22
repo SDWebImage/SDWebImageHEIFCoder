@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SDWebImageHEIFCoder'
-  s.version          = '0.9.0'
+  s.version          = '0.10.0'
   s.summary          = 'A SDWebImage coder plugin to support HEIF image'
 
   s.description      = <<-DESC
@@ -21,8 +21,8 @@ Which is built based on the open-sourced libheif codec.
   s.author           = { 'DreamPiggy' => 'lizhuoli1126@126.com' }
   s.source           = { :git => 'https://github.com/SDWebImage/SDWebImageHEIFCoder.git', :tag => s.version.to_s, :submodules => true }
 
-  s.osx.deployment_target = '10.10'
-  s.ios.deployment_target = '8.0'
+  s.osx.deployment_target = '10.11'
+  s.ios.deployment_target = '9.0'
   s.tvos.deployment_target = '9.0'
   s.watchos.deployment_target = '2.0'
 
@@ -53,5 +53,5 @@ Which is built based on the open-sourced libheif codec.
     }
   end
   
-  s.dependency 'SDWebImage/Core', '~> 5.8'
+  s.dependency 'SDWebImage/Core', '~> 5.10'
 end
