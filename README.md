@@ -20,7 +20,9 @@ This HEIF coder plugin currently support HEIF single/still image **decoding** as
 
 The decoding supports [HDR](https://en.wikipedia.org/wiki/High-dynamic-range_imaging) HEIF image with 10/12 bit depth (larger than normal 8 bit) as well.
 
-It support iOS 8+/macOS 10.10+ device without the dependency of Apple's Image/IO framework.
+It support iOS 9+/macOS 10.11+ device without the dependency of Apple's Image/IO framework.
+
+For iOS 8+/macOS 10.10+, use version lower than 0.10.0.
 
 ## Performance
 
@@ -30,9 +32,9 @@ This coder is used for backward-compatible solution. And the codec only do Softw
 
 ## Requirements
 
-+ iOS 8
++ iOS 9.0
 + tvOS 9.0
-+ macOS 10.10
++ macOS 10.11
 + watchOS 2.0
 
 ## Installation

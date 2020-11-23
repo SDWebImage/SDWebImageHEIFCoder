@@ -1,11 +1,11 @@
 PODS:
   - Expecta (1.0.6)
-  - libde265 (1.0.5)
-  - libheif/libde265 (1.6.2):
+  - libde265 (1.0.7)
+  - libheif/libde265 (1.9.0):
     - libde265
     - libheif/libheif
-  - libheif/libheif (1.6.2)
-  - libheif/libx265 (1.6.2):
+  - libheif/libheif (1.9.0)
+  - libheif/libx265 (1.9.0):
     - libheif/libheif
     - libx265
   - libx265 (3.0):
@@ -30,17 +30,17 @@ PODS:
     - libx265/encoder
     - libx265/input
     - libx265/output
-  - SDWebImage/Core (5.8.0)
-  - SDWebImageHEIFCoder/libde265 (0.8.0):
+  - SDWebImage/Core (5.10.0)
+  - SDWebImageHEIFCoder/libde265 (0.10.0):
     - libheif/libde265
-    - SDWebImage/Core (~> 5.8)
+    - SDWebImage/Core (~> 5.10)
     - SDWebImageHEIFCoder/libheif
-  - SDWebImageHEIFCoder/libheif (0.8.0):
+  - SDWebImageHEIFCoder/libheif (0.10.0):
     - libheif/libheif (>= 1.6.0)
-    - SDWebImage/Core (~> 5.8)
-  - SDWebImageHEIFCoder/libx265 (0.8.0):
+    - SDWebImage/Core (~> 5.10)
+  - SDWebImageHEIFCoder/libx265 (0.10.0):
     - libheif/libx265
-    - SDWebImage/Core (~> 5.8)
+    - SDWebImage/Core (~> 5.10)
     - SDWebImageHEIFCoder/libheif
 
 DEPENDENCIES:
@@ -62,12 +62,12 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
-  libde265: 053dea4f2438ace90617f57d10cb7ab967df3393
-  libheif: 34b170f74fab727815d47d341e8131b5d2c38bfa
+  libde265: f0a422ba8f35519aeab5999608eb8f6d8ea60c93
+  libheif: 7cf34d3cc53a49c4607ee755ff09592c4a5b26d2
   libx265: 23ab716aae3eff1e6b68b3db6ace8883867691c4
-  SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
-  SDWebImageHEIFCoder: dadf4a6e1d5b31ddbf09628db8ac3e5fb7e7a7e7
+  SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
+  SDWebImageHEIFCoder: e5c27bde804c2488948ec369e2b588eab23d57fa
 
-PODFILE CHECKSUM: 48e5c1c40d966681eaf0909281322330d6fe1862
+PODFILE CHECKSUM: 201e723f3263aa614a21c7e7e46f82956584f083
 
 COCOAPODS: 1.8.4
