@@ -1,2 +1,2 @@
-github "SDWebImage/SDWebImage" ~> 5.8
+github "SDWebImage/SDWebImage" ~> 5.10
 github "SDWebImage/libheif-Xcode" >= 1.6.0

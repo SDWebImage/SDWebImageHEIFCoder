@@ -36,6 +36,7 @@ This coder is used for backward-compatible solution. And the codec only do Softw
 + tvOS 9.0
 + macOS 10.11
 + watchOS 2.0
++ Xcode 11.0
 
 ## Installation
 
