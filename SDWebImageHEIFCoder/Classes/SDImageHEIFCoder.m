@@ -385,7 +385,8 @@ static CGSize SDCalculateThumbnailSize(CGSize fullSize, BOOL preserveAspectRatio
         .bitsPerComponent = (uint32_t)CGImageGetBitsPerComponent(imageRef),
         .bitsPerPixel = (uint32_t)CGImageGetBitsPerPixel(imageRef),
         .colorSpace = CGImageGetColorSpace(imageRef),
-        .bitmapInfo = bitmapInfo
+        .bitmapInfo = bitmapInfo,
+        .renderingIntent = CGImageGetRenderingIntent(imageRef)
     };
     vImage_CGImageFormat destFormat = {
         .bitsPerComponent = 8,
