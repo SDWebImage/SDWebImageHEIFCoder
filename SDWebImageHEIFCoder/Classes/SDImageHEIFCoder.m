@@ -22,8 +22,10 @@ typedef struct heif_error heif_error;
 typedef enum heif_chroma heif_chroma;
 typedef enum heif_channel heif_channel;
 typedef enum heif_colorspace heif_colorspace;
+typedef enum heif_color_profile_type heif_color_profile_type;
 
 static int HEIFMaxThumbnailPixelSize = 320; // Max Limit to thumbnail. This value is from Image/IO decompile result, which is also hardcoded :)
+//static const char kMetadataTypeExif[] = "Exif";
 
 static heif_error WriteImageData(heif_context * ctx, const void * data, size_t size, void * userdata) {
     NSMutableData *imageData = (__bridge NSMutableData *)userdata;
@@ -44,6 +46,32 @@ static void FreeImageData(void *info, const void *data, size_t size) {
     heif_image *img = (heif_image *)info;
     heif_image_release(img); // `heif_image_release` will free the bitmap buffer. We do not call `free`
 }
+
+//static uint8_t *GetExifMetaData(const heif_image_handle* handle, size_t* size) {
+//    // Sample code from: https://github.com/strukturag/libheif/blob/v1.11.0/examples/encoder.cc
+//    heif_item_id metadata_id;
+//    int count = heif_image_handle_get_list_of_metadata_block_IDs(handle, kMetadataTypeExif,
+//                                                                 &metadata_id, 1);
+//
+//    for (int i = 0; i < count; i++) {
+//        size_t datasize = heif_image_handle_get_metadata_size(handle, metadata_id);
+//        uint8_t* data = malloc(datasize);
+//        if (!data) {
+//            continue;
+//        }
+//
+//        heif_error error = heif_image_handle_get_metadata(handle, metadata_id, data);
+//        if (error.code != heif_error_Ok) {
+//            free(data);
+//            continue;
+//        }
+//
+//        *size = datasize;
+//        return data;
+//    }
+//
+//    return NULL;
+//}
 
 /// Calculate the actual thumnail pixel size
 static CGSize SDCalculateThumbnailSize(CGSize fullSize, BOOL preserveAspectRatio, CGSize thumbnailSize) {
@@ -257,14 +285,58 @@ static CGSize SDCalculateThumbnailSize(CGSize fullSize, BOOL preserveAspectRatio
     CGDataProviderRef provider =
     CGDataProviderCreateWithData(img, rgba, stride * height, FreeImageData);
     
-    CGColorSpaceRef colorSpaceRef = [SDImageCoderHelper colorSpaceGetDeviceRGB];
+    CGColorSpaceRef colorSpaceRef = [self sd_createColorSpaceWithImageHandle:handle];
     CGColorRenderingIntent renderingIntent = kCGRenderingIntentDefault;
     CGImageRef imageRef = CGImageCreate(width, height, bitsPerComponent, bitsPerPixel, stride, colorSpaceRef, bitmapInfo, provider, NULL, NO, renderingIntent);
     
     // clean up
     CGDataProviderRelease(provider);
+    CGColorSpaceRelease(colorSpaceRef);
     
     return imageRef;
+}
+
+// Create and return the correct colorspace by checking the ICC Profile
+- (nonnull CGColorSpaceRef)sd_createColorSpaceWithImageHandle:(heif_image_handle *)handle CF_RETURNS_RETAINED {
+    CGColorSpaceRef colorSpaceRef = NULL;
+    
+    heif_error error;
+    size_t profile_size = 0;
+    uint8_t profile_buffer = NULL;
+    heif_color_profile_type profileType = heif_image_handle_get_color_profile_type(handle);
+    
+    if (profileType != heif_color_profile_type_not_present) {
+        error = heif_image_get_raw_color_profile(handle, &profile_buffer);
+        if (error.code == heif_error_Ok) {
+            profile_size = heif_image_handle_get_raw_color_profile_size(handle);
+        } else {
+            profile_buffer = NULL;
+        }
+    }
+    
+    if (profile_buffer) {
+        NSData *profileData = [NSData dataWithBytes:profile_buffer length:profile_size];
+        if (@available(iOS 10, tvOS 10, macOS 10.12, watchOS 3, *)) {
+            colorSpaceRef = CGColorSpaceCreateWithICCData((__bridge CFDataRef)profileData);
+        } else {
+            colorSpaceRef = CGColorSpaceCreateWithICCProfile((__bridge CFDataRef)profileData);
+        }
+        if (colorSpaceRef) {
+            // We use RGB color model to decode HEIF images currently, so we must filter out other colorSpace
+            CGColorSpaceModel model = CGColorSpaceGetModel(colorSpaceRef);
+            if (model != kCGColorSpaceModelRGB) {
+                CGColorSpaceRelease(colorSpaceRef);
+                colorSpaceRef = NULL;
+            }
+        }
+    }
+    
+    if (!colorSpaceRef) {
+        colorSpaceRef = [SDImageCoderHelper colorSpaceGetDeviceRGB];
+        CGColorSpaceRetain(colorSpaceRef);
+    }
+    
+    return colorSpaceRef;
 }
 
 // libheif contains initilial encoding support using libx265, but currently is not fully support
