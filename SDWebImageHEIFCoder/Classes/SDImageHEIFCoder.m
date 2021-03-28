@@ -25,7 +25,7 @@ typedef enum heif_colorspace heif_colorspace;
 typedef enum heif_color_profile_type heif_color_profile_type;
 
 static int HEIFMaxThumbnailPixelSize = 320; // Max Limit to thumbnail. This value is from Image/IO decompile result, which is also hardcoded :)
-static const char kMetadataTypeExif[] = "Exif";
+//static const char kMetadataTypeExif[] = "Exif";
 
 static heif_error WriteImageData(heif_context * ctx, const void * data, size_t size, void * userdata) {
     NSMutableData *imageData = (__bridge NSMutableData *)userdata;
@@ -47,31 +47,31 @@ static void FreeImageData(void *info, const void *data, size_t size) {
     heif_image_release(img); // `heif_image_release` will free the bitmap buffer. We do not call `free`
 }
 
-static uint8_t *GetExifMetaData(const heif_image_handle* handle, size_t* size) {
-    // Sample code from: https://github.com/strukturag/libheif/blob/v1.11.0/examples/encoder.cc
-    heif_item_id metadata_id;
-    int count = heif_image_handle_get_list_of_metadata_block_IDs(handle, kMetadataTypeExif,
-                                                                 &metadata_id, 1);
-    
-    for (int i = 0; i < count; i++) {
-        size_t datasize = heif_image_handle_get_metadata_size(handle, metadata_id);
-        uint8_t* data = malloc(datasize);
-        if (!data) {
-            continue;
-        }
-        
-        heif_error error = heif_image_handle_get_metadata(handle, metadata_id, data);
-        if (error.code != heif_error_Ok) {
-            free(data);
-            continue;
-        }
-        
-        *size = datasize;
-        return data;
-    }
-    
-    return NULL;
-}
+//static uint8_t *GetExifMetaData(const heif_image_handle* handle, size_t* size) {
+//    // Sample code from: https://github.com/strukturag/libheif/blob/v1.11.0/examples/encoder.cc
+//    heif_item_id metadata_id;
+//    int count = heif_image_handle_get_list_of_metadata_block_IDs(handle, kMetadataTypeExif,
+//                                                                 &metadata_id, 1);
+//
+//    for (int i = 0; i < count; i++) {
+//        size_t datasize = heif_image_handle_get_metadata_size(handle, metadata_id);
+//        uint8_t* data = malloc(datasize);
+//        if (!data) {
+//            continue;
+//        }
+//
+//        heif_error error = heif_image_handle_get_metadata(handle, metadata_id, data);
+//        if (error.code != heif_error_Ok) {
+//            free(data);
+//            continue;
+//        }
+//
+//        *size = datasize;
+//        return data;
+//    }
+//
+//    return NULL;
+//}
 
 /// Calculate the actual thumnail pixel size
 static CGSize SDCalculateThumbnailSize(CGSize fullSize, BOOL preserveAspectRatio, CGSize thumbnailSize) {
@@ -276,11 +276,6 @@ static CGSize SDCalculateThumbnailSize(CGSize fullSize, BOOL preserveAspectRatio
     bitsPerComponent = hasHighDepth ? 16 : 8;
     CGBitmapInfo bitmapInfo = kCGBitmapByteOrderDefault;
     bitmapInfo |= hasAlpha ? kCGImageAlphaPremultipliedLast : kCGImageAlphaNone;
-    
-//    size_t exifSize;
-//    uint8_t exifBuffer = GetExifMetaData(handle, &exifSize);
-//    CFDataRef exifData = CFDataCreate(kCFAllocatorDefault, exifBuffer, exifSize);
-//    CGImageMetadataRef metadata = CGImageMetadataCreateFromXMPData(exifData);
     
     const uint8_t *rgba = heif_image_get_plane_readonly(img, heif_channel_interleaved, &stride);
     if (!rgba) {
